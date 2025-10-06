@@ -105,66 +105,95 @@ class RVMCtrlViewController: UIViewController {
     }
     // MARK: - Button Setup
     func setupButtons() {
-        print("setupButtons에 진입")
-        btLActu.setImage(UIImage(named: "actu_down"), for: .normal)
-        btRActu.setImage(UIImage(named: "actu_down"), for: .normal)
-        
         btLFront.setImage(UIImage(named: "btLFront"), for: .normal)
         btLBack.setImage(UIImage(named: "btLBack"), for: .normal)
-        btRFront.setImage(UIImage(named: "up_arrow_l"), for: .normal)
-        btRBack.setImage(UIImage(named: "up_arrow_l"), for: .normal)
-        btFront.setImage(UIImage(named: "up_arrow_l"), for: .normal)
-        btBack.setImage(UIImage(named: "up_arrow_l"), for: .normal)
+        btRFront.setImage(UIImage(named: "btRFront"), for: .normal)
+        btRBack.setImage(UIImage(named: "btRBack"), for: .normal)
+        btFront.setImage(UIImage(named: "btFront"), for: .normal)
+        btBack.setImage(UIImage(named: "btBack"), for: .normal)
         
-        btTurnCW.setImage(UIImage(named: "up_arrow_l"), for: .normal)
-        btTurnCCW.setImage(UIImage(named: "up_arrow_l"), for: .normal)
+        btTurnCW.setImage(UIImage(named: "btTurn_cw"), for: .normal)
+        btTurnCCW.setImage(UIImage(named: "btTurn_ccw"), for: .normal)
         
-        btStop.setImage(UIImage(named: "up_arrow_l"), for: .normal)
-        btLActu.setImage(UIImage(named: "up_arrow_l"), for: .normal)
-        btRActu.setImage(UIImage(named: "up_arrow_l"), for: .normal)
-        print("버튼할당")  // nil인지 확인        setSpeedButton(speedMax)
-//        let buttons: [UIButton] = [
-//            btLFront, btLBack, btRFront, btRBack,
-//            btFront, btBack, btTurnCW, btTurnCCW,
-//            btStop, btLActu, btRActu,
-//            btSpeed1, btSpeed2, btSpeed3, btSpeed4
-//        ]
-//        for btn in buttons {
-//            btn.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
-//            btn.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside])
-//            btn.tag = 0 // false equivalent
-//        }
+        btStop.setImage(UIImage(named: "stop"), for: .normal)
+        btStop.setImage(UIImage(named: "stop2"), for: .highlighted)
+        btLActu.setImage(UIImage(named: "actu_down"), for: .normal)
+        btLActu.setImage(UIImage(named: "actu_down2"), for: .highlighted)
+
+        btRActu.setImage(UIImage(named: "actu_up"), for: .normal)
+        btRActu.setImage(UIImage(named: "actu_up2"), for: .highlighted)
+        
+        let buttons: [UIButton] = [
+            btLFront, btLBack, btRFront, btRBack,
+            btFront, btBack, btTurnCW, btTurnCCW,
+            btStop, btLActu, btRActu,
+            btSpeed1, btSpeed2, btSpeed3, btSpeed4
+        ]
+        for btn in buttons {
+            btn.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
+            btn.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside])
+            btn.tag = 0 // false equivalent
+        }
     }
 
+    func setMoveCommand() {
+        if btTurnCW.tag == 1 {
+            degreeL = 5 + speedMax  // Max 9
+            degreeR = 5 - speedMax  // Min 1
+        } else if btTurnCCW.tag == 1 {
+            degreeL = 5 - speedMax
+            degreeR = 5 + speedMax
+        } else if btFront.tag == 1 {
+            degreeL = 5 + speedMax
+            degreeR = 5 + speedMax
+            if btLFront.tag == 1 { degreeR = 5 }
+            if btRFront.tag == 1 { degreeL = 5 }
+        } else if btBack.tag == 1 {
+            degreeL = 5 - speedMax
+            degreeR = 5 - speedMax
+            if btLBack.tag == 1 { degreeR = 5 }
+            if btRBack.tag == 1 { degreeL = 5 }
+        } else {
+            if btLFront.tag == 1 {
+                degreeL = 5 + speedMax
+            } else if btLBack.tag == 1 {
+                degreeL = 5 - speedMax
+            } else {
+                degreeL = 5
+            }
+
+            if btRFront.tag == 1 {
+                degreeR = 5 + speedMax
+            } else if btRBack.tag == 1 {
+                degreeR = 5 - speedMax
+            } else {
+                degreeR = 5
+            }
+        }
+    }
+
+    
     // MARK: - Button Actions
     @objc func buttonTouchDown(_ sender: UIButton) {
         var isPush = false
 
         switch sender {
-        case btLFront:
-            handleJoyTouch(&clickPosL, &clickPosX)
-        case btRFront:
-            clickPosR = sender.frame.origin.y
-        case btFront:
+        case btFront,btLFront,btRFront,btBack,btLBack,btRBack,btTurnCW, btTurnCCW:
+//            handleJoyTouch(&clickPosL, &clickPosX)
             if actuCnt == 0 { sender.tag = 1; isPush = true }
-        case btBack:
-            if actuCnt == 0 { sender.tag = 1; isPush = true }
+//        case btRFront:
+//            clickPosR = sender.frame.origin.y
         case btLActu:
-            sender.setBackgroundImage(UIImage(named: "actu_down2"), for: .normal)
             actuMove = autoActuCheck.isOn ? 9 : 8
             actuMoveStop = autoActuCheck.isOn ? 2 : 5
             actuCnt = 1
             isPush = true
         case btRActu:
-            sender.setBackgroundImage(UIImage(named: "actu_up2"), for: .normal)
             actuMove = autoActuCheck.isOn ? 1 : 2
             actuMoveStop = autoActuCheck.isOn ? 8 : 5
             actuCnt = 1
             isPush = true
-        case btTurnCW, btTurnCCW:
-            if actuCnt == 0 { sender.tag = 1; isPush = true }
         case btStop:
-            sender.setBackgroundImage(UIImage(named: "stop2"), for: .normal)
             motionStopPressed = true
             onActionStop()
             isPush = true
@@ -174,46 +203,46 @@ class RVMCtrlViewController: UIViewController {
         case btSpeed4: setSpeedButton(4)
         default: break
         }
+        
 
         if isPush { vibrateDevice(5) }
+        setMoveCommand()
         setCaravanMotion()
         motionCmdStopCnt = STOP_MESSAGE_SENDNUM
     }
 
     @objc func buttonTouchUp(_ sender: UIButton) {
         switch sender {
-        case btLFront, btLBack:
-            if controlModeJOY {
-                degreeL = 5
-                sender.setBackgroundImage(UIImage(named: "jog_center"), for: .normal)
-            } else {
-                sender.tag = 0
-            }
-        case btRFront, btRBack:
-            if controlModeJOY {
-                degreeR = 5
-                sender.setBackgroundImage(UIImage(named: "jog_center"), for: .normal)
-            } else {
-                sender.tag = 0
-            }
-        case btFront, btBack, btTurnCW, btTurnCCW:
+        case btFront,btLFront,btRFront,btBack,btLBack,btRBack,btTurnCW, btTurnCCW:
             sender.tag = 0
+//        case btLFront, btLBack:
+//            if controlModeJOY {
+//                degreeL = 5
+//                sender.setBackgroundImage(UIImage(named: "jog_center"), for: .normal)
+//            } else {
+//                sender.tag = 0
+//            }
+//        case btRFront, btRBack:
+//            if controlModeJOY {
+//                degreeR = 5
+//                sender.setBackgroundImage(UIImage(named: "jog_center"), for: .normal)
+//            } else {
+//                sender.tag = 0
+//            }
         case btLActu:
-            sender.setBackgroundImage(UIImage(named: "actu_down"), for: .normal)
             actuMove = 5
             actuCnt = 0
         case btRActu:
-            sender.setBackgroundImage(UIImage(named: "actu_up"), for: .normal)
             actuMove = 5
             actuCnt = 0
         case btStop:
-            sender.setBackgroundImage(UIImage(named: "stop"), for: .normal)
             onActionStop()
         default: break
         }
 
         motionCmdStopCnt = STOP_MESSAGE_SENDNUM
         motionStopPressed = false
+        setMoveCommand()
         setCaravanMotion()
     }
 
@@ -227,16 +256,16 @@ class RVMCtrlViewController: UIViewController {
     func setSpeedButton(_ maxSpeed: Int) {
         speedMax = maxSpeed
         let images = ["speed_1d","speed_2d","speed_3d","speed_4d"]
-        btSpeed1.setBackgroundImage(UIImage(named: images[0]), for: .normal)
-        btSpeed2.setBackgroundImage(UIImage(named: images[1]), for: .normal)
-        btSpeed3.setBackgroundImage(UIImage(named: images[2]), for: .normal)
-        btSpeed4.setBackgroundImage(UIImage(named: images[3]), for: .normal)
+        btSpeed1.setImage(UIImage(named: images[0]), for: .normal)
+        btSpeed2.setImage(UIImage(named: images[1]), for: .normal)
+        btSpeed3.setImage(UIImage(named: images[2]), for: .normal)
+        btSpeed4.setImage(UIImage(named: images[3]), for: .normal)
 
         switch maxSpeed {
-        case 1: btSpeed1.setBackgroundImage(UIImage(named: "speed_1"), for: .normal)
-        case 2: btSpeed2.setBackgroundImage(UIImage(named: "speed_2"), for: .normal)
-        case 3: btSpeed3.setBackgroundImage(UIImage(named: "speed_3"), for: .normal)
-        default: btSpeed4.setBackgroundImage(UIImage(named: "speed_4"), for: .normal)
+        case 1: btSpeed1.setImage(UIImage(named: "speed_1"), for: .normal)
+        case 2: btSpeed2.setImage(UIImage(named: "speed_2"), for: .normal)
+        case 3: btSpeed3.setImage(UIImage(named: "speed_3"), for: .normal)
+        default: btSpeed4.setImage(UIImage(named: "speed_4"), for: .normal)
         }
     }
 
@@ -275,7 +304,7 @@ class RVMCtrlViewController: UIViewController {
         else if degreeR > 5 { iMove = 30; iDegree = -15 }
         else { iMove = 0; iDegree = 0 }
 
-        imgCaravan.transform = CGAffineTransform(translationX: 0, y: CGFloat(iMove))
+        imgCaravan.transform = CGAffineTransform(translationX: 0, y: CGFloat(-iMove))
         imgCaravan.image = UIImage(named: "caravan_mini")?.rotated(by: CGFloat(iDegree))
     }
 
@@ -305,7 +334,7 @@ class RVMCtrlViewController: UIViewController {
 //        btLActu.setBackgroundImage(UIImage(named: "actu_down"), for: .normal)
 //        btRActu.setBackgroundImage(UIImage(named: "actu_up"), for: .normal)
 
-//        setCaravanMotion()
+        setCaravanMotion()
 
         if actuMoveStop != 5 {
             let s = "L\(degreeL)R\(degreeR)A\(actuMoveStop)\r\n"
