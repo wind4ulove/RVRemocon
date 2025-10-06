@@ -9,7 +9,7 @@
 import UIKit
 import CoreBluetooth
 
-class RVCtrlViewController: UIViewController {
+class RVMCtrlViewController: UIViewController {
 
     // MARK: - Bluetooth Singleton
     let btManager = BluetoothSingleton.shared
@@ -65,10 +65,11 @@ class RVCtrlViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupButtons()
-        setJOGControlMode()
-        setHiddenActuator()
-        setSpeedButton(speedMax)
+//        setJOGControlMode()
+//        setHiddenActuator()
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -95,20 +96,44 @@ class RVCtrlViewController: UIViewController {
         timer?.invalidate()
         timer = nil
     }
-
+    @IBAction func toggleActu(_ sender: UIButton) {
+        if sender.currentImage == UIImage(named: "actu_down") {
+            sender.setImage(UIImage(named: "actu_up"), for: .normal)
+        } else {
+            sender.setImage(UIImage(named: "actu_down"), for: .normal)
+        }
+    }
     // MARK: - Button Setup
     func setupButtons() {
-        let buttons: [UIButton] = [
-            btLFront, btLBack, btRFront, btRBack,
-            btFront, btBack, btTurnCW, btTurnCCW,
-            btStop, btLActu, btRActu,
-            btSpeed1, btSpeed2, btSpeed3, btSpeed4
-        ]
-        for btn in buttons {
-            btn.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
-            btn.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside])
-            btn.tag = 0 // false equivalent
-        }
+        print("setupButtons에 진입")
+        btLActu.setImage(UIImage(named: "actu_down"), for: .normal)
+        btRActu.setImage(UIImage(named: "actu_down"), for: .normal)
+        
+        btLFront.setImage(UIImage(named: "btLFront"), for: .normal)
+        btLBack.setImage(UIImage(named: "btLBack"), for: .normal)
+        btRFront.setImage(UIImage(named: "up_arrow_l"), for: .normal)
+        btRBack.setImage(UIImage(named: "up_arrow_l"), for: .normal)
+        btFront.setImage(UIImage(named: "up_arrow_l"), for: .normal)
+        btBack.setImage(UIImage(named: "up_arrow_l"), for: .normal)
+        
+        btTurnCW.setImage(UIImage(named: "up_arrow_l"), for: .normal)
+        btTurnCCW.setImage(UIImage(named: "up_arrow_l"), for: .normal)
+        
+        btStop.setImage(UIImage(named: "up_arrow_l"), for: .normal)
+        btLActu.setImage(UIImage(named: "up_arrow_l"), for: .normal)
+        btRActu.setImage(UIImage(named: "up_arrow_l"), for: .normal)
+        print("버튼할당")  // nil인지 확인        setSpeedButton(speedMax)
+//        let buttons: [UIButton] = [
+//            btLFront, btLBack, btRFront, btRBack,
+//            btFront, btBack, btTurnCW, btTurnCCW,
+//            btStop, btLActu, btRActu,
+//            btSpeed1, btSpeed2, btSpeed3, btSpeed4
+//        ]
+//        for btn in buttons {
+//            btn.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
+//            btn.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside])
+//            btn.tag = 0 // false equivalent
+//        }
     }
 
     // MARK: - Button Actions
@@ -275,12 +300,12 @@ class RVCtrlViewController: UIViewController {
         actuMove = 5
         actuCnt = 0
 
-        btLFront.setBackgroundImage(UIImage(named: "jog_center"), for: .normal)
-        btRFront.setBackgroundImage(UIImage(named: "jog_center"), for: .normal)
-        btLActu.setBackgroundImage(UIImage(named: "actu_down"), for: .normal)
-        btRActu.setBackgroundImage(UIImage(named: "actu_up"), for: .normal)
+//        btLFront.setBackgroundImage(UIImage(named: "jog_center"), for: .normal)
+//        btRFront.setBackgroundImage(UIImage(named: "jog_center"), for: .normal)
+//        btLActu.setBackgroundImage(UIImage(named: "actu_down"), for: .normal)
+//        btRActu.setBackgroundImage(UIImage(named: "actu_up"), for: .normal)
 
-        setCaravanMotion()
+//        setCaravanMotion()
 
         if actuMoveStop != 5 {
             let s = "L\(degreeL)R\(degreeR)A\(actuMoveStop)\r\n"

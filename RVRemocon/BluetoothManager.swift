@@ -1,3 +1,11 @@
+//
+//  BluetoothManager.swift
+//  RVRemocon
+//
+//  Created by 김선욱 on 10/2/25.
+//
+
+
 import Foundation
 import CoreBluetooth
 
@@ -6,6 +14,10 @@ final class BluetoothManager: NSObject {
     static let shared = BluetoothManager()
 
     private var central: CBCentralManager!
+    
+    private var connectedPeripheral: CBPeripheral?
+    private var writeCharacteristic: CBCharacteristic?
+    
     private(set) var discoveredPeripherals: [CBPeripheral] = []
     var onDiscover: ((_ peripheral: CBPeripheral, _ rssi: NSNumber) -> Void)?
     var onStateChange: ((_ state: CBManagerState) -> Void)?
@@ -15,6 +27,11 @@ final class BluetoothManager: NSObject {
     private override init() {
         super.init()
         central = CBCentralManager(delegate: self, queue: nil)
+    }
+    
+    // 외부에서 접근할 수 있는 읽기 전용 프로퍼티
+    var state: CBManagerState {
+        return central.state
     }
 
     // 스캔 시작
@@ -41,6 +58,15 @@ final class BluetoothManager: NSObject {
     // 연결된(이미 연결된) peripheral 불러오기 (특정 서비스 UUID가 있을 때 유용)
     func retrieveConnectedPeripherals(withServices services: [CBUUID]) -> [CBPeripheral] {
         return central.retrieveConnectedPeripherals(withServices: services)
+    }
+    
+    // MARK: - Send Data
+    func sendData(_ data: Data) {
+        guard let peripheral = connectedPeripheral,
+              let characteristic = writeCharacteristic,
+              peripheral.state == .connected else { return }
+        
+        peripheral.writeValue(data, for: characteristic, type: .withResponse)
     }
 }
 
