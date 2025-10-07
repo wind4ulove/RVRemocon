@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "rotate_cc.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "rotate_cc.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

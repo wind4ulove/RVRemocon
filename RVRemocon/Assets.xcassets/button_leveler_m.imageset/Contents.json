@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "button_leveler_m.png",
+      "filename" : "button_leveler_m_x1 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "button_leveler_m_x1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "button_leveler_m.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

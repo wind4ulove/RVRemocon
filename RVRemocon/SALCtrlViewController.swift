@@ -25,30 +25,30 @@ class SALCtrlViewController: UIViewController {
 //    @IBOutlet weak var textMaxLB: UILabel!
 //    @IBOutlet weak var textMaxRB: UILabel!
 //    
-//    @IBOutlet weak var slopeFBLabel: UILabel!
-//    @IBOutlet weak var slopeLRLabel: UILabel!
+    @IBOutlet weak var slopeFBLabel: UILabel!
+    @IBOutlet weak var slopeLRLabel: UILabel!
 //    @IBOutlet weak var voltageLabel: UILabel!
 //    
-//    @IBOutlet weak var sideImageView: UIImageView!
-//    @IBOutlet weak var backImageView: UIImageView!
-//    @IBOutlet weak var btLFront: UIButton!
-//    
-//    @IBOutlet weak var btLMiddle: UIButton!
-//    @IBOutlet weak var btLRear: UIButton!
-//    @IBOutlet weak var btRFront: UIButton!
-//    
-//    @IBOutlet weak var btRMiddle: UIButton!
-//    @IBOutlet weak var btRRear: UIButton!
-//    @IBOutlet weak var btUp: UIButton!
-//    @IBOutlet weak var btDown: UIButton!
-//    @IBOutlet weak var btAuto: UIButton!
+    @IBOutlet weak var sideImageView: UIImageView!
+    @IBOutlet weak var backImageView: UIImageView!
+    
+    @IBOutlet weak var btLFront: UIButton!
+    @IBOutlet weak var btLMiddle: UIButton!
+    @IBOutlet weak var btLRear: UIButton!
+
+    @IBOutlet weak var btRFront: UIButton!
+    @IBOutlet weak var btRMiddle: UIButton!
+    @IBOutlet weak var btRRear: UIButton!
+    @IBOutlet weak var btUp: UIButton!
+    @IBOutlet weak var btDown: UIButton!
+    @IBOutlet weak var btAuto: UIButton!
 //    @IBOutlet weak var btInit: UIButton!
 //    @IBOutlet weak var btSetView: UIButton!
 //    @IBOutlet weak var btParking: UIButton!
 //    @IBOutlet weak var btGReset: UIButton!
     
     // MARK: - State Variables
-    private var FBAngle: CGFloat = 0
+    private var FBAngle: CGFloat = 1.0
     private var LRAngle: CGFloat = 0
     
     private var curLabels: [UILabel] = []
@@ -80,7 +80,7 @@ class SALCtrlViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        setupUIArrays()
-//        setupButtons()
+        setupButtons()
 //        loadConfig()
     }
     
@@ -99,72 +99,74 @@ class SALCtrlViewController: UIViewController {
     }
     
     // MARK: - Setup
-//    private func setupUIArrays() {
+    private func setupUIArrays() {
 //        curLabels = [textCurLM, textCurRM, textCurLF, textCurRF, textCurLB, textCurRB]
 //        maxLabels = [textMaxLM, textMaxRM, textMaxLF, textMaxRF, textMaxLB, textMaxRB]
-//        
-//        frontButtons = [btLFront, btRFront]
-//        middleButtons = [btLMiddle, btRMiddle]
-//        rearButtons = [btLRear, btRRear]
-//        
-//        for btn in frontButtons + middleButtons + rearButtons {
-//            buttonMap[btn] = "0"
-//            btn.tag = 0
-//        }
-//        
-//        btAuto.tag = 1
-//        btUp.tag = 0
-//        btDown.tag = 0
+        
+        frontButtons = [btLFront, btRFront]
+        middleButtons = [btLMiddle, btRMiddle]
+        rearButtons = [btLRear, btRRear]
+        
+        for btn in frontButtons + middleButtons + rearButtons {
+            buttonMap[btn] = "0"
+            btn.tag = 0
+        }
+        
+        btAuto.tag = 1
+        btUp.tag = 0
+        btDown.tag = 0
 //        btSetView.tag = 0
-//    }
-//    
-//    private func setupButtons() {
-//        for btn in (frontButtons + middleButtons + rearButtons + [btUp, btDown, btAuto]).compactMap({ $0 }) {
-//            btn.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
-//            btn.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-//        }
-//        
+    }
+    
+    private func setupButtons() {
+        for btn in (frontButtons + middleButtons + rearButtons + [btUp, btDown, btAuto]).compactMap({ $0 }) {
+            btn.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
+            btn.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
+        }
+        
 //        btInit.addTarget(self, action: #selector(expertCommand(_:)), for: .touchUpInside)
 //        btGReset.addTarget(self, action: #selector(expertCommand(_:)), for: .touchUpInside)
 //        btSetView.addTarget(self, action: #selector(expertCommand(_:)), for: .touchUpInside)
 //        btParking.addTarget(self, action: #selector(expertCommand(_:)), for: .touchUpInside)
-//    }
-//    
-//    private func loadConfig() {
-//        iSALModel = 1 // 기본 모델 설정, 필요 시 MainControlViewController에서 전달
-//    }
-//    
-//    // MARK: - Button Actions
-//    @objc private func buttonTouchDown(_ sender: UIButton) {
-//        if sender == btUp {
-//            btUp.tag = 1
-//            btDown.tag = 0
-//            btAuto.tag = 2
-//        } else if sender == btDown {
-//            btDown.tag = 1
-//            btUp.tag = 0
-//            btAuto.tag = -2
-//        } else if sender == btAuto {
-//            btAuto.tag = 1
-//            btUp.tag = 0
-//            btDown.tag = 0
-//        } else {
-//            clearSelection(for: sender)
-//            sender.tag = 1
-//        }
-//        motionCmdStopCount = STOP_MESSAGE_SENDNUM
-//        sendActionCommand()
-//    }
-//    
-//    @objc private func buttonTouchUp(_ sender: UIButton) {
-//        if sender == btUp || sender == btDown {
-//            btUp.tag = 0
-//            btDown.tag = 0
-//        }
-//        motionCmdStopCount = STOP_MESSAGE_SENDNUM
-//        sendActionCommand()
-//    }
-//    
+    }
+    
+    private func loadConfig() {
+        iSALModel = 1 // 기본 모델 설정, 필요 시 MainControlViewController에서 전달
+    }
+    
+    // MARK: - Button Actions
+    @objc private func buttonTouchDown(_ sender: UIButton) {
+        if sender == btUp {
+            btUp.tag = 1
+            btDown.tag = 0
+            btAuto.tag = 2
+            FBAngle += 0.8
+        } else if sender == btDown {
+            btDown.tag = 1
+            btUp.tag = 0
+            btAuto.tag = -2
+            FBAngle += -0.8
+        } else if sender == btAuto {
+            btAuto.tag = 1
+            btUp.tag = 0
+            btDown.tag = 0
+        } else {
+            clearSelection(for: sender)
+            sender.tag = 1
+        }
+        motionCmdStopCount = STOP_MESSAGE_SENDNUM
+        sendActionCommand()
+    }
+    
+    @objc private func buttonTouchUp(_ sender: UIButton) {
+        if sender == btUp || sender == btDown {
+            btUp.tag = 0
+            btDown.tag = 0
+        }
+        motionCmdStopCount = STOP_MESSAGE_SENDNUM
+        sendActionCommand()
+    }
+    
 //    @objc private func expertCommand(_ sender: UIButton) {
 //        var type: ButtonType?
 //        switch sender {
@@ -211,60 +213,91 @@ class SALCtrlViewController: UIViewController {
 //    }
     
 //    // MARK: - Command Handling
-//    private func sendActionCommand() {
-//        var data: Data
-//        let isOneSend = true
-//        
-//        if let _ = buttonStates[.setView], buttonStates[.setView]! {
-//            // Mode toggle
-//            data = mode4Change(!isMode4)
-//            buttonStates[.setView] = false
-//        } else {
-//            data = Data([UInt8(ascii: "S"), mCmdSelect, UInt8(ascii: "C"), mCmdMotion, UInt8(ascii: "M"), (mCmdSelect + mCmdMotion) & 0xFF, 13, 10])
-//        }
-//        
-//        if motionCmdStopCount > 0 || isOneSend {
-//            BluetoothManager.shared.sendData(data)
-//            if isOneSend {
-//                motionCmdStopCount = 0
-//                mCmdSelect = 0x30
-//                mCmdMotion = 0x50
-//            }
-//        }
-//        
-//        if mCmdMotion == 0x50 && motionCmdStopCount > 0 {
-//            motionCmdStopCount -= 1
-//        }
-//        
-//        updateCaravanMotion()
-//    }
+    private func sendActionCommand() {
+        var data: Data
+        let isOneSend = true
+        
+        if let _ = buttonStates[.setView], buttonStates[.setView]! {
+            // Mode toggle
+            data = mode4Change(!isMode4)
+            buttonStates[.setView] = false
+        } else {
+            data = Data([UInt8(ascii: "S"), mCmdSelect, UInt8(ascii: "C"), mCmdMotion, UInt8(ascii: "M"), (mCmdSelect + mCmdMotion) & 0xFF, 13, 10])
+        }
+        
+        if motionCmdStopCount > 0 || isOneSend {
+            BluetoothManager.shared.sendData(data)
+            if isOneSend {
+                motionCmdStopCount = 0
+                mCmdSelect = 0x30
+                mCmdMotion = 0x50
+            }
+        }
+        
+        if mCmdMotion == 0x50 && motionCmdStopCount > 0 {
+            motionCmdStopCount -= 1
+        }
+        
+        updateCaravanMotion()
+    }
     
-//    private func mode4Change(_ setMode4: Bool) -> Data {
-//        isMode4 = setMode4
+    private func mode4Change(_ setMode4: Bool) -> Data {
+        isMode4 = setMode4
 //        voltageLabel.text = setMode4 ? "전문가모드 ON" : ""
-//        return Data([UInt8(ascii: "$"), setMode4 ? 0x34 : 0x30])
-//    }
-//    
-//    private func updateCaravanMotion() {
-//        // 이미지 회전
+        return Data([UInt8(ascii: "$"), setMode4 ? 0x34 : 0x30])
+    }
+    
+    private func updateCaravanMotion() {
+        // 이미지 회전
+        rotateSide(degree: FBAngle)
+        rotateBack(degree: FBAngle)
 //        if let side = sideImageView.image {
 //            sideImageView.image = rotateImage(side, degree: FBAngle)
 //        }
 //        if let back = backImageView.image {
 //            backImageView.image = rotateImage(back, degree: LRAngle)
 //        }
-//    }
-    
+    }
+
     private func rotateImage(_ image: UIImage, degree: CGFloat) -> UIImage {
         let radians = degree * .pi / 180
-        UIGraphicsBeginImageContext(image.size)
+        let size = image.size
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, image.scale)
         guard let context = UIGraphicsGetCurrentContext() else { return image }
-        context.translateBy(x: image.size.width/2, y: image.size.height/2)
+
+        // 중앙 기준으로 회전
+        context.translateBy(x: size.width / 2, y: size.height / 2)
         context.rotate(by: radians)
-        image.draw(in: CGRect(x: -image.size.width/2, y: -image.size.height/2,
-                              width: image.size.width, height: image.size.height))
+
+        // 원본 크기로 다시 그림
+        image.draw(in: CGRect(
+            x: -size.width / 2,
+            y: -size.height / 2,
+            width: size.width,
+            height: size.height
+        ))
+
         let rotatedImage = UIGraphicsGetImageFromCurrentImageContext() ?? image
         UIGraphicsEndImageContext()
+
         return rotatedImage
+    }
+    func rotateSide(degree: CGFloat) {
+        let sideAngle = degree
+        let radians = degree * .pi / 180
+        UIView.animate(withDuration: 0.1) {
+            self.sideImageView.transform = CGAffineTransform(rotationAngle: radians)
+        }
+        slopeFBLabel.text = String(format: "%.1f°", sideAngle)
+    }
+
+    func rotateBack(degree: CGFloat) {
+        let backAngle = degree
+        let radians = degree * .pi / 180
+        UIView.animate(withDuration: 0.1) {
+            self.backImageView.transform = CGAffineTransform(rotationAngle: radians)
+        }
+        slopeLRLabel.text = String(format: "%.1f°", backAngle)
     }
 }

@@ -66,10 +66,10 @@ class MainControlViewController: UIViewController {
             height: view.bounds.height - seg.frame.maxY
         )
     }
-    // MARK: - Segment Control Action
-    @objc private func segmentChanged(_ sender: UISegmentedControl) {
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         switchToChild(index: sender.selectedSegmentIndex)
     }
+
 
     private func switchToChild(index: Int) {
         guard let rvmVC = rvmCtrlVC, let salVC = salCtrlVC else { return }

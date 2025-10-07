@@ -26,10 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
 
         // ✅ MainControlViewController를 시작화면으로 지정
-        let mainVC = MainControlViewController()
-        window.rootViewController = UINavigationController(rootViewController: mainVC)
-        self.window = window
-        window.makeKeyAndVisible()
+//        let mainVC = MainControlViewController()
+//        window.rootViewController = UINavigationController(rootViewController: mainVC)
+//        self.window = window
+//        window.makeKeyAndVisible()
     }
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
