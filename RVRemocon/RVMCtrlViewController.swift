@@ -12,7 +12,7 @@ import CoreBluetooth
 class RVMCtrlViewController: UIViewController {
 
     // MARK: - Bluetooth Singleton
-    let btManager = BluetoothSingleton.shared
+    let btManager = BluetoothManager.shared
 
     // MARK: - UI Elements
     @IBOutlet weak var imgCaravan: UIImageView!
@@ -312,7 +312,7 @@ class RVMCtrlViewController: UIViewController {
     func onActionCommand() {
         let cmd = "L\(degreeL)R\(degreeR)A\(actuMove)\r\n"
         if !motionStopPressed && motionCmdStopCnt > 0 {
-            btManager.send(cmd.data(using: .utf8)!)
+            btManager.sendData(cmd.data(using: .utf8)!)
         } else if actuMove == 1 || actuMove == 9 {
             actuMove = 5
             actuMoveStop = 5
@@ -338,12 +338,12 @@ class RVMCtrlViewController: UIViewController {
 
         if actuMoveStop != 5 {
             let s = "L\(degreeL)R\(degreeR)A\(actuMoveStop)\r\n"
-            btManager.send(s.data(using: .utf8)!)
+            btManager.sendData(s.data(using: .utf8)!)
             actuMoveStop = 5
         }
 
         let s = "L\(degreeL)R\(degreeR)A\(actuMove)\r\n"
-        btManager.send(s.data(using: .utf8)!)
+        btManager.sendData(s.data(using: .utf8)!)
     }
 
     // MARK: - Vibrate

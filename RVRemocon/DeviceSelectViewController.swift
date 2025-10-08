@@ -1,9 +1,8 @@
 import UIKit
 import CoreBluetooth
 
-class DeviceSelectViewController: UIViewController, CBCentralManagerDelegate, UITableViewDelegate, UITableViewDataSource {
+class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    private var centralManager: CBCentralManager!
     private var discoveredPeripherals: [CBPeripheral] = []
     private var pairedPeripheralUUID: String?
     private var pairedPeripheralName: String?
@@ -13,34 +12,44 @@ class DeviceSelectViewController: UIViewController, CBCentralManagerDelegate, UI
     @IBOutlet weak var autoConnectSwitch: UISwitch!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    private let btManager = BluetoothManager.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        centralManager = CBCentralManager(delegate: self, queue: nil)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DeviceCell")
         activityIndicator.hidesWhenStopped = true
         
         loadUserSettings()
         
         reloadButton.addTarget(self, action: #selector(reloadScan), for: .touchUpInside)
-    }
-    
-    // MARK: - CBCentralManagerDelegate
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        if central.state == .poweredOn {
-            startScan()
-        } else {
-            print("블루투스를 켜주세요.")
+        
+        // 스캔 콜백
+        btManager.onDiscover = { [weak self] peripheral, _ in
+            guard let self = self else { return }
+            // 이름이 없거나 빈 문자열이면 추가하지 않음
+            guard let name = peripheral.name, !name.isEmpty else { return }
+            // 중복 방지
+            if !self.discoveredPeripherals.contains(where: { $0.identifier == peripheral.identifier }) {
+                self.discoveredPeripherals.append(peripheral)
+                self.tableView.reloadData()
+            }
         }
-    }
-    
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
-                        advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        if !discoveredPeripherals.contains(where: { $0.identifier == peripheral.identifier }) {
-            discoveredPeripherals.append(peripheral)
-            tableView.reloadData()
+        
+        // 연결 콜백
+        btManager.onConnect = { [weak self] peripheral, error in
+            guard let self = self else { return }
+            if error == nil {
+                print("연결됨: \(peripheral.name ?? "알 수 없음")")
+                self.navigateToMain()
+            } else {
+                print("연결 실패: \(error?.localizedDescription ?? "알 수 없음")")
+            }
         }
+        
+        startScan()
     }
     
     // MARK: - Scan
@@ -52,11 +61,13 @@ class DeviceSelectViewController: UIViewController, CBCentralManagerDelegate, UI
     
     private func startScan() {
         activityIndicator.startAnimating()
-        centralManager.stopScan()
-        centralManager.scanForPeripherals(withServices: nil, options: nil)
+        discoveredPeripherals.removeAll()
+        tableView.reloadData()
+        
+        btManager.startScan()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.centralManager.stopScan()
+            self.btManager.stopScan()
             self.activityIndicator.stopAnimating()
             if self.discoveredPeripherals.isEmpty {
                 print("검색된 블루투스 장치 없음")
@@ -92,23 +103,23 @@ class DeviceSelectViewController: UIViewController, CBCentralManagerDelegate, UI
         
         saveUserSettings()
         
-        // 연결 시도
-        centralManager.stopScan()
-        centralManager.connect(peripheral, options: nil)
+        // BluetoothManager를 통해 연결
+        btManager.connect(peripheral)
+        navigateToMain()
     }
     
-    // MARK: - CBCentralManagerDelegate 연결 결과
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("연결됨: \(peripheral.name ?? "알 수 없음")")
-        // 여기서 MainControlViewController 등으로 화면 전환
-        let mainVC = MainControlViewController()
-        navigationController?.pushViewController(mainVC, animated: true)
+    // MARK: - 메인 화면 이동
+    private func navigateToMain() {
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let mainVC = storyboard.instantiateViewController(withIdentifier: "MainControlViewController") as? MainControlViewController {
+                mainVC.modalPresentationStyle = .fullScreen
+                self.present(mainVC, animated: true)
+            }
+        }
     }
-    
-    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        print("연결 실패: \(error?.localizedDescription ?? "알 수 없음")")
-    }
-    
+
+
     // MARK: - UserDefaults 저장/로드
     private func saveUserSettings() {
         let defaults = UserDefaults.standard
