@@ -54,18 +54,18 @@ final class BluetoothManager: NSObject{
         targetPeripheralIdentifier = peripheral.identifier
         
         // 이미 Bonded 되어 있는 장치 확인
-        let bonded = central.retrievePeripherals(withIdentifiers: [peripheral.identifier])
-        if let bondedPeripheral = bonded.first {
-            print("🔗 이미 Bonded 된 장치 발견 → 자동 연결")
-            self.connectedPeripheral = bondedPeripheral
-            bondedPeripheral.delegate = self
-            central.connect(bondedPeripheral, options: nil)
-        } else {
-            print("🔗 Bonded 안된 장치 → iOS 시스템 PASSKEY UI 유도")
+//        let bonded = central.retrievePeripherals(withIdentifiers: [peripheral.identifier])
+//        if let bondedPeripheral = bonded.first {
+//            print("🔗 이미 Bonded 된 장치 발견 → 자동 연결")
+//            self.connectedPeripheral = bondedPeripheral
+//            bondedPeripheral.delegate = self
+//            central.connect(bondedPeripheral, options: nil)
+//        } else {
+//            print("🔗 Bonded 안된 장치 →     유도")
             self.connectedPeripheral = peripheral
             peripheral.delegate = self
             central.connect(peripheral, options: nil) // iOS가 자동으로 PASSKEY 요청
-        }
+//        }
     }
     
     func disconnect(_ peripheral: CBPeripheral) {
@@ -91,9 +91,12 @@ final class BluetoothManager: NSObject{
             print("❌ writeCharacteristic 없음 — characteristic이 아직 검색되지 않았을 수 있음")
             return
         }
-
-        peripheral.writeValue(data, for: characteristic, type: .withResponse)
-        print("📡 전송: \(String(data: data, encoding: .utf8) ?? data.description)")
+        if characteristic.properties.contains(.write) || characteristic.properties.contains(.writeWithoutResponse) {
+            peripheral.writeValue(data, for: characteristic, type: .withoutResponse)
+            print("📡 전송: \(String(data: data, encoding: .utf8) ?? data.description)")
+        } else {
+            print("❌ 쓰기 불가: 보호 특성, Passkey 미입력 가능")
+        }
     }
     func send(_ message: String) {
         guard let data = message.data(using: .utf8) else { return }
@@ -110,7 +113,8 @@ final class BluetoothManager: NSObject{
 
 }
 
-extension BluetoothManager: CBCentralManagerDelegate {
+extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
+   
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         onStateChange?(central.state)
     }
@@ -147,17 +151,42 @@ extension BluetoothManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         onDisconnect?(peripheral, error)
     }
-}
-
-extension BluetoothManager: CBPeripheralDelegate {
+//}
+//
+//extension BluetoothManager: CBPeripheralDelegate {
    
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if let error = error {
             print("❌ 서비스 검색 에러:", error)
             return
         }
-
-        guard let services = peripheral.services else { return }
+        
+        guard let services = peripheral.services, !services.isEmpty else {
+            print("⚠️ 서비스 없음 — 아마도 Passkey 미입력")
+            return
+        }
+        // 보호된 characteristic UUID만 접근
+//        let protectedUUID = CBUUID(string: "ABF2")
+//        var foundProtected = false
+//
+//        for service in services {
+//            if let characteristics = service.characteristics {
+//                for chr in characteristics {
+//                    if chr.uuid == protectedUUID {
+//                        foundProtected = true
+//                        // Passkey 입력 유도
+////                        peripheral.readValue(for: chr)
+//                    }
+//                }
+//            }
+//        }
+//
+//        if !foundProtected {
+//            print("⚠️ 보호된 특성 없음 → Passkey 미입력 상태일 가능성")
+//            return
+//        }
+//        
+        
         for service in services {
             print("🔹 서비스 발견:", service.uuid)
             peripheral.discoverCharacteristics(nil, for: service)
@@ -179,6 +208,7 @@ extension BluetoothManager: CBPeripheralDelegate {
             print("🔸 characteristic 발견:", characteristic.uuid)
             // 쓰기용
             if characteristic.uuid == targetWCharacteristicUUID {
+//            if characteristic.properties.contains(.write){
                 self.writeCharacteristic = characteristic
                 print("✅ writeCharacteristic 설정 완료: \(characteristic.uuid)")
             }

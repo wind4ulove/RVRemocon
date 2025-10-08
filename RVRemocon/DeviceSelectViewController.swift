@@ -105,7 +105,7 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
         
         // BluetoothManager를 통해 연결
         btManager.connect(peripheral)
-        navigateToMain()
+//        navigateToMain()
     }
     
     // MARK: - 메인 화면 이동
