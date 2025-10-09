@@ -45,7 +45,7 @@ class MainControlViewController: UIViewController {
         }
         
 //        // 로딩 표시
-//        showLoadingOverlay()
+        showLoadingOverlay()
         
         var scanAttempts = 0
         let maxAttempts = 5
@@ -83,6 +83,19 @@ class MainControlViewController: UIViewController {
 
         attemptScan()
     }
+    //viewWillAppear는 present()로 나갔다가 dismiss()로 돌아왔을 때 자동으로 다시 호출되는 생명주기 메서드
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // BluetoothManager 싱글톤 사용 중이라 가정
+        if BluetoothManager.shared.isConnected == false {
+            print("⚠️ 블루투스 연결 안됨 — 재검색 시작")
+            checkBluetoothConnection()
+        } else {
+            print("✅ 블루투스 연결됨 — 기존 연결 유지")
+        }
+    }
+
     
     private func showDeviceSelectScreen() {
         DispatchQueue.main.async {
@@ -103,7 +116,7 @@ class MainControlViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "선택 화면으로 이동", style: .default) { _ in
             self.showDeviceSelectScreen()
         })
-        alert.addAction(UIAlertAction(title: "취소", style: .cancel){
+        alert.addAction(UIAlertAction(title: "재탐색", style: .cancel){
             _ in
             self.checkBluetoothConnection()
         })

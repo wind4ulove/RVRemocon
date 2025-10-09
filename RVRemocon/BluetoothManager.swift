@@ -26,7 +26,9 @@ final class BluetoothManager: NSObject{
     var onReceiveData: ((Data) -> Void)?
     // MARK: - 자동 재연결
     private var targetPeripheralIdentifier: UUID?
-    
+    var isConnected: Bool {
+        return connectedPeripheral?.state == .connected
+    }
     private override init() {
         super.init()
         central = CBCentralManager(delegate: self, queue: nil)

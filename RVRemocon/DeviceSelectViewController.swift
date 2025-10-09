@@ -13,6 +13,9 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private let btManager = BluetoothManager.shared
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,18 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
         loadUserSettings()
         
         reloadButton.addTarget(self, action: #selector(reloadScan), for: .touchUpInside)
+        
+        
+        // ✅ TableView 배경 투명하게 설정
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+
+//        // ✅ 배경 이미지 설정 (선택사항)
+//        let backgroundImageView = UIImageView(frame: view.bounds)
+//        backgroundImageView.image = UIImage(named: "bg_600x1024") // 프로젝트에 추가한 이미지 이름
+//        backgroundImageView.contentMode = .scaleAspectFill
+//        tableView.backgroundView = backgroundImageView
+        
         
         // 스캔 콜백
         btManager.onDiscover = { [weak self] peripheral, _ in
@@ -43,7 +58,8 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
             guard let self = self else { return }
             if error == nil {
                 print("연결됨: \(peripheral.name ?? "알 수 없음")")
-                self.navigateToMain()
+//                self.navigateToMain()
+                self.dismiss(animated: true, completion: nil)
             } else {
                 print("연결 실패: \(error?.localizedDescription ?? "알 수 없음")")
             }
@@ -92,9 +108,17 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         cell.textLabel?.text = name
+        cell.textLabel?.textColor = .black
         cell.detailTextLabel?.text = detail
+        cell.detailTextLabel?.textColor = .lightGray
+
+        // ✅ 셀 배경 투명하게
+        cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = .clear
+
         return cell
     }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let peripheral = discoveredPeripherals[indexPath.row]
@@ -108,16 +132,16 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
 //        navigateToMain()
     }
     
-    // MARK: - 메인 화면 이동
-    private func navigateToMain() {
-        DispatchQueue.main.async {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let mainVC = storyboard.instantiateViewController(withIdentifier: "MainControlViewController") as? MainControlViewController {
-                mainVC.modalPresentationStyle = .fullScreen
-                self.present(mainVC, animated: true)
-            }
-        }
-    }
+//    // MARK: - 메인 화면 이동
+//    private func navigateToMain() {
+//        DispatchQueue.main.async {
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            if let mainVC = storyboard.instantiateViewController(withIdentifier: "MainControlViewController") as? MainControlViewController {
+//                mainVC.modalPresentationStyle = .fullScreen
+//                self.present(mainVC, animated: true)
+//            }
+//        }
+//    }
 
 
     // MARK: - UserDefaults 저장/로드
