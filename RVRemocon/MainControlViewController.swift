@@ -17,16 +17,15 @@ class MainControlViewController: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        checkBluetoothConnection()
+       
         initializeControllers()
+        BluetoothManager.shared.onDisconnect = { [weak self] peripheral, error in
+            guard let self = self else { return }
+            self.checkBluetoothConnection()
+        }
+            
+        checkBluetoothConnection()
 //        showLoadingOverlay()
-//
-//        setupBluetoothEvents()
-//        checkBluetoothAndStart()
-        showLoadingOverlay()
-        
-
     }
 
     private func checkBluetoothConnection() {
@@ -40,8 +39,6 @@ class MainControlViewController: UIViewController {
             showDeviceSelectScreen()
             return
         }
-        
-//        // 로딩 표시
         showLoadingOverlay()
         
         var scanAttempts = 0
@@ -52,6 +49,8 @@ class MainControlViewController: UIViewController {
             scanAttempts += 1
             BluetoothManager.shared.startScan()
             print("스캔 시작")
+            // 로딩 표시
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + scanInterval) {
                 // UUID 문자열 비교 안전하게
                 if let peripheral = BluetoothManager.shared.discoveredPeripherals.first(where: { $0.identifier == targetUUID }) {
@@ -134,51 +133,51 @@ class MainControlViewController: UIViewController {
     
     
     // MARK: - Bluetooth 연결 처리
-    private func setupBluetoothEvents() {
-        let manager = BluetoothManager.shared
-
-        manager.onStateChange = { [weak self] state in
-            switch state {
-            case .poweredOn:
-                print("🔵 Bluetooth Powered On")
-                manager.startScan()
-            case .poweredOff:
-                print("⚠️ Bluetooth Off")
-                self?.showAlert("Bluetooth가 꺼져 있습니다.")
-            default:
-                print("ℹ️ Bluetooth state: \(state.rawValue)")
-            }
-        }
-
-        manager.onDiscover = { peripheral, rssi in
-            print("📡 발견됨: \(peripheral.name ?? "Unknown") RSSI:\(rssi)")
-            // 여기서 원하는 장치 이름으로 필터링 가능
-            if let name = peripheral.name, name.contains("RVController") {
-                manager.stopScan()
-                manager.connect(peripheral)
-            }
-        }
-
-        manager.onConnect = { [weak self] peripheral, error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    self?.showAlert("연결 실패: \(error.localizedDescription)")
-                    return
-                }
-                print("✅ 연결됨: \(peripheral.name ?? "Unknown")")
-                self?.hideLoadingOverlay()
-//                self?.initializeControllers()
-            }
-        }
-
-        manager.onDisconnect = { [weak self] peripheral, _ in
-            DispatchQueue.main.async {
-                self?.showAlert("연결이 끊어졌습니다.")
-                self?.showLoadingOverlay()
-                manager.startScan()
-            }
-        }
-    }
+//    private func setupBluetoothEvents() {
+//        let manager = BluetoothManager.shared
+//
+//        manager.onStateChange = { [weak self] state in
+//            switch state {
+//            case .poweredOn:
+//                print("🔵 Bluetooth Powered On")
+//                manager.startScan()
+//            case .poweredOff:
+//                print("⚠️ Bluetooth Off")
+//                self?.showAlert("Bluetooth가 꺼져 있습니다.")
+//            default:
+//                print("ℹ️ Bluetooth state: \(state.rawValue)")
+//            }
+//        }
+//
+//        manager.onDiscover = { peripheral, rssi in
+//            print("📡 발견됨: \(peripheral.name ?? "Unknown") RSSI:\(rssi)")
+//            // 여기서 원하는 장치 이름으로 필터링 가능
+//            if let name = peripheral.name, name.contains("RVController") {
+//                manager.stopScan()
+//                manager.connect(peripheral)
+//            }
+//        }
+//
+//        manager.onConnect = { [weak self] peripheral, error in
+//            DispatchQueue.main.async {
+//                if let error = error {
+//                    self?.showAlert("연결 실패: \(error.localizedDescription)")
+//                    return
+//                }
+//                print("✅ 연결됨: \(peripheral.name ?? "Unknown")")
+//                self?.hideLoadingOverlay()
+////                self?.initializeControllers()
+//            }
+//        }
+//
+//        manager.onDisconnect = { [weak self] peripheral, _ in
+//            DispatchQueue.main.async {
+//                self?.showAlert("연결이 끊어졌습니다.")
+//                self?.showLoadingOverlay()
+//                manager.startScan()
+//            }
+//        }
+//    }
 
     private func checkBluetoothAndStart() {
         let manager = BluetoothManager.shared
@@ -190,6 +189,8 @@ class MainControlViewController: UIViewController {
     }
     // MARK: - 로딩 오버레이
     private func showLoadingOverlay() {
+        hideLoadingOverlay()
+        
         let overlay = UIView(frame: view.bounds)
         overlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
 
@@ -214,8 +215,7 @@ class MainControlViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    
-    
+       
 
     
     private func initializeControllers() {
