@@ -13,8 +13,6 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
     @IBOutlet weak var deviceNameLabel: UILabel!
     @IBOutlet weak var autoConnectSwitch: UISwitch!
 
-//    @IBOutlet weak var rvmModelSegment: UISegmentedControl!   // None / A / M
-//    @IBOutlet weak var salModelSegment: UISegmentedControl!   // None / 1 / 2 / 3 / 4
     @IBOutlet weak var controlModeSegment: UISegmentedControl! // Joy / Jog / Dir
     
     @IBOutlet weak var stackView: UIStackView!
@@ -37,16 +35,8 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
         // TableView 설정
         setupTableView(rvmTableView)
         setupTableView(salTableView)
+        // RVM 테이블 선택 반영
 
-        // StackView에 TableView 추가
-//        [rvmTableView, salTableView].forEach { tableView in
-//            stackView.addArrangedSubview(tableView)
-//
-//            tableView.translatesAutoresizingMaskIntoConstraints = false
-//            tableView.layoutIfNeeded() // contentSize 계산
-//            tableView.heightAnchor.constraint(equalToConstant: (44 * CGFloat(tableView == rvmTableView ? rvmOptions.count : salOptions.count))).isActive = true
-//        }
-        
         initUI()
     }
     // MARK: - TableView 초기 설정
@@ -57,6 +47,7 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.layoutIfNeeded() // contentSize 계산
         tableView.heightAnchor.constraint(equalToConstant: (44 * CGFloat(tableView == rvmTableView ? rvmOptions.count : salOptions.count))).isActive = true
+
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = .clear
     }
@@ -165,12 +156,10 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
 
         defaults.set(deviceAddress, forKey: "strConfDevice")
         defaults.set(autoConnectSwitch.isOn, forKey: "bConfAutoConnect")
-
-
-//        // RVM Model (0=None, 1=A, 2=M)
-//        defaults.set(rvmModelSegment.selectedSegmentIndex, forKey: "ConfRVMModel")
-//        // SAL Model (0~4)
-//        defaults.set(salModelSegment.selectedSegmentIndex, forKey: "ConfSALModel")
+        // RVM Model ("None", "RV-9000AT", "RV-9000MT"
+        defaults.set(selectedRvmIndex, forKey: "ConfRVMModel")
+        // SAL Model ("None", "SAL-SIMPLE", "SAL-CAR", "SAL-BASIC", "SAL-PREMIUM")
+        defaults.set(selectedSalIndex, forKey: "ConfSALModel")
         // Control Mode (0=Joy, 1=Jog, 2=Dir)
         defaults.set(controlModeSegment.selectedSegmentIndex, forKey: "ConfControlMode")
 
@@ -180,12 +169,15 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
     // MARK: - 설정 불러오기
     private func loadUserSettings() {
         let defaults = UserDefaults.standard
-
+        deviceNameLabel.text = defaults.string(forKey: "strConfDeviceName")
+        
         autoConnectSwitch.isOn = defaults.bool(forKey: "bConfAutoConnect")
-
-//        rvmModelSegment.selectedSegmentIndex = defaults.integer(forKey: "ConfRVMModel")
-//        salModelSegment.selectedSegmentIndex = defaults.integer(forKey: "ConfSALModel")
         controlModeSegment.selectedSegmentIndex = defaults.integer(forKey: "ConfControlMode")
+        selectedRvmIndex = defaults.integer(forKey: "ConfRVMModel")
+        selectedSalIndex = defaults.integer(forKey: "ConfSALModel")
+        
+        rvmTableView.reloadData()
+        salTableView.reloadData()
     }
 
     private func goToMainController() {
