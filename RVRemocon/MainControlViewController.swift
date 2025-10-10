@@ -28,9 +28,6 @@ class MainControlViewController: UIViewController {
         
 
     }
-    @IBAction func deviceSelectButtonTapped(_ sender: UIButton) {
-        showDeviceSelectScreen()
-    }
 
     private func checkBluetoothConnection() {
         let defaults = UserDefaults.standard
@@ -104,6 +101,17 @@ class MainControlViewController: UIViewController {
                 deviceVC.modalPresentationStyle = .fullScreen
                 self.present(deviceVC, animated: true)
             }
+        }
+    }
+    
+    @IBAction func goToConfigView(_ sender: UIButton) {
+        // "Config" → 이동할 스토리보드 이름 (ex. Config.storyboard)
+        let storyboard = UIStoryboard(name: "Configuration", bundle: nil)
+        
+        // "ConfigViewController" → 스토리보드에서 설정한 ViewController의 Storyboard ID
+        if let configVC = storyboard.instantiateViewController(withIdentifier: "ConfigViewController") as? ConfigViewController {
+            configVC.modalPresentationStyle = .fullScreen   // 전체화면 전환 (선택사항)
+            present(configVC, animated: true, completion: nil)
         }
     }
 
