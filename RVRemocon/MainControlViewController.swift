@@ -2,14 +2,21 @@ import UIKit
 import CoreBluetooth
 
 class MainControlViewController: UIViewController {
-
+    // MARK: - Bluetooth Singleton
+    let btManager = BluetoothManager.shared
+    
     // MARK: - IBOutlet
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
+    @IBOutlet weak var TopMenu: UIStackView!
+    @IBOutlet weak var VoltageView: UILabel!
     // MARK: - Child VCs
     private var rvmCtrlVC: RVMCtrlViewController!
     private var salCtrlVC: SALCtrlViewController!
     private var currentChildVC: UIViewController?
+    
+    public var FBAngle: CGFloat = 1.0
+    public var LRAngle: CGFloat = 0
     
     // MARK: - Loading Overlay
     private var loadingView: UIView?
@@ -19,7 +26,7 @@ class MainControlViewController: UIViewController {
         super.viewDidLoad()
        
         initializeControllers()
-        BluetoothManager.shared.onDisconnect = { [weak self] peripheral, error in
+        btManager.onDisconnect = { [weak self] peripheral, error in
             guard let self = self else { return }
             self.checkBluetoothConnection()
         }
@@ -30,15 +37,15 @@ class MainControlViewController: UIViewController {
 
     private func checkBluetoothConnection() {
         let defaults = UserDefaults.standard
-        
-        guard let uuidString = defaults.string(forKey: "strConfDeviceAddr"),
-              defaults.bool(forKey: "bConfAutoConnect"),
-              let targetUUID = UUID(uuidString: uuidString)
-        else {
-            // 자동 연결 조건 불만족 → 장치 선택 화면
-            showDeviceSelectScreen()
-            return
-        }
+        let targetUUID = UUID(uuidString: "AAA")
+//        guard let uuidString = defaults.string(forKey: "strConfDeviceAddr"),
+//              defaults.bool(forKey: "bConfAutoConnect"),
+//              let targetUUID = UUID(uuidString: uuidString)
+//        else {
+//            // 자동 연결 조건 불만족 → 장치 선택 화면
+//            showDeviceSelectScreen()
+//            return
+//        }
         showLoadingOverlay()
         
         var scanAttempts = 0
@@ -47,21 +54,22 @@ class MainControlViewController: UIViewController {
 
         func attemptScan() {
             scanAttempts += 1
-            BluetoothManager.shared.startScan()
+            self.btManager.startScan()
             print("스캔 시작")
             // 로딩 표시
             
             DispatchQueue.main.asyncAfter(deadline: .now() + scanInterval) {
                 // UUID 문자열 비교 안전하게
-                if let peripheral = BluetoothManager.shared.discoveredPeripherals.first(where: { $0.identifier == targetUUID }) {
+                if let peripheral = self.btManager.discoveredPeripherals.first(where: { $0.identifier == targetUUID }) {
                     // 장치 발견 → 연결 시도
-                    BluetoothManager.shared.stopScan()
+                    self.btManager.stopScan()
                     self.hideLoadingOverlay()
-                    BluetoothManager.shared.connect(peripheral)
+                    self.btManager.connect(peripheral)
                     print("연결됨 \(targetUUID)")
-                    BluetoothManager.shared.onReceiveData = { data in
+                    self.btManager.onReceiveData = { data in
                         if let str = String(data: data, encoding: .utf8) {
                             print("💬 수신:", str)
+                            self.VoltageView.text = str
                         }
                     }
                 } else if scanAttempts < maxAttempts {
@@ -70,21 +78,22 @@ class MainControlViewController: UIViewController {
                     attemptScan()
                 } else {
                     // 장치 못 찾음
-                    BluetoothManager.shared.stopScan()
+                    self.btManager.stopScan()
                     self.hideLoadingOverlay()
                     self.showDeviceNotFoundAlert()
                 }
             }
         }
 
-        attemptScan()
+//        attemptScan()
+        hideLoadingOverlay()    //for Test 
     }
     //viewWillAppear는 present()로 나갔다가 dismiss()로 돌아왔을 때 자동으로 다시 호출되는 생명주기 메서드
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // BluetoothManager 싱글톤 사용 중이라 가정
-        if BluetoothManager.shared.isConnected == false {
+        if btManager.isConnected == false {
             print("⚠️ 블루투스 연결 안됨 — 재검색 시작")
             checkBluetoothConnection()
         } else {
@@ -130,59 +139,11 @@ class MainControlViewController: UIViewController {
         
         self.present(alert, animated: true)
     }
-    
-    
-    // MARK: - Bluetooth 연결 처리
-//    private func setupBluetoothEvents() {
-//        let manager = BluetoothManager.shared
-//
-//        manager.onStateChange = { [weak self] state in
-//            switch state {
-//            case .poweredOn:
-//                print("🔵 Bluetooth Powered On")
-//                manager.startScan()
-//            case .poweredOff:
-//                print("⚠️ Bluetooth Off")
-//                self?.showAlert("Bluetooth가 꺼져 있습니다.")
-//            default:
-//                print("ℹ️ Bluetooth state: \(state.rawValue)")
-//            }
-//        }
-//
-//        manager.onDiscover = { peripheral, rssi in
-//            print("📡 발견됨: \(peripheral.name ?? "Unknown") RSSI:\(rssi)")
-//            // 여기서 원하는 장치 이름으로 필터링 가능
-//            if let name = peripheral.name, name.contains("RVController") {
-//                manager.stopScan()
-//                manager.connect(peripheral)
-//            }
-//        }
-//
-//        manager.onConnect = { [weak self] peripheral, error in
-//            DispatchQueue.main.async {
-//                if let error = error {
-//                    self?.showAlert("연결 실패: \(error.localizedDescription)")
-//                    return
-//                }
-//                print("✅ 연결됨: \(peripheral.name ?? "Unknown")")
-//                self?.hideLoadingOverlay()
-////                self?.initializeControllers()
-//            }
-//        }
-//
-//        manager.onDisconnect = { [weak self] peripheral, _ in
-//            DispatchQueue.main.async {
-//                self?.showAlert("연결이 끊어졌습니다.")
-//                self?.showLoadingOverlay()
-//                manager.startScan()
-//            }
-//        }
-//    }
 
+ 
     private func checkBluetoothAndStart() {
-        let manager = BluetoothManager.shared
-        if manager.state == .poweredOn {
-            manager.startScan()
+        if btManager.state == .poweredOn {
+            btManager.startScan()
         } else {
             print("⏳ Bluetooth 상태 대기 중...")
         }
@@ -256,7 +217,8 @@ class MainControlViewController: UIViewController {
     }
 
     private func childFrame() -> CGRect {
-        guard let seg = segmentedControl else {
+//        guard let seg = segmentedControl else {
+        guard let seg = TopMenu else {
             print("segmentedControl is nil! Defaulting frame to full view")
             return view.bounds
         }
@@ -297,4 +259,16 @@ class MainControlViewController: UIViewController {
                           options: [.transitionCrossDissolve, .showHideTransitionViews],
                           completion: nil)
     }
+    
+    func updateAngles(fb: CGFloat, lr: CGFloat) {
+        self.FBAngle = fb
+        self.LRAngle = lr
+
+        NotificationCenter.default.post(
+            name: NSNotification.Name("AngleUpdated"),
+            object: nil,
+            userInfo: ["fb": fb, "lr": lr]
+        )
+    }
+
 }

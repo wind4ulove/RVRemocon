@@ -7,7 +7,6 @@
 
 
 import UIKit
-import CoreBluetooth
 
 class RVMCtrlViewController: UIViewController {
 
@@ -368,24 +367,24 @@ extension UIImage {
         return rotatedImage
     }
 }
-
-// MARK: - Bluetooth Singleton
-class BluetoothSingleton: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
-    static let shared = BluetoothSingleton()
-    var centralManager: CBCentralManager!
-    var connectedPeripheral: CBPeripheral?
-
-    private override init() {
-        super.init()
-        centralManager = CBCentralManager(delegate: self, queue: nil)
-    }
-
-    func send(_ data: Data) {
-        guard let peripheral = connectedPeripheral else { return }
-        // TODO: writeValue to characteristic
-    }
-
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        // TODO: handle Bluetooth state
-    }
-}
+//
+//// MARK: - Bluetooth Singleton
+//class BluetoothSingleton: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
+//    static let shared = BluetoothSingleton()
+//    var centralManager: CBCentralManager!
+//    var connectedPeripheral: CBPeripheral?
+//
+//    private override init() {
+//        super.init()
+//        centralManager = CBCentralManager(delegate: self, queue: nil)
+//    }
+//
+//    func send(_ data: Data) {
+//        guard let peripheral = connectedPeripheral else { return }
+//        // TODO: writeValue to characteristic
+//    }
+//
+//    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+//        // TODO: handle Bluetooth state
+//    }
+//}
