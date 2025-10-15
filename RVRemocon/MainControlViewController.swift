@@ -15,7 +15,7 @@ class MainControlViewController: UIViewController {
     private var salCtrlVC: SALCtrlViewController!
     private var currentChildVC: UIViewController?
     
-    public var FBAngle: CGFloat = 1.0
+    public var FBAngle: CGFloat = 0
     public var LRAngle: CGFloat = 0
     
     // MARK: - Loading Overlay
@@ -32,20 +32,74 @@ class MainControlViewController: UIViewController {
         }
             
         checkBluetoothConnection()
-//        showLoadingOverlay()
+        showLoadingOverlay()
     }
 
+    func parseReceivedData(_ str: String) {
+        // 문자열을 ';' 기준으로 분리 (끝의 빈 값은 제거)
+        let parts = str.split(separator: ";").map { String($0) }
+        
+        var voltageValue: Double?
+        var frAngle: Float?
+        var lrAngle: Float?
+        
+        for part in parts {
+            if part.hasPrefix("VOL:") {
+                // "VOL:" 뒤의 값을 Double로 변환
+                let valueStr = part.replacingOccurrences(of: "VOL:", with: "")
+                voltageValue = Double(valueStr)
+            } else if part.hasPrefix("F") {
+                // "F" 뒤의 값을 Int로 변환
+                let valueStr = part.dropFirst()
+                frAngle = Float(valueStr)
+            } else if part.hasPrefix("L") {
+                // "L" 뒤의 값을 Int로 변환
+                let valueStr = part.dropFirst()
+                lrAngle = Float(valueStr)
+            }
+        }
+        
+        // 파싱 결과 사용
+        if let voltage = voltageValue {
+//            print("Voltage:", voltage)
+            updateVoltageLabel(voltage)  // 전압 라벨 업데이트 함수
+        }
+        if let fAngle = frAngle {
+            self.FBAngle = CGFloat(fAngle*0.0054)
+        }
+        if let lAngle = lrAngle {
+            self.LRAngle = CGFloat(lAngle*0.0054)
+        }
+    }
+
+    private func updateVoltageLabel(_ voltage: Double) {
+        var displayText = "Voltage : \(voltage)V"
+        var displayColor = UIColor.label
+
+        if voltage <= 10.0 {
+            displayText += " (LOW)"
+            displayColor = .red
+        } else if voltage <= 12.0 {
+            displayText += " (LOW)"
+            displayColor = .orange
+        }
+
+        self.VoltageView.text = displayText
+        self.VoltageView.textColor = displayColor
+    }
+
+    
     private func checkBluetoothConnection() {
         let defaults = UserDefaults.standard
         let targetUUID = UUID(uuidString: "AAA")
-//        guard let uuidString = defaults.string(forKey: "strConfDeviceAddr"),
-//              defaults.bool(forKey: "bConfAutoConnect"),
-//              let targetUUID = UUID(uuidString: uuidString)
-//        else {
-//            // 자동 연결 조건 불만족 → 장치 선택 화면
-//            showDeviceSelectScreen()
-//            return
-//        }
+        guard let uuidString = defaults.string(forKey: "strConfDeviceAddr"),
+              defaults.bool(forKey: "bConfAutoConnect"),
+              let targetUUID = UUID(uuidString: uuidString)
+        else {
+            // 자동 연결 조건 불만족 → 장치 선택 화면
+            showDeviceSelectScreen()
+            return
+        }
         showLoadingOverlay()
         
         var scanAttempts = 0
@@ -56,7 +110,6 @@ class MainControlViewController: UIViewController {
             scanAttempts += 1
             self.btManager.startScan()
             print("스캔 시작")
-            // 로딩 표시
             
             DispatchQueue.main.asyncAfter(deadline: .now() + scanInterval) {
                 // UUID 문자열 비교 안전하게
@@ -65,11 +118,10 @@ class MainControlViewController: UIViewController {
                     self.btManager.stopScan()
                     self.hideLoadingOverlay()
                     self.btManager.connect(peripheral)
-                    print("연결됨 \(targetUUID)")
+                    
                     self.btManager.onReceiveData = { data in
                         if let str = String(data: data, encoding: .utf8) {
-                            print("💬 수신:", str)
-                            self.VoltageView.text = str
+                            self.parseReceivedData(str)
                         }
                     }
                 } else if scanAttempts < maxAttempts {
@@ -85,8 +137,7 @@ class MainControlViewController: UIViewController {
             }
         }
 
-//        attemptScan()
-        hideLoadingOverlay()    //for Test 
+        attemptScan()
     }
     //viewWillAppear는 present()로 나갔다가 dismiss()로 돌아왔을 때 자동으로 다시 호출되는 생명주기 메서드
     override func viewWillAppear(_ animated: Bool) {
@@ -176,8 +227,6 @@ class MainControlViewController: UIViewController {
         present(alert, animated: true)
     }
 
-       
-
     
     private func initializeControllers() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -260,15 +309,15 @@ class MainControlViewController: UIViewController {
                           completion: nil)
     }
     
-    func updateAngles(fb: CGFloat, lr: CGFloat) {
-        self.FBAngle = fb
-        self.LRAngle = lr
-
-        NotificationCenter.default.post(
-            name: NSNotification.Name("AngleUpdated"),
-            object: nil,
-            userInfo: ["fb": fb, "lr": lr]
-        )
-    }
+//    func updateAngles(fb: CGFloat, lr: CGFloat) {
+//        self.FBAngle = fb
+//        self.LRAngle = lr
+//
+//        NotificationCenter.default.post(
+//            name: NSNotification.Name("AngleUpdated"),
+//            object: nil,
+//            userInfo: ["fb": fb, "lr": lr]
+//        )
+//    }
 
 }

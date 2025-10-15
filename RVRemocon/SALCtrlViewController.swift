@@ -35,8 +35,8 @@ class SALCtrlViewController: UIViewController {
 //    @IBOutlet weak var btGReset: UIButton!
     
     // MARK: - State Variables
-    private var FBAngle: CGFloat = 1.0
-    private var LRAngle: CGFloat = 0
+//    private var FBAngle: CGFloat = 1.0
+//    private var LRAngle: CGFloat = 0
     
     private var curLabels: [UILabel] = []
     private var maxLabels: [UILabel] = []
@@ -82,6 +82,7 @@ class SALCtrlViewController: UIViewController {
         loadConfig()
         setupButtons()
         buttonCheck()
+        buttonAutoClear(false)
     }
     
 
@@ -175,40 +176,41 @@ class SALCtrlViewController: UIViewController {
         let selectedMiddle = middleButtons.filter { $0.tag == 1 }
         let selectedRear = rearButtons.filter { $0.tag == 1 }
         
-        var cmdSelect: Character = "0"
         
         if selectedFront.count == 2 {
-            cmdSelect = "8"
+            mCmdSelect = 0x38   // '8'
         } else if selectedMiddle.count == 2 {
-            cmdSelect = "7"
+            mCmdSelect = 0x37   // '7'
         } else if selectedRear.count == 2 {
-            cmdSelect = bMiddle2RearMode ? "7" : "9"
+            mCmdSelect = bMiddle2RearMode ? 0x37 : 0x39
         } else {
             let all = middleButtons + frontButtons + rearButtons
             for (i, btn) in all.enumerated() where btn.tag == 1 {
                 if bMiddle2RearMode && i > 3 {
-                    cmdSelect = Character(UnicodeScalar((i % 2) + 49)!) // 49 = '1'
+                    mCmdSelect = UInt8(49 + (i % 2)) // '1' or '2'
                 } else {
-                    cmdSelect = Character(UnicodeScalar(i + 49)!)
+                    mCmdSelect = UInt8(49 + i)       // '1' ~ '6'
                 }
                 break
             }
         }
         
-        let cmdMotion: Character
+        // ✅ mCmdMotion 설정
         if btUp.tag == 1 {
-            cmdMotion = "U"
+            mCmdMotion = UInt8(ascii: "U")
         } else if btDown.tag == 1 {
-            cmdMotion = "D"
+            mCmdMotion = UInt8(ascii: "D")
         } else {
-            cmdMotion = "P"
+            mCmdMotion = UInt8(ascii: "P")
         }
-        
-        if cmdMotion == "P", btAuto.tag != 0 {
+
+        // ✅ Auto 상태 유지
+        if mCmdMotion == UInt8(ascii: "P"), btAuto.tag != 0 {
             btAuto.tag = 1
         }
+
         
-        print("CMD_SELECT: \(cmdSelect), CMD_MOTION: \(cmdMotion)")
+        print("CMD_SELECT: \(mCmdSelect), CMD_MOTION: \(mCmdSelect)")
     }
     
     // MARK: - 버튼 상태 초기화
@@ -219,7 +221,7 @@ class SALCtrlViewController: UIViewController {
             // front 그룹의 다른 버튼이 모두 tag == 0인지 확인
             let otherFrontButtons = frontButtons.filter { $0 != selectedButton }
             let otherHasActive = otherFrontButtons.contains { $0.tag == 1 }
-            selectedButton.tag = (otherHasActive && selectedButton.tag == 1) ? 0 : 1
+            if otherHasActive && selectedButton.tag == 1 {frontButtons.forEach { $0.tag = 0 }}
         }
         if !middleButtons.contains(selectedButton) {
             middleButtons.forEach { $0.tag = 0 }
@@ -227,7 +229,7 @@ class SALCtrlViewController: UIViewController {
             
             let otherButtons = middleButtons.filter { $0 != selectedButton }
             let otherHasActive = otherButtons.contains { $0.tag == 1 }
-            selectedButton.tag = (otherHasActive && selectedButton.tag == 1) ? 0 : 1
+            if otherHasActive && selectedButton.tag == 1 {middleButtons.forEach { $0.tag = 0 }}
         }
         if !rearButtons.contains(selectedButton) {
             rearButtons.forEach { $0.tag = 0 }
@@ -235,8 +237,9 @@ class SALCtrlViewController: UIViewController {
             
             let otherButtons = rearButtons.filter { $0 != selectedButton }
             let otherHasActive = otherButtons.contains { $0.tag == 1 }
-            selectedButton.tag = (otherHasActive && selectedButton.tag == 1) ? 0 : 1
+            if otherHasActive && selectedButton.tag == 1 {rearButtons.forEach { $0.tag = 0 }}
         }
+        selectedButton.tag = 1
         btAuto.tag = 0
         btUp.tag = 0
         btDown.tag = 0
@@ -263,10 +266,8 @@ class SALCtrlViewController: UIViewController {
                 print("mask")
             } else if button.tag == 1 || btAuto.tag != 0 {
                 button.setImage(onImage, for: .normal)
-                print("on")
             } else {
                 button.setImage(offImage, for: .normal)
-                print("off")
             }
         }
         
@@ -297,25 +298,25 @@ class SALCtrlViewController: UIViewController {
     }
     
     // MARK: - Setup
-    private func setupUIArrays() {
-//        curLabels = [textCurLM, textCurRM, textCurLF, textCurRF, textCurLB, textCurRB]
-//        maxLabels = [textMaxLM, textMaxRM, textMaxLF, textMaxRF, textMaxLB, textMaxRB]
-        
-        frontButtons = [btLFront, btRFront]
-        middleButtons = [btLMiddle, btRMiddle]
-        rearButtons = [btLRear, btRRear]
-        
-        for btn in frontButtons + middleButtons + rearButtons {
-            buttonMap[btn] = "0"
-            btn.tag = 0
-        }
-        
-        btAuto.tag = 1
-        btUp.tag = 0
-        btDown.tag = 0
-//        btSetView.tag = 0
-    }
-    
+//    private func setupUIArrays() {
+////        curLabels = [textCurLM, textCurRM, textCurLF, textCurRF, textCurLB, textCurRB]
+////        maxLabels = [textMaxLM, textMaxRM, textMaxLF, textMaxRF, textMaxLB, textMaxRB]
+//        
+//        frontButtons = [btLFront, btRFront]
+//        middleButtons = [btLMiddle, btRMiddle]
+//        rearButtons = [btLRear, btRRear]
+//        
+//        for btn in frontButtons + middleButtons + rearButtons {
+//            buttonMap[btn] = "0"
+//            btn.tag = 0
+//        }
+//        
+//        btAuto.tag = 1
+//        btUp.tag = 0
+//        btDown.tag = 0
+////        btSetView.tag = 0
+//    }
+//    
     
     private func loadConfig() {
         // 저장된 SAL 모델 인덱스 불러오기
@@ -355,30 +356,23 @@ class SALCtrlViewController: UIViewController {
         case btUp:
             btUp.tag = 1
             btDown.tag = 0
-            btAuto.tag = 2
-            FBAngle += 0.8
+//            btAuto.tag = 2
         case btDown :
             btDown.tag = 1
             btUp.tag = 0
-            btAuto.tag = -2
-            FBAngle += -0.8
+//            btAuto.tag = -2
         case btAuto :
             buttonAutoClear(btAuto.tag==1)
         case btLFront,  btLRear, btRFront,  btRRear, btLMiddle, btRMiddle:
-//            if sender.tag == 1 {sender.setImage(UIImage(named: "button_leveler_on"), for: .normal)
-//                sender.tag = 0
-//            }else{
-//                sender.tag = 1
-//            }
             selectClear(sender)
-//            buttonAutoClear(true)
         default:
-            clearSelection(for: sender)
+//            clearSelection(for: sender)
             sender.tag = 1
         }
         
         motionCmdStopCount = STOP_MESSAGE_SENDNUM
-        buttonCheck() 
+        buttonCheck()
+        checkCommand()
         sendActionCommand()
     }
     
@@ -390,45 +384,12 @@ class SALCtrlViewController: UIViewController {
         motionCmdStopCount = STOP_MESSAGE_SENDNUM
         sendActionCommand()
     }
-    
-//    @objc private func expertCommand(_ sender: UIButton) {
-//        var type: ButtonType?
-//        switch sender {
-//        case btGReset: type = .gReset
-//        case btInit: type = .initSetup
-//        case btSetView: type = .setView
-//        case btParking: type = .parking
-//        default: break
-//        }
-//        
-//        guard let t = type else { return }
-//        buttonStates[t] = true
-//        
-//        let alert = UIAlertController(title: "확인", message: "이 작업을 수행하시겠습니까?", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "확인", style: .default))
-//        alert.addAction(UIAlertAction(title: "취소", style: .cancel))
-//        self.present(alert, animated: true)
-//        
-//        sendActionCommand()
-//    }
-    
-    private func clearSelection(for button: UIButton) {
-        if !frontButtons.contains(button) {
-            frontButtons.forEach { $0.tag = 0 }
-        }
-        if !middleButtons.contains(button) {
-            middleButtons.forEach { $0.tag = 0 }
-        }
-        if !rearButtons.contains(button) {
-            rearButtons.forEach { $0.tag = 0 }
-        }
-    }
-    
+
     // MARK: - Timer
     private func startTimer() {
-//        timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [weak self] _ in
-//            self?.sendActionCommand()
-//        }
+        timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [weak self] _ in
+            self?.sendActionCommand()
+        }
     }
     
     private func stopTimer() {
@@ -436,21 +397,45 @@ class SALCtrlViewController: UIViewController {
         timer = nil
     }
     
+    private func debugPrint(_ data: Data){
+        let asciiRange: ClosedRange<UInt8> = 0x20...0x7E  // 가시적 ASCII 범위 (스페이스~'~')
+
+        // 변환
+        let debugString = data.map { byte -> String in
+            if asciiRange.contains(byte) {
+                // 출력 가능한 ASCII 문자는 그대로
+                return String(UnicodeScalar(byte))
+            } else {
+                // 그 외는 16진수로
+                return String(format: "[%02X]", byte)
+            }
+        }.joined()
+
+        print("Debug:", debugString)
+    }
+    
     // MARK: - Command Handling
     private func sendActionCommand() {
-        var data: Data
-        let isOneSend = true
-        
-        if let _ = buttonStates[.setView], buttonStates[.setView]! {
-            // Mode toggle
-            data = mode4Change(!isMode4)
-            buttonStates[.setView] = false
-        } else {
-            data = Data([UInt8(ascii: "S"), mCmdSelect, UInt8(ascii: "C"), mCmdMotion, UInt8(ascii: "M"), (mCmdSelect + mCmdMotion) & 0xFF, 13, 10])
-        }
+        let isOneSend = false
+   
+        // 예: 명령어 데이터 생성
+        let data = Data([
+            UInt8(ascii: "S"),
+            mCmdSelect,
+            UInt8(ascii: "C"),
+            mCmdMotion,
+            UInt8(ascii: "M"),
+            (mCmdSelect &+ mCmdMotion) & 0xFF, // 체크섬 계산 // &+ 연산자는 오버플로우를 허용하는 덧셈
+            13, // CR
+            10  // LF
+        ])
+
         
         if motionCmdStopCount > 0 || isOneSend {
             btManager.sendData(data)
+            
+            debugPrint(data)        // for Debug
+            
             if isOneSend {
                 motionCmdStopCount = 0
                 mCmdSelect = 0x30
@@ -473,14 +458,9 @@ class SALCtrlViewController: UIViewController {
     
     private func updateCaravanMotion() {
         // 이미지 회전
-        rotateSide(degree: FBAngle)
-        rotateBack(degree: FBAngle)
-//        if let side = sideImageView.image {
-//            sideImageView.image = rotateImage(side, degree: FBAngle)
-//        }
-//        if let back = backImageView.image {
-//            backImageView.image = rotateImage(back, degree: LRAngle)
-//        }
+        guard let parentVC = self.parent as? MainControlViewController else { return }      
+        rotateSide(degree: parentVC.FBAngle)
+        rotateBack(degree: parentVC.LRAngle)
     }
 
     private func rotateImage(_ image: UIImage, degree: CGFloat) -> UIImage {
@@ -524,16 +504,16 @@ class SALCtrlViewController: UIViewController {
         }
         slopeLRLabel.text = String(format: "%.1f°", backAngle)
     }
-    
-    
-    @objc func handleAngleUpdate(_ notification: Notification) {
-        if let userInfo = notification.userInfo,
-           let fb = userInfo["fb"] as? CGFloat,
-           let lr = userInfo["lr"] as? CGFloat {
-               rotateSide(degree: fb)
-               rotateBack(degree: lr)
-           }
-    }
+//    
+//    
+//    @objc func handleAngleUpdate(_ notification: Notification) {
+//        if let userInfo = notification.userInfo,
+//           let fb = userInfo["fb"] as? CGFloat,
+//           let lr = userInfo["lr"] as? CGFloat {
+//               rotateSide(degree: fb)
+//               rotateBack(degree: lr)
+//           }
+//    }
 
 //    deinit {
 //        NotificationCenter.default.removeObserver(self)
