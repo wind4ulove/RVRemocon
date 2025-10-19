@@ -67,7 +67,7 @@ class SALCtrlViewController: UIViewController {
         
     // MARK: - 상태값
     private var bMiddle2RearMode = false
-    private var levelerActMask: Int = 0
+    private var levelerActMask: UInt8 = 0
         
         // 버튼 매핑: [UIButton: (on, off, act)]
     private var buttonMappings: [UIButton: (String, String, String)] = [:]
@@ -263,7 +263,6 @@ class SALCtrlViewController: UIViewController {
             
             if (levelerActMask & (1 << i)) != 0 {
                 button.setImage(actImage, for: .normal)
-                print("mask")
             } else if button.tag == 1 || btAuto.tag != 0 {
                 button.setImage(onImage, for: .normal)
             } else {
@@ -461,6 +460,8 @@ class SALCtrlViewController: UIViewController {
         guard let parentVC = self.parent as? MainControlViewController else { return }      
         rotateSide(degree: parentVC.FBAngle)
         rotateBack(degree: parentVC.LRAngle)
+        levelerActMask = parentVC.ActFlag
+        buttonCheck()
     }
 
     private func rotateImage(_ image: UIImage, degree: CGFloat) -> UIImage {
@@ -504,7 +505,8 @@ class SALCtrlViewController: UIViewController {
         }
         slopeLRLabel.text = String(format: "%.1f°", backAngle)
     }
-//    
+
+//
 //    
 //    @objc func handleAngleUpdate(_ notification: Notification) {
 //        if let userInfo = notification.userInfo,
