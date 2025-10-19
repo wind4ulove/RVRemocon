@@ -270,13 +270,13 @@ class SALCtrlViewController: UIViewController {
             }
         }
         
-//        if btAuto.tag == 1 {
-//            btAuto.setBackgroundImage(UIImage(named: buttonAutoMapping.on), for: .normal)
-//        } else if btAuto.tag != 0 {
-//            btAuto.setBackgroundImage(UIImage(named: buttonAutoMapping.act), for: .normal)
-//        } else {
-//            btAuto.setBackgroundImage(UIImage(named: buttonAutoMapping.off), for: .normal)
-//        }
+        if btAuto.tag == 1 {
+            btAuto.setImage(UIImage(named: buttonAutoMapping.on), for: .normal)
+        } else if btAuto.tag != 0 {
+            btAuto.setImage(UIImage(named: buttonAutoMapping.act), for: .normal)
+        } else {
+            btAuto.setImage(UIImage(named: buttonAutoMapping.off), for: .normal)
+        }
         
         btUp.setImage(UIImage(named: btUp.tag == 1 ? "rbutton_up_on" : "rbutton_up"), for: .normal)
         btDown.setImage(UIImage(named: btDown.tag == 1 ? "rbutton_down_on" : "rbutton_down"), for: .normal)
@@ -353,13 +353,18 @@ class SALCtrlViewController: UIViewController {
         
         switch sender {
         case btUp:
-            btUp.tag = 1
+            if btDown.tag != 1 {
+                btUp.tag = 1
+            }
             btDown.tag = 0
-//            btAuto.tag = 2
+            if btAuto.tag == 1 {btAuto.tag = 2}
         case btDown :
-            btDown.tag = 1
+            if btUp.tag != 1 {
+                btDown.tag = 1
+            }
             btUp.tag = 0
-//            btAuto.tag = -2
+            if btAuto.tag == 1 {btAuto.tag = -2}
+            
         case btAuto :
             buttonAutoClear(btAuto.tag==1)
         case btLFront,  btLRear, btRFront,  btRRear, btLMiddle, btRMiddle:
@@ -376,12 +381,14 @@ class SALCtrlViewController: UIViewController {
     }
     
     @objc private func buttonTouchUp(_ sender: UIButton) {
-        if sender == btUp || sender == btDown {
+        if btAuto.tag == 0, sender == btUp || sender == btDown {
             btUp.tag = 0
             btDown.tag = 0
+            checkCommand()
+            
+            motionCmdStopCount = STOP_MESSAGE_SENDNUM
+            sendActionCommand()
         }
-        motionCmdStopCount = STOP_MESSAGE_SENDNUM
-        sendActionCommand()
     }
 
     // MARK: - Timer

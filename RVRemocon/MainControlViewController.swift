@@ -132,32 +132,32 @@ class MainControlViewController: UIViewController {
     }
     func handleRmtFlag(flag: Character, actMask: UInt8) {
         
-        actMaskClearCount = 3   // 3번 수신될동안 한번도 RmtFlag를 받지 않으면 ActFlag를 0으로 Clear
+        actMaskClearCount = 2   // 2번 수신될동안 한번도 RmtFlag를 받지 않으면 ActFlag를 0으로 Clear
         ActFlag = actMask
         switch flag {
         case "A":
-            print("▶ 오토 동작 진행중")
+            self.VoltageView.text  = "▶ 오토 동작 진행중"
         case "E":
-            print("❌ 오토 실패")
+            self.VoltageView.text  = "❌ 오토 실패"
         case "F":
-            print("✅ 오토 완료")
+            self.VoltageView.text  = "✅ 오토 완료"
         case "G":
-            print("⚠️ 에러")
+            self.VoltageView.text  = "⚠️ 에러"
         case "N":
-            print("⛔️ Limit 검출")
+            self.VoltageView.text  = "⛔️ Limit 검출"
         case "T":
-            print("🟢 정상 동작")
+            self.VoltageView.text  = "🟢 동작중"
         default:
-            print("⚠️ 알 수 없는 플래그: \(flag)")
+            self.VoltageView.text  = "⚠️ 알 수 없는 플래그: \(flag)"
         }
 
-        // 비트마스크 처리
-        for bit in 0..<8 {
-            let isOn = (ActFlag & (1 << bit)) != 0
-            if isOn {
-                print("   🔸 Bit \(bit) ON")
-            }
-        }
+//        // 비트마스크 처리
+//        for bit in 0..<8 {
+//            let isOn = (ActFlag & (1 << bit)) != 0
+//            if isOn {
+//                print("   🔸 Bit \(bit) ON")
+//            }
+//        }
     }
 
     
@@ -394,17 +394,6 @@ class MainControlViewController: UIViewController {
                           duration: 0.25,
                           options: [.transitionCrossDissolve, .showHideTransitionViews],
                           completion: nil)
-    }
-    
-//    func updateAngles(fb: CGFloat, lr: CGFloat) {
-//        self.FBAngle = fb
-//        self.LRAngle = lr
-//
-//        NotificationCenter.default.post(
-//            name: NSNotification.Name("AngleUpdated"),
-//            object: nil,
-//            userInfo: ["fb": fb, "lr": lr]
-//        )
-//    }
+    }    
 
 }
