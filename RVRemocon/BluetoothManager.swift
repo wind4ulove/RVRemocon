@@ -22,9 +22,7 @@ final class BluetoothManager: NSObject{
     private(set) var discoveredPeripherals: [CBPeripheral] = []
     /// PASSKEY / Bonding UI가 떠있는 중인지 여부
     private(set) var awaitingPairing = false
-    // 🔥 자동 재연결 제어 속성
-//    private(set) var shouldReconnect: Bool = true
-//    private var reconnectWorkItem: DispatchWorkItem?
+    
     
     var onDiscover: ((_ peripheral: CBPeripheral, _ rssi: NSNumber) -> Void)?
     var onStateChange: ((_ state: CBManagerState) -> Void)?
@@ -35,7 +33,7 @@ final class BluetoothManager: NSObject{
     // MARK: - 자동 재연결
     private var targetPeripheralIdentifier: UUID?
     var isConnected: Bool {
-        return connectedPeripheral?.services == .none
+        return connectedPeripheral?.state == .connected
     }
     private override init() {
         super.init()
@@ -77,8 +75,14 @@ final class BluetoothManager: NSObject{
         central.connect(peripheral, options: nil) // iOS가 자동으로 PASSKEY 요청
     }
     
-    func disconnect(_ peripheral: CBPeripheral) {
-        central.cancelPeripheralConnection(peripheral)
+    func disconnect() {
+        if let peripheral = self.connectedPeripheral, self.isConnected {
+            central.cancelPeripheralConnection(peripheral)
+            print("🔌 Disconnected")
+        } else {
+            print("⚠️ 연결된 peripheral 없음")
+        }
+//        central.cancelPeripheralConnection(peripheral)
     }
 
     // 연결된(이미 연결된) peripheral 불러오기 (특정 서비스 UUID가 있을 때 유용)

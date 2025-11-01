@@ -14,6 +14,7 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
     
     private let btManager = BluetoothManager.shared
     @IBAction func backButtonTapped(_ sender: UIButton) {
+        btManager.disconnect()  // 연결을 해제하고 리스트를 표시.
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -40,7 +41,7 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
 //        backgroundImageView.contentMode = .scaleAspectFill
 //        tableView.backgroundView = backgroundImageView
         
-        
+        btManager.disconnect()  // 연결을 해제하고 리스트를 표시.
         // 스캔 콜백
         btManager.onDiscover = { [weak self] peripheral, _ in
             guard let self = self else { return }
@@ -172,6 +173,7 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
 //    }
     @IBAction func goToConfigView(_ sender: UIButton) {
         // "Config" → 이동할 스토리보드 이름 (ex. Config.storyboard)
+        btManager.disconnect()  // 연결을 해제하고 리스트를 표시.
         let storyboard = UIStoryboard(name: "Configuration", bundle: nil)
         
         // "ConfigViewController" → 스토리보드에서 설정한 ViewController의 Storyboard ID

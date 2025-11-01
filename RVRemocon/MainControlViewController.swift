@@ -236,13 +236,16 @@ class MainControlViewController: UIViewController {
 
         func attemptScan() {
             scanAttempts += 1
-//            if btManager.awaitingPairing {
-//                print("⏳ PASSKEY 요청중 → 스캔 중단")
-//                return
-//            }
+
             self.btManager.startScan()
             print("스캔 시작")
             DispatchQueue.main.asyncAfter(deadline: .now() + scanInterval) {
+                if self.btManager.isConnected {
+                    self.btManager.stopScan()
+                    self.hideLoadingOverlay()
+                    return
+                }
+                
                 // UUID 문자열 비교 안전하게
                 if let peripheral = self.btManager.discoveredPeripherals.first(where: { $0.identifier == targetUUID }) {
                     // 장치 발견 → 연결 시도
@@ -267,6 +270,11 @@ class MainControlViewController: UIViewController {
         }
 
         attemptScan()
+    }
+    //다른 뷰로 이동하거나 dismiss될 때 호출, dismiss될 때 호출됨
+    override func viewWillDisappear(_ animated: Bool) {
+        print("⚠️ 블루투스 종료")
+        btManager.disconnect()
     }
     //viewWillAppear는 present()로 나갔다가 dismiss()로 돌아왔을 때 자동으로 다시 호출되는 생명주기 메서드
     override func viewWillAppear(_ animated: Bool) {
