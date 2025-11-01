@@ -64,7 +64,35 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
                 print("연결 실패: \(error?.localizedDescription ?? "알 수 없음")")
             }
         }
-        
+        btManager.onFailToConnect = { [weak self] peripheral, error in
+            guard let self = self else { return }
+
+            // 자동 재연결 중지
+//            self.btManager.stopReconnectLoop()
+
+            // 저장값 제거
+            let defaults = UserDefaults.standard
+            defaults.removeObject(forKey: "strConfDeviceAddr")
+            defaults.set(false, forKey: "bConfAutoConnect")
+
+            // 알림 → 장치 선택 화면
+            DispatchQueue.main.async {
+                let alert = UIAlertController(
+                    title: "페어링 정보 삭제됨",
+                    message: "디바이스가 기존 페어링 정보를 삭제했습니다.\n" +
+                            "설정 > Bluetooth에서 해당 기기를 제거 하거나\n다른 장치를 선택해 주세요.",
+                                  
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "확인", style: .default))
+//                alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
+//                    self.showDeviceSelectScreen()
+//                })
+
+                self.present(alert, animated: true)
+            }
+        }
+
         startScan()
     }
     
@@ -128,7 +156,7 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
         saveUserSettings()
         
         // BluetoothManager를 통해 연결
-        btManager.connect(peripheral)
+        btManager.connect(peripheral,justForTest:true)
 //        navigateToMain()
     }
     

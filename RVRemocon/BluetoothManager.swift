@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreBluetooth
+import UIKit
 
 // 간단한 블루투스 매니저 싱글톤
 final class BluetoothManager: NSObject{
@@ -19,15 +20,22 @@ final class BluetoothManager: NSObject{
     private var readCharacteristic: CBCharacteristic?
     
     private(set) var discoveredPeripherals: [CBPeripheral] = []
+    /// PASSKEY / Bonding UI가 떠있는 중인지 여부
+    private(set) var awaitingPairing = false
+    // 🔥 자동 재연결 제어 속성
+//    private(set) var shouldReconnect: Bool = true
+//    private var reconnectWorkItem: DispatchWorkItem?
+    
     var onDiscover: ((_ peripheral: CBPeripheral, _ rssi: NSNumber) -> Void)?
     var onStateChange: ((_ state: CBManagerState) -> Void)?
     var onConnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
     var onDisconnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
+    var onFailToConnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
     var onReceiveData: ((Data) -> Void)?
     // MARK: - 자동 재연결
     private var targetPeripheralIdentifier: UUID?
     var isConnected: Bool {
-        return connectedPeripheral?.state == .connected
+        return connectedPeripheral?.services == .none
     }
     private override init() {
         super.init()
@@ -51,23 +59,22 @@ final class BluetoothManager: NSObject{
     func stopScan() {
         central.stopScan()
     }
-
-    func connect(_ peripheral: CBPeripheral) {
-        targetPeripheralIdentifier = peripheral.identifier
+    
+    func connect(_ peripheral: CBPeripheral, justForTest: Bool = false) {
+//        targetPeripheralIdentifier = peripheral.identifier
         
-        // 이미 Bonded 되어 있는 장치 확인
-//        let bonded = central.retrievePeripherals(withIdentifiers: [peripheral.identifier])
-//        if let bondedPeripheral = bonded.first {
-//            print("🔗 이미 Bonded 된 장치 발견 → 자동 연결")
-//            self.connectedPeripheral = bondedPeripheral
-//            bondedPeripheral.delegate = self
-//            central.connect(bondedPeripheral, options: nil)
-//        } else {
-//            print("🔗 Bonded 안된 장치 →     유도")
-            self.connectedPeripheral = peripheral
-            peripheral.delegate = self
-            central.connect(peripheral, options: nil) // iOS가 자동으로 PASSKEY 요청
-//        }
+//        // PASSKEY 요청 모드 진입
+//        awaitingPairing = true
+//        print("⚠️ Passkey 요청 모드")
+        if justForTest {
+            awaitingPairing = true
+        }
+        else{
+            awaitingPairing = false
+        }
+        self.connectedPeripheral = peripheral
+        peripheral.delegate = self
+        central.connect(peripheral, options: nil) // iOS가 자동으로 PASSKEY 요청
     }
     
     func disconnect(_ peripheral: CBPeripheral) {
@@ -111,6 +118,15 @@ final class BluetoothManager: NSObject{
         peripheral.setNotifyValue(true, for: characteristic)
         print("📡 Notify 구독 시작: \(characteristic.uuid)")
     }
+//    /// 🔥 자동 재연결 루프 종료
+//    func stopReconnectLoop() {
+//        shouldReconnect = false
+//        reconnectWorkItem?.cancel()
+//        reconnectWorkItem = nil
+//    }
+//    func startReconnectLoop() {
+//        shouldReconnect = true
+//    }
 
 
 }
@@ -135,15 +151,35 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("✅ 연결 완료: \(peripheral.name ?? "알 수 없음")")
+//        awaitingPairing = false   // Bonding 되지 않아도 연결되어 해제되는 문제 발생.
+        
         self.connectedPeripheral = peripheral
         peripheral.delegate = self
         peripheral.discoverServices(nil) // ✅ 서비스 검색 시작
     }
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        onConnect?(peripheral, error)
+//        onConnect?(peripheral, error)
         print("❌ 연결 실패: \(peripheral.name ?? "알 수 없음") | \(String(describing: error))")
 
-        // 자동 재연결
+        awaitingPairing = false
+        // 🔥 페어링 삭제 감지
+        if let err = error as? CBError, err.code == .peerRemovedPairingInformation {
+            print("⚠️ 기기에서 페어링 정보 삭제됨 → 재연결 중단")
+//            stopReconnectLoop()
+            onFailToConnect?(peripheral, error)
+            return
+        }
+
+        // 🔁 자동 재시도 가능할 때만
+//        guard shouldReconnect else { return }
+
+//        reconnectWorkItem = DispatchWorkItem { [weak self] in
+//            guard let self = self else { return }
+//            print("⏳ 재연결 시도 중…")
+//            central.connect(peripheral, options: nil)
+//        }
+
+        // 기타 오류 → 재시도 가능
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.connect(peripheral)
         }
@@ -151,8 +187,20 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
 
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        print("🔌 연결 해제")
+
+        guard awaitingPairing else { return }
+        print("🔌 onDisconnect")
         onDisconnect?(peripheral, error)
+        
+//        reconnectWorkItem = DispatchWorkItem { [weak self] in
+//            guard let self = self else { return }
+//            central.connect(peripheral, options: nil)
+//        }
+
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: reconnectWorkItem!)
     }
+
 //}
 //
 //extension BluetoothManager: CBPeripheralDelegate {
@@ -167,27 +215,6 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
             print("⚠️ 서비스 없음 — 아마도 Passkey 미입력")
             return
         }
-        // 보호된 characteristic UUID만 접근
-//        let protectedUUID = CBUUID(string: "ABF2")
-//        var foundProtected = false
-//
-//        for service in services {
-//            if let characteristics = service.characteristics {
-//                for chr in characteristics {
-//                    if chr.uuid == protectedUUID {
-//                        foundProtected = true
-//                        // Passkey 입력 유도
-////                        peripheral.readValue(for: chr)
-//                    }
-//                }
-//            }
-//        }
-//
-//        if !foundProtected {
-//            print("⚠️ 보호된 특성 없음 → Passkey 미입력 상태일 가능성")
-//            return
-//        }
-//        
         
         for service in services {
             print("🔹 서비스 발견:", service.uuid)
@@ -207,6 +234,7 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
         
         guard let characteristics = service.characteristics else { return }
         for characteristic in characteristics {
+            guard !awaitingPairing else { return }
             print("🔸 characteristic 발견:", characteristic.uuid)
             // 쓰기용
             if characteristic.uuid == targetWCharacteristicUUID {
@@ -228,14 +256,24 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
         
         
     }
+    
     func peripheral(_ peripheral: CBPeripheral,
                        didUpdateValueFor characteristic: CBCharacteristic,
                        error: Error?) {
-           if let error = error {
-               print("❌ 데이터 수신 실패:", error)
-               return
-           }
-
+        if let error = error as? CBATTError, error.code == .insufficientAuthentication {
+            awaitingPairing = true
+            print("🔑 페어링 필요")
+        } else {
+            awaitingPairing = false
+            print("✅ 이미 bonded 또는 인증 불필요")
+        }
+        
+        
+            if let error = error {
+                print("❌ 데이터 수신 실패:", error)
+                return
+            }
+        
            guard let data = characteristic.value else { return }
 
            // 콜백 전달

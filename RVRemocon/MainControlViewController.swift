@@ -31,9 +31,48 @@ class MainControlViewController: UIViewController {
         initializeControllers()
         btManager.onDisconnect = { [weak self] peripheral, error in
             guard let self = self else { return }
+
+            let defaults = UserDefaults.standard
+            let savedUUID = defaults.string(forKey: "strConfDeviceAddr")
+
+            // ✅ 저장된 Bonding 기기가 없으면 재연결 하지 않음
+            guard savedUUID != nil else {
+                print("🔌 Bonding 정보 없음 → checkBluetoothConnection() 스킵")
+                return
+            }
+
+            // ✅ 저장되어 있어야만 재연결 체크
             self.checkBluetoothConnection()
         }
-            
+        btManager.onFailToConnect = { [weak self] peripheral, error in
+            guard let self = self else { return }
+
+            // 자동 재연결 중지
+//            self.btManager.stopReconnectLoop()
+
+            // 저장값 제거
+            let defaults = UserDefaults.standard
+            defaults.removeObject(forKey: "strConfDeviceAddr")
+            defaults.set(false, forKey: "bConfAutoConnect")
+
+            // 알림 → 장치 선택 화면
+            DispatchQueue.main.async {
+                let alert = UIAlertController(
+                    title: "페어링 정보 삭제됨",
+                    message: "디바이스가 기존 페어링 정보를 삭제했습니다.\n" +
+                            "설정 > Bluetooth에서 해당 기기를 제거 하거나\n다른 장치를 선택해 주세요.",
+                                  
+                    preferredStyle: .alert
+                )
+
+                alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
+                    self.showDeviceSelectScreen()
+                })
+
+                self.present(alert, animated: true)
+            }
+        }
+
         checkBluetoothConnection()
         showLoadingOverlay()
     }
@@ -197,9 +236,12 @@ class MainControlViewController: UIViewController {
 
         func attemptScan() {
             scanAttempts += 1
+//            if btManager.awaitingPairing {
+//                print("⏳ PASSKEY 요청중 → 스캔 중단")
+//                return
+//            }
             self.btManager.startScan()
             print("스캔 시작")
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + scanInterval) {
                 // UUID 문자열 비교 안전하게
                 if let peripheral = self.btManager.discoveredPeripherals.first(where: { $0.identifier == targetUUID }) {
@@ -239,8 +281,23 @@ class MainControlViewController: UIViewController {
         }
     }
 
+    func showPairingRemovedAlert() {
+        let alert = UIAlertController(
+            title: "페어링 필요",
+            message: "디바이스가 기존 페어링 정보를 삭제했습니다.\n" +
+                    "설정 > Bluetooth에서 해당 기기를 제거 후\n다시 시도해주세요.",
+            preferredStyle: .alert
+        )
+
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+            self.showDeviceSelectScreen()
+        }))
+
+        present(alert, animated: true)
+    }
+
     
-    private func showDeviceSelectScreen() {
+    func showDeviceSelectScreen() {
         DispatchQueue.main.async {
             let storyboard = UIStoryboard(name: "DeviceSelect", bundle: nil)
             if let deviceVC = storyboard.instantiateViewController(withIdentifier: "DeviceSelectViewController") as? DeviceSelectViewController {
