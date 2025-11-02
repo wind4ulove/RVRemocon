@@ -386,8 +386,8 @@ class MainControlViewController: UIViewController {
         rvmCtrlVC = storyboard.instantiateViewController(withIdentifier: "RVMCtrlViewController") as? RVMCtrlViewController
         salCtrlVC = storyboard.instantiateViewController(withIdentifier: "SALCtrlViewController") as? SALCtrlViewController
 
-        let idx = setupChildVCs()
-        switchToChild(index: idx)
+        setupChildVCs()
+        switchToChild(index: 0)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -396,10 +396,9 @@ class MainControlViewController: UIViewController {
     public var iSALModel = 0
     public var iRVMModel = 0
     // MARK: - Setup Child VCs
-    private func setupChildVCs() -> Int {
-        guard rvmCtrlVC != nil, salCtrlVC != nil else { return 0}
+    private func setupChildVCs() {
+        guard rvmCtrlVC != nil, salCtrlVC != nil else { return }
         // 저장된 SAL 모델 인덱스 불러오기
-        var index = 0
         let defaults = UserDefaults.standard
         iRVMModel = defaults.integer(forKey: "ConfRVMModel")
         iSALModel = defaults.integer(forKey: "ConfSALModel")
@@ -411,7 +410,6 @@ class MainControlViewController: UIViewController {
             addChild(rvmCtrlVC)
             view.addSubview(rvmCtrlVC.view)
             rvmCtrlVC.didMove(toParent: self)
-            index = 0
         }
         if iSALModel != 0 {
             segmentedControl.insertSegment(withTitle: "SAL", at: segmentedControl.numberOfSegments, animated: false)
@@ -419,15 +417,11 @@ class MainControlViewController: UIViewController {
             addChild(salCtrlVC)
             view.addSubview(salCtrlVC.view)
             salCtrlVC.didMove(toParent: self)
-            // RVMover가 표시되면 안보임.
+            // RVMover가 표시되면 SAL은 숨김.
             if iRVMModel != 0{
                 salCtrlVC.view.isHidden = true
             }
-            else{
-                index = 1
-            }
         }
-        return index
 
     }
 
@@ -477,7 +471,7 @@ class MainControlViewController: UIViewController {
 
         newVC.view.isHidden = false
         currentChildVC = newVC
-
+        segmentedControl.selectedSegmentIndex = index
         // Optional: 애니메이션 전환
         UIView.transition(from: oldVC?.view ?? UIView(),
                           to: newVC.view,

@@ -31,12 +31,9 @@ class SALCtrlViewController: UIViewController {
     @IBOutlet weak var btAuto: UIButton!
 //    @IBOutlet weak var btInit: UIButton!
 //    @IBOutlet weak var btSetView: UIButton!
+    // TODO : btParking 기능 추가 필요!!!!!
 //    @IBOutlet weak var btParking: UIButton!
 //    @IBOutlet weak var btGReset: UIButton!
-    
-    // MARK: - State Variables
-//    private var FBAngle: CGFloat = 1.0
-//    private var LRAngle: CGFloat = 0
     
     private var curLabels: [UILabel] = []
     private var maxLabels: [UILabel] = []

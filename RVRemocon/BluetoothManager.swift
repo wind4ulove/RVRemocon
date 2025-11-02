@@ -117,17 +117,6 @@ final class BluetoothManager: NSObject{
         peripheral.setNotifyValue(true, for: characteristic)
         print("📡 Notify 구독 시작: \(characteristic.uuid)")
     }
-//    /// 🔥 자동 재연결 루프 종료
-//    func stopReconnectLoop() {
-//        shouldReconnect = false
-//        reconnectWorkItem?.cancel()
-//        reconnectWorkItem = nil
-//    }
-//    func startReconnectLoop() {
-//        shouldReconnect = true
-//    }
-
-
 }
 
 extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
@@ -164,20 +153,11 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
         // 🔥 페어링 삭제 감지
         if let err = error as? CBError, err.code == .peerRemovedPairingInformation {
             print("⚠️ 기기에서 페어링 정보 삭제됨 → 재연결 중단")
-//            stopReconnectLoop()
             onFailToConnect?(peripheral, error)
             return
         }
 
-        // 🔁 자동 재시도 가능할 때만
-//        guard shouldReconnect else { return }
-
-//        reconnectWorkItem = DispatchWorkItem { [weak self] in
-//            guard let self = self else { return }
-//            print("⏳ 재연결 시도 중…")
-//            central.connect(peripheral, options: nil)
-//        }
-
+        
         // 기타 오류 → 재시도 가능
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.connect(peripheral)
@@ -188,16 +168,9 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("🔌 연결 해제")
 
-        guard awaitingPairing else { return }
+        guard !awaitingPairing else { return }
         print("🔌 onDisconnect")
         onDisconnect?(peripheral, error)
-        
-//        reconnectWorkItem = DispatchWorkItem { [weak self] in
-//            guard let self = self else { return }
-//            central.connect(peripheral, options: nil)
-//        }
-
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: reconnectWorkItem!)
     }
 
 //}
@@ -268,29 +241,29 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
         }
         
         
-            if let error = error {
-                print("❌ 데이터 수신 실패:", error)
-                return
-            }
-        
-           guard let data = characteristic.value else { return }
+        if let error = error {
+            print("❌ 데이터 수신 실패:", error)
+            return
+        }
+    
+       guard let data = characteristic.value else { return }
 
-           // 콜백 전달
-           onReceiveData?(data)
+       // 콜백 전달
+       onReceiveData?(data)
 
-           // 문자열로 변환
-           if let str = String(data: data, encoding: .utf8) {
-               print("📡 수신 데이터:", str)
-           } else {
-               print("📡 수신 데이터 (바이너리):", data)
-           }
+       // 문자열로 변환
+       if let str = String(data: data, encoding: .utf8) {
+           print("📡 수신 데이터:", str)
+       } else {
+           print("📡 수신 데이터 (바이너리):", data)
        }
+   }
 
-       func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-           if let error = error {
-               print("❌ 쓰기 실패:", error)
-           } else {
-               print("✅ 데이터 전송 성공: \(characteristic.uuid)")
-           }
+   func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+       if let error = error {
+           print("❌ 쓰기 실패:", error)
+       } else {
+           print("✅ 데이터 전송 성공: \(characteristic.uuid)")
        }
+   }
 }
