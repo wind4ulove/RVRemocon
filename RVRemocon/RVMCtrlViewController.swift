@@ -147,6 +147,7 @@ class RVMCtrlViewController: UIViewController {
             btn.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside])
             btn.tag = 0 // false equivalent
         }
+        setSpeedButton(4)
     }
 
     func setMoveCommand() {
