@@ -179,7 +179,11 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
         rvmTableView.reloadData()
         salTableView.reloadData()
     }
-
+    //viewWillAppear는 present()로 나갔다가 dismiss()로 돌아왔을 때 자동으로 다시 호출되는 생명주기 메서드
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        initUI()
+    }
     private func goToMainController() {
         DispatchQueue.main.async {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

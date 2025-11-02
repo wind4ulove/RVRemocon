@@ -11,11 +11,12 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var reloadButton: UIButton!
     @IBOutlet weak var autoConnectSwitch: UISwitch!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    // MARK: - Loading Overlay
+    private var loadingView: UIView?
     
     private let btManager = BluetoothManager.shared
     @IBAction func backButtonTapped(_ sender: UIButton) {
-        btManager.disconnect()  // 연결을 해제하고 리스트를 표시.
-        self.dismiss(animated: true, completion: nil)
+        navigateToBack()
     }
 
     override func viewDidLoad() {
@@ -57,20 +58,27 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
         // 연결 콜백
         btManager.onConnect = { [weak self] peripheral, error in
             guard let self = self else { return }
+            hideLoadingOverlay()
             if error == nil {
                 print("연결됨: \(peripheral.name ?? "알 수 없음")")
-//                self.navigateToMain()
-                self.dismiss(animated: true, completion: nil)
+                navigateToBack()
             } else {
+                // 알림 → 장치 선택 화면
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(
+                        title: "연결 실패",
+                        message: "디바이스와의 연결에 실패 하였습니다.",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "확인", style: .default))
+                    self.present(alert, animated: true)
+                }
                 print("연결 실패: \(error?.localizedDescription ?? "알 수 없음")")
             }
         }
         btManager.onFailToConnect = { [weak self] peripheral, error in
             guard let self = self else { return }
-
-            // 자동 재연결 중지
-//            self.btManager.stopReconnectLoop()
-
+            hideLoadingOverlay()
             // 저장값 제거
             let defaults = UserDefaults.standard
             defaults.removeObject(forKey: "strConfDeviceAddr")
@@ -86,9 +94,6 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
                     preferredStyle: .alert
                 )
                 alert.addAction(UIAlertAction(title: "확인", style: .default))
-//                alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
-//                    self.showDeviceSelectScreen()
-//                })
 
                 self.present(alert, animated: true)
             }
@@ -96,6 +101,7 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
 
         startScan()
     }
+
     
     // MARK: - Scan
     @objc private func reloadScan() {
@@ -155,10 +161,9 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
         pairedPeripheralName = peripheral.name ?? "알 수 없음"
         
         saveUserSettings()
-        
+        showLoadingOverlay()
         // BluetoothManager를 통해 연결
-        btManager.connect(peripheral,justForTest:true)
-//        navigateToMain()
+        btManager.connect(peripheral,justCheckConnect:true)
     }
     
 //    // MARK: - 메인 화면 이동
@@ -173,16 +178,35 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
 //    }
     @IBAction func goToConfigView(_ sender: UIButton) {
         // "Config" → 이동할 스토리보드 이름 (ex. Config.storyboard)
-        btManager.disconnect()  // 연결을 해제하고 리스트를 표시.
-        let storyboard = UIStoryboard(name: "Configuration", bundle: nil)
-        
-        // "ConfigViewController" → 스토리보드에서 설정한 ViewController의 Storyboard ID
-        if let configVC = storyboard.instantiateViewController(withIdentifier: "ConfigViewController") as? ConfigViewController {
-            configVC.modalPresentationStyle = .fullScreen   // 전체화면 전환 (선택사항)
-            present(configVC, animated: true, completion: nil)
+//        btManager.disconnect()  // 연결을 해제하고 리스트를 표시.
+//        let storyboard = UIStoryboard(name: "Configuration", bundle: nil)
+//        
+//        // "ConfigViewController" → 스토리보드에서 설정한 ViewController의 Storyboard ID
+//        if let configVC = storyboard.instantiateViewController(withIdentifier: "ConfigViewController") as? ConfigViewController {
+//            configVC.modalPresentationStyle = .fullScreen   // 전체화면 전환 (선택사항)
+//            present(configVC, animated: true, completion: nil)
+//        }
+        navigateToConfigView()
+    }
+    private func navigateToConfigView() {
+        DispatchQueue.main.async {
+            // "Config" → 이동할 스토리보드 이름 (ex. Config.storyboard)
+            self.btManager.disconnect()  // 연결을 해제하고 리스트를 표시.
+            let storyboard = UIStoryboard(name: "Configuration", bundle: nil)
+            
+            // "ConfigViewController" → 스토리보드에서 설정한 ViewController의 Storyboard ID
+            if let configVC = storyboard.instantiateViewController(withIdentifier: "ConfigViewController") as? ConfigViewController {
+                configVC.modalPresentationStyle = .fullScreen   // 전체화면 전환 (선택사항)
+                self.present(configVC, animated: true, completion: nil)
+            }
         }
     }
-
+    private func navigateToBack() {
+        DispatchQueue.main.async {
+            self.btManager.disconnect()  // 연결을 해제하고 리스트를 표시.
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     // MARK: - UserDefaults 저장/로드
     private func saveUserSettings() {
         let defaults = UserDefaults.standard
@@ -197,5 +221,27 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
         pairedPeripheralName = defaults.string(forKey: "strConfDeviceName")
         let autoConnect = defaults.bool(forKey: "bConfAutoConnect")
         autoConnectSwitch.isOn = autoConnect
+    }
+    
+    // MARK: - 로딩 오버레이
+    private func showLoadingOverlay() {
+        hideLoadingOverlay()
+        
+        let overlay = UIView(frame: view.bounds)
+        overlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.center = overlay.center
+        spinner.startAnimating()
+
+        overlay.addSubview(spinner)
+        view.addSubview(overlay)
+
+        loadingView = overlay
+    }
+
+    private func hideLoadingOverlay() {
+        loadingView?.removeFromSuperview()
+        loadingView = nil
     }
 }

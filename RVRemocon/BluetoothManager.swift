@@ -58,30 +58,25 @@ final class BluetoothManager: NSObject{
         central.stopScan()
     }
     
-    func connect(_ peripheral: CBPeripheral, justForTest: Bool = false) {
+    func connect(_ peripheral: CBPeripheral, justCheckConnect: Bool = false) {
 //        targetPeripheralIdentifier = peripheral.identifier
+        awaitingPairing = justCheckConnect
         
-//        // PASSKEY 요청 모드 진입
-//        awaitingPairing = true
-//        print("⚠️ Passkey 요청 모드")
-        if justForTest {
-            awaitingPairing = true
-        }
-        else{
-            awaitingPairing = false
-        }
         self.connectedPeripheral = peripheral
         peripheral.delegate = self
         central.connect(peripheral, options: nil) // iOS가 자동으로 PASSKEY 요청
     }
     
     func disconnect() {
+        awaitingPairing = true  // 재연결 방지
+        
         if let peripheral = self.connectedPeripheral, self.isConnected {
             central.cancelPeripheralConnection(peripheral)
             print("🔌 Disconnected")
         } else {
             print("⚠️ 연결된 peripheral 없음")
         }
+
 //        central.cancelPeripheralConnection(peripheral)
     }
 
@@ -160,11 +155,11 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
         self.connectedPeripheral = peripheral
         peripheral.delegate = self
         peripheral.discoverServices(nil) // ✅ 서비스 검색 시작
+        onConnect?(peripheral, nil)
     }
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-//        onConnect?(peripheral, error)
         print("❌ 연결 실패: \(peripheral.name ?? "알 수 없음") | \(String(describing: error))")
-
+        onConnect?(peripheral, error)
         awaitingPairing = false
         // 🔥 페어링 삭제 감지
         if let err = error as? CBError, err.code == .peerRemovedPairingInformation {

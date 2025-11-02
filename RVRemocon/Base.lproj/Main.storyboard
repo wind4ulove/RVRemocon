@@ -84,56 +84,55 @@
                 <viewController storyboardIdentifier="RVMCtrlViewController" id="7NG-dN-omo" customClass="RVMCtrlViewController" customModule="RVRemocon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Feg-5l-OX0">
                         <rect key="frame" x="0.0" y="0.0" width="383" height="868"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="caravan_new" translatesAutoresizingMaskIntoConstraints="NO" id="qH1-x6-sDX">
-                                <rect key="frame" x="91" y="265" width="197" height="335"/>
+                                <rect key="frame" x="91" y="264" width="196" height="335"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nbf-eA-0MH" userLabel="btLFront">
-                                <rect key="frame" x="10" y="310" width="102" height="132"/>
+                                <rect key="frame" x="10" y="310" width="101" height="131"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="up_arrow_l"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AF-uI-fOK" userLabel="btLBack">
-                                <rect key="frame" x="10" y="480" width="102" height="132"/>
+                                <rect key="frame" x="10" y="479" width="101" height="133"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="down_arrow_l"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="S2E-mt-b6r" userLabel="btBack">
-                                <rect key="frame" x="136" y="606" width="106" height="94"/>
+                                <rect key="frame" x="136" y="606" width="106" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="rear_arrow"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bwh-jf-kFh" userLabel="btTurnCCW">
-                                <rect key="frame" x="275" y="175" width="100" height="93"/>
+                                <rect key="frame" x="274" y="174" width="101" height="94"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="rotate_cc"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iec-PW-Rwp" userLabel="btRFront">
-                                <rect key="frame" x="273" y="310" width="104" height="132"/>
+                                <rect key="frame" x="273" y="310" width="104" height="131"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="up_arrow_r"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPL-70-dB4" userLabel="btRBack">
-                                <rect key="frame" x="273" y="480" width="104" height="132"/>
+                                <rect key="frame" x="273" y="479" width="104" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="down_arrow_r"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWX-vn-WA1" userLabel="btTurnCW">
-                                <rect key="frame" x="22" y="175" width="97" height="93"/>
+                                <rect key="frame" x="22" y="174" width="97" height="94"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="rotate_cw"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMx-wO-MLQ" userLabel="btFront">
-                                <rect key="frame" x="137" y="121" width="106" height="93"/>
+                                <rect key="frame" x="137" y="121" width="106" height="92"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="front_arrow"/>
@@ -172,30 +171,28 @@
                                     <constraint firstAttribute="width" constant="350" id="47e-u8-HFQ"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalCentering" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="frt-xq-iqG">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="frt-xq-iqG">
                                 <rect key="frame" x="0.0" y="735" width="383" height="94"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOj-2U-BBH" userLabel="btLActu">
-                                        <rect key="frame" x="0.0" y="0.0" width="144" height="94"/>
-                                        <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOj-2U-BBH" userLabel="btLActu">
+                                        <rect key="frame" x="0.0" y="0.0" width="120.66666666666667" height="94"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="actu_down"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="zo4-Cv-9is" userLabel="btStop">
-                                        <rect key="frame" x="145" y="2" width="93" height="90"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zo4-Cv-9is" userLabel="btStop">
+                                        <rect key="frame" x="121.66666666666669" y="2" width="140" height="90"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="stop" buttonSize="mini"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33h-82-Pwh" userLabel="btRActu">
-                                        <rect key="frame" x="239" y="0.0" width="144" height="94"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33h-82-Pwh" userLabel="btRActu">
+                                        <rect key="frame" x="262.66666666666669" y="0.0" width="120.33333333333331" height="94"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="actu_up"/>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Irr-B2-RYB">
-                                <rect key="frame" x="10" y="684" width="104.66666666666667" height="31"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Irr-B2-RYB">
+                                <rect key="frame" x="8" y="696" width="104.66666666666667" height="31"/>
                                 <subviews>
                                     <switch toolTip="AUTO ACTUATOR" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="leading" contentVerticalAlignment="center" on="YES" title="AUTO ACTUATOR" translatesAutoresizingMaskIntoConstraints="NO" id="8Bw-Mm-pQy" userLabel="autoActuCheck">
                                         <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
@@ -214,11 +211,14 @@
                         <constraints>
                             <constraint firstItem="bqn-z2-cTl" firstAttribute="bottom" secondItem="S2E-mt-b6r" secondAttribute="bottom" constant="100" id="DRN-KO-hAt"/>
                             <constraint firstItem="frt-xq-iqG" firstAttribute="top" secondItem="Irr-B2-RYB" secondAttribute="bottom" constant="20" id="Gqu-dQ-4uT"/>
+                            <constraint firstItem="frt-xq-iqG" firstAttribute="leading" secondItem="Feg-5l-OX0" secondAttribute="leading" id="NwF-yU-86h"/>
                             <constraint firstItem="bqn-z2-cTl" firstAttribute="bottom" secondItem="frt-xq-iqG" secondAttribute="bottom" constant="5" id="TXX-vp-ZPq"/>
+                            <constraint firstAttribute="trailing" secondItem="frt-xq-iqG" secondAttribute="trailing" id="zFd-xz-fMk"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="383" height="868"/>
                     <connections>
+                        <outlet property="autoActu" destination="Irr-B2-RYB" id="I6n-y6-aXs"/>
                         <outlet property="autoActuCheck" destination="8Bw-Mm-pQy" id="b6P-tG-2wr"/>
                         <outlet property="btBack" destination="S2E-mt-b6r" id="Tdk-Ze-bn2"/>
                         <outlet property="btFront" destination="CMx-wO-MLQ" id="puN-qk-E6r"/>
@@ -240,7 +240,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTb-dx-bbD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="860.30534351145036" y="-38.028169014084511"/>
+            <point key="canvasLocation" x="859.77272727272737" y="-38.284518828451887"/>
         </scene>
         <!--Ctrl View Controller-->
         <scene sceneID="3Ag-6e-6ba">
@@ -388,13 +388,13 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tableBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

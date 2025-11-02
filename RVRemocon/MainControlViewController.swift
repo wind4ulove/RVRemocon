@@ -42,6 +42,7 @@ class MainControlViewController: UIViewController {
             }
 
             // ✅ 저장되어 있어야만 재연결 체크
+            if self.btManager.awaitingPairing { return }
             self.checkBluetoothConnection()
         }
         btManager.onFailToConnect = { [weak self] peripheral, error in
@@ -385,30 +386,49 @@ class MainControlViewController: UIViewController {
         rvmCtrlVC = storyboard.instantiateViewController(withIdentifier: "RVMCtrlViewController") as? RVMCtrlViewController
         salCtrlVC = storyboard.instantiateViewController(withIdentifier: "SALCtrlViewController") as? SALCtrlViewController
 
-        setupChildVCs()
-        switchToChild(index: 0)
+        let idx = setupChildVCs()
+        switchToChild(index: idx)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateChildFrames()
     }
-
+    public var iSALModel = 0
+    public var iRVMModel = 0
     // MARK: - Setup Child VCs
-    private func setupChildVCs() {
-        guard rvmCtrlVC != nil, salCtrlVC != nil else { return }
-
+    private func setupChildVCs() -> Int {
+        guard rvmCtrlVC != nil, salCtrlVC != nil else { return 0}
+        // 저장된 SAL 모델 인덱스 불러오기
+        var index = 0
+        let defaults = UserDefaults.standard
+        iRVMModel = defaults.integer(forKey: "ConfRVMModel")
+        iSALModel = defaults.integer(forKey: "ConfSALModel")
+        
+        segmentedControl.removeAllSegments()
         // RVM 추가
-        addChild(rvmCtrlVC)
-        view.addSubview(rvmCtrlVC.view)
-        rvmCtrlVC.didMove(toParent: self)
+        if iSALModel == 0 || iRVMModel != 0{
+            segmentedControl.insertSegment(withTitle: "RVM", at: 0, animated: false)
+            addChild(rvmCtrlVC)
+            view.addSubview(rvmCtrlVC.view)
+            rvmCtrlVC.didMove(toParent: self)
+            index = 0
+        }
+        if iSALModel != 0 {
+            segmentedControl.insertSegment(withTitle: "SAL", at: segmentedControl.numberOfSegments, animated: false)
+            // SAL 추가 (숨김)
+            addChild(salCtrlVC)
+            view.addSubview(salCtrlVC.view)
+            salCtrlVC.didMove(toParent: self)
+            // RVMover가 표시되면 안보임.
+            if iRVMModel != 0{
+                salCtrlVC.view.isHidden = true
+            }
+            else{
+                index = 1
+            }
+        }
+        return index
 
-        // SAL 추가 (숨김)
-        addChild(salCtrlVC)
-        view.addSubview(salCtrlVC.view)
-        salCtrlVC.didMove(toParent: self)
-        salCtrlVC.view.isHidden = true
-
-        currentChildVC = rvmCtrlVC
     }
 
     private func updateChildFrames() {
@@ -442,9 +462,14 @@ class MainControlViewController: UIViewController {
         let newVC: UIViewController
         let oldVC = currentChildVC
 
-        if index == 0 {
-            newVC = rvmVC
-            salVC.view.isHidden = true
+        if index == 0 {            
+            if iRVMModel == 0 {
+                newVC = salVC
+            }
+            else{
+                newVC = rvmVC
+                salVC.view.isHidden = true
+            }
         } else {
             newVC = salVC
             rvmVC.view.isHidden = true

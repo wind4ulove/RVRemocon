@@ -34,8 +34,9 @@ class RVMCtrlViewController: UIViewController {
     @IBOutlet weak var btSpeed3: UIButton!
     @IBOutlet weak var btSpeed4: UIButton!
 
+    @IBOutlet weak var autoActu: UIStackView!
     @IBOutlet weak var autoActuCheck: UISwitch!
-
+    private var iRVMModel = 0
     // MARK: - Internal Variables
     var degreeL = 5
     var degreeR = 5
@@ -65,6 +66,7 @@ class RVMCtrlViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadConfig()
         setupButtons()
 //        setJOGControlMode()
 //        setHiddenActuator()
@@ -102,6 +104,13 @@ class RVMCtrlViewController: UIViewController {
             sender.setImage(UIImage(named: "actu_down"), for: .normal)
         }
     }
+    
+    private func loadConfig() {
+        // 저장된 SAL 모델 인덱스 불러오기
+        let defaults = UserDefaults.standard
+        iRVMModel = defaults.integer(forKey: "ConfRVMModel")
+    }
+    
     // MARK: - Button Setup
     func setupButtons() {
         btLFront.setImage(UIImage(named: "btLFront"), for: .normal)
@@ -121,6 +130,11 @@ class RVMCtrlViewController: UIViewController {
 
         btRActu.setImage(UIImage(named: "actu_up"), for: .normal)
         btRActu.setImage(UIImage(named: "actu_up2"), for: .highlighted)
+        if iRVMModel != 1{
+            btRActu.isHidden = true
+            btLActu.isHidden = true
+            autoActu.isHidden = true
+        }
         
         let buttons: [UIButton] = [
             btLFront, btLBack, btRFront, btRBack,
