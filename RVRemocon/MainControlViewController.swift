@@ -20,6 +20,7 @@ class MainControlViewController: UIViewController {
     public var ActFlag: UInt8 = 0
     
     private var actMaskClearCount: Int = 0
+    private var connectTry : Int = 0
     
     // MARK: - Loading Overlay
     private var loadingView: UIView?
@@ -54,7 +55,7 @@ class MainControlViewController: UIViewController {
             // 저장값 제거
             let defaults = UserDefaults.standard
             defaults.removeObject(forKey: "strConfDeviceAddr")
-            defaults.set(false, forKey: "bConfAutoConnect")
+//            defaults.set(false, forKey: "bConfAutoConnect")
 
             // 알림 → 장치 선택 화면
             DispatchQueue.main.async {
@@ -222,7 +223,7 @@ class MainControlViewController: UIViewController {
         let defaults = UserDefaults.standard
         let targetUUID = UUID(uuidString: "AAA")
         guard let uuidString = defaults.string(forKey: "strConfDeviceAddr"),
-              defaults.bool(forKey: "bConfAutoConnect"),
+//              defaults.bool(forKey: "bConfAutoConnect"),
               let targetUUID = UUID(uuidString: uuidString)
         else {
             // 자동 연결 조건 불만족 → 장치 선택 화면
@@ -236,6 +237,7 @@ class MainControlViewController: UIViewController {
         let scanInterval: TimeInterval = 2.0
 
         func attemptScan() {
+            let maxConnectTry = 2
             scanAttempts += 1
 
             self.btManager.startScan()
@@ -252,10 +254,17 @@ class MainControlViewController: UIViewController {
                     // 장치 발견 → 연결 시도
                     self.btManager.stopScan()
                     self.hideLoadingOverlay()
-                    self.btManager.connect(peripheral)
-                    
-                    self.btManager.onReceiveData = { data in
-                        self.handleMixedMessage(data)
+                    self.connectTry += 1
+                    //연결 시도를 여러번 했다는 건 페이링이 안된것으로 판단.
+                    if self.connectTry > maxConnectTry {
+                        self.connectTry = 0     
+                        self.showDeviceNotFoundAlert()
+                    }
+                    else{
+                        self.btManager.connect(peripheral)                        
+                        self.btManager.onReceiveData = { data in
+                            self.handleMixedMessage(data)
+                        }
                     }
                 } else if scanAttempts < maxAttempts {
                     // 스캔 재시도

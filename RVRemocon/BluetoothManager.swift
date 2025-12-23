@@ -27,6 +27,7 @@ final class BluetoothManager: NSObject{
     var onDiscover: ((_ peripheral: CBPeripheral, _ rssi: NSNumber) -> Void)?
     var onStateChange: ((_ state: CBManagerState) -> Void)?
     var onConnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
+    var onSubscribe: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
     var onDisconnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
     var onFailToConnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
     var onReceiveData: ((Data) -> Void)?
@@ -266,4 +267,5 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
            print("✅ 데이터 전송 성공: \(characteristic.uuid)")
        }
    }
+
 }

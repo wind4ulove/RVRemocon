@@ -54,20 +54,42 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
                 self.tableView.reloadData()
             }
         }
-        
+        btManager.onSubscribe = { [weak self] peripheral, error in
+            guard let self = self else { return }
+            print("🔐 인증 완료, 완전 연결 상태")
+
+            DispatchQueue.main.async {
+                self.navigateToBack()
+            }
+        }
         // 연결 콜백
         btManager.onConnect = { [weak self] peripheral, error in
             guard let self = self else { return }
             hideLoadingOverlay()
             if error == nil {
-                print("연결됨: \(peripheral.name ?? "알 수 없음")")
-                navigateToBack()
+                let name = peripheral.name ?? "이름 없음"
+                print("연결됨: \(name)")
+//
+                DispatchQueue.main.async {
+//                    self.navigateToBack()
+                    let alert = UIAlertController(
+                        title: "연결 이동",
+                        message: "\(name)가 선택되었습니다.화면을 이동하시겠습니까?",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                        self.navigateToBack()
+                    }))
+                    self.present(alert, animated: true)
+                }
+                
             } else {
                 // 알림 → 장치 선택 화면
                 DispatchQueue.main.async {
                     let alert = UIAlertController(
                         title: "연결 실패",
-                        message: "디바이스와의 연결에 실패 하였습니다.",
+                        message: "디바이스와의 연결에 실패 하였습니다.\n" +
+                                    "설정 > Bluetooth에서 해당 기기를 제거 하거나\n다른 장치를 선택해 주세요.",
                         preferredStyle: .alert
                     )
                     alert.addAction(UIAlertAction(title: "확인", style: .default))
@@ -82,7 +104,7 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
             // 저장값 제거
             let defaults = UserDefaults.standard
             defaults.removeObject(forKey: "strConfDeviceAddr")
-            defaults.set(false, forKey: "bConfAutoConnect")
+//            defaults.set(false, forKey: "bConfAutoConnect")
 
             // 알림 → 장치 선택 화면
             DispatchQueue.main.async {
@@ -212,15 +234,15 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
         let defaults = UserDefaults.standard
         defaults.set(pairedPeripheralUUID, forKey: "strConfDeviceAddr")
         defaults.set(pairedPeripheralName, forKey: "strConfDeviceName")
-        defaults.set(autoConnectSwitch.isOn, forKey: "bConfAutoConnect")
+//        defaults.set(autoConnectSwitch.isOn, forKey: "bConfAutoConnect")
     }
     
     private func loadUserSettings() {
         let defaults = UserDefaults.standard
         pairedPeripheralUUID = defaults.string(forKey: "strConfDeviceAddr")
         pairedPeripheralName = defaults.string(forKey: "strConfDeviceName")
-        let autoConnect = defaults.bool(forKey: "bConfAutoConnect")
-        autoConnectSwitch.isOn = autoConnect
+//        let autoConnect = defaults.bool(forKey: "bConfAutoConnect")
+//        autoConnectSwitch.isOn = autoConnect
     }
     
     // MARK: - 로딩 오버레이

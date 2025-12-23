@@ -155,7 +155,7 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
         let defaults = UserDefaults.standard
 
         defaults.set(deviceAddress, forKey: "strConfDevice")
-        defaults.set(autoConnectSwitch.isOn, forKey: "bConfAutoConnect")
+//        defaults.set(autoConnectSwitch.isOn, forKey: "bConfAutoConnect")
         // RVM Model ("None", "RV-9000AT", "RV-9000MT"
         defaults.set(selectedRvmIndex, forKey: "ConfRVMModel")
         // SAL Model ("None", "SAL-SIMPLE", "SAL-CAR", "SAL-BASIC", "SAL-PREMIUM")
@@ -171,7 +171,7 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
         let defaults = UserDefaults.standard
         deviceNameLabel.text = defaults.string(forKey: "strConfDeviceName")
         
-        autoConnectSwitch.isOn = defaults.bool(forKey: "bConfAutoConnect")
+//        autoConnectSwitch.isOn = defaults.bool(forKey: "bConfAutoConnect")
         controlModeSegment.selectedSegmentIndex = defaults.integer(forKey: "ConfControlMode")
         selectedRvmIndex = defaults.integer(forKey: "ConfRVMModel")
         selectedSalIndex = defaults.integer(forKey: "ConfSALModel")
