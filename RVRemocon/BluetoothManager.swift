@@ -27,7 +27,6 @@ final class BluetoothManager: NSObject{
     var onDiscover: ((_ peripheral: CBPeripheral, _ rssi: NSNumber) -> Void)?
     var onStateChange: ((_ state: CBManagerState) -> Void)?
     var onConnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
-    var onSubscribe: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
     var onDisconnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
     var onFailToConnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
     var onReceiveData: ((Data) -> Void)?
@@ -174,9 +173,6 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
         onDisconnect?(peripheral, error)
     }
 
-//}
-//
-//extension BluetoothManager: CBPeripheralDelegate {
    
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if let error = error {
@@ -211,15 +207,12 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
             print("🔸 characteristic 발견:", characteristic.uuid)
             // 쓰기용
             if characteristic.uuid == targetWCharacteristicUUID {
-//            if characteristic.properties.contains(.write){
                 self.writeCharacteristic = characteristic
                 print("✅ writeCharacteristic 설정 완료: \(characteristic.uuid)")
             }
             
             // 읽기/Notify용
             if characteristic.uuid == targetRCharacteristicUUID {
-//            if characteristic.properties.contains(.read) ||
-//               characteristic.properties.contains(.notify) {
                 self.readCharacteristic = characteristic  // 따로 변수 만들어 저장
                 print("✅ readCharacteristic 설정 완료: \(characteristic.uuid)")
                 // Notify 구독 시작

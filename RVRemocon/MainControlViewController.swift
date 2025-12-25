@@ -221,7 +221,6 @@ class MainControlViewController: UIViewController {
     
     private func checkBluetoothConnection() {
         let defaults = UserDefaults.standard
-        let targetUUID = UUID(uuidString: "AAA")
         guard let uuidString = defaults.string(forKey: "strConfDeviceAddr"),
 //              defaults.bool(forKey: "bConfAutoConnect"),
               let targetUUID = UUID(uuidString: uuidString)

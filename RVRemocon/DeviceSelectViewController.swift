@@ -54,14 +54,6 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
                 self.tableView.reloadData()
             }
         }
-        btManager.onSubscribe = { [weak self] peripheral, error in
-            guard let self = self else { return }
-            print("🔐 인증 완료, 완전 연결 상태")
-
-            DispatchQueue.main.async {
-                self.navigateToBack()
-            }
-        }
         // 연결 콜백
         btManager.onConnect = { [weak self] peripheral, error in
             guard let self = self else { return }
