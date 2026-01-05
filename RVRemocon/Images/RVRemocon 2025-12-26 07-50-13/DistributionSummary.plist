@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>RVRemocon.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>1</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>1D84890BA72269A5F561A40D1066C26D248D5F8E</string>
+				<key>dateExpires</key>
+				<string>12/25/26</string>
+				<key>type</key>
+				<string>Cloud Managed Apple Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>BPP6C2H9R2.mplus.sw-gmail.com</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>BPP6C2H9R2</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>RVRemocon.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>b52b692a-5966-4483-8cc2-84c3b73c9ab9</string>
+				<key>dateExpires</key>
+				<string>12/25/26</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: mplus.sw-gmail.com</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>BPP6C2H9R2</string>
+				<key>name</key>
+				<string>SUNWOOK KIM</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>1.0</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -74,7 +74,12 @@ class MainControlViewController: UIViewController {
                 self.present(alert, animated: true)
             }
         }
-
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onSceneActive),
+            name: .sceneDidBecomeActive,
+            object: nil
+        )
         checkBluetoothConnection()
         showLoadingOverlay()
     }
@@ -96,10 +101,7 @@ class MainControlViewController: UIViewController {
         } else {
             handleBinaryPacket(data)
         }
-        
-        
-        
-        
+                
     }
 
     /// RmtFlag + ActMask 형태의 6바이트 패킷 처리
@@ -280,15 +282,8 @@ class MainControlViewController: UIViewController {
 
         attemptScan()
     }
-    //다른 뷰로 이동하거나 dismiss될 때 호출, dismiss될 때 호출됨
-    override func viewWillDisappear(_ animated: Bool) {
-        print("⚠️ 블루투스 종료")
-        btManager.disconnect()
-    }
-    //viewWillAppear는 present()로 나갔다가 dismiss()로 돌아왔을 때 자동으로 다시 호출되는 생명주기 메서드
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    
+    public func bleReconnect() {
         // BluetoothManager 싱글톤 사용 중이라 가정
         if btManager.isConnected == false {
             print("⚠️ 블루투스 연결 안됨 — 재검색 시작")
@@ -298,6 +293,25 @@ class MainControlViewController: UIViewController {
         }
     }
 
+    @objc private func onSceneActive() {
+        print("✅ 메인 VC에서만 BLE 재연결")
+        bleReconnect()
+    }
+    
+    
+    //다른 뷰로 이동하거나 dismiss될 때 호출, dismiss될 때 호출됨
+    override func viewWillDisappear(_ animated: Bool) {
+        print("⚠️ 블루투스 종료")
+        btManager.disconnect()
+    }
+    //viewWillAppear는 present()로 나갔다가 dismiss()로 돌아왔을 때 자동으로 다시 호출되는 생명주기 메서드
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)        
+        bleReconnect()
+    }
+        
+    
+    
     func showPairingRemovedAlert() {
         let alert = UIAlertController(
             title: "페어링 필요",

@@ -1,0 +1,1182 @@
+2025-12-25 22:49:58 +0000  Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x32cfdc1e0; archive(resolved)="<IDEArchive: 0x600001565500>", distributionTask(resolved)="2", distributionDestination(resolved)="1", distributionMethod(resolved)="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team(resolved)="<IDEProvisioningDisambiguatableBasicTeam: 0x6000064a4c80; teamID='BPP6C2H9R2', teamName='SUNWOOK KIM', teamType='Individual', username='mplus.sw@gmail.com', isFreeProvisioningTeam='0'>">
+	Chain (16, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x32cfdc1e0; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000064a4c80; teamID='BPP6C2H9R2', teamName='SUNWOOK KIM', teamType='Individual', username='mplus.sw@gmail.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionProcessingPipelineContext: 0x110709690; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000064a4c80; teamID='BPP6C2H9R2', teamName='SUNWOOK KIM', teamType='Individual', username='mplus.sw@gmail.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x13d540c00; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000064a4c80; teamID='BPP6C2H9R2', teamName='SUNWOOK KIM', teamType='Individual', username='mplus.sw@gmail.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x385c22e50; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000064a4c80; teamID='BPP6C2H9R2', teamName='SUNWOOK KIM', teamType='Individual', username='mplus.sw@gmail.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x385c22c40; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000064a4c80; teamID='BPP6C2H9R2', teamName='SUNWOOK KIM', teamType='Individual', username='mplus.sw@gmail.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x385c22a30; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000064a4c80; teamID='BPP6C2H9R2', teamName='SUNWOOK KIM', teamType='Individual', username='mplus.sw@gmail.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x385c22820; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000064a4c80; teamID='BPP6C2H9R2', teamName='SUNWOOK KIM', teamType='Individual', username='mplus.sw@gmail.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x385c41980; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000064a4c80; teamID='BPP6C2H9R2', teamName='SUNWOOK KIM', teamType='Individual', username='mplus.sw@gmail.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x385c22610; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x6000064a4c80; teamID='BPP6C2H9R2', teamName='SUNWOOK KIM', teamType='Individual', username='mplus.sw@gmail.com', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x385c22400; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="(null)">
+	<IDEDistributionContext: 0x385c0fd70; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="(null)">
+	<IDEDistributionContext: 0x385c0f960; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="(null)">
+	<IDEDistributionContext: 0x3a3cfa290; archive = "<IDEArchive: 0x600001565500>", distributionMethod="<IDEDistributionMethodiOSAdHoc: 0x600003f35e20>", team="(null)">
+	<IDEDistributionContext: 0x110748be0; archive = "<IDEArchive: 0x600001565500>", distributionMethod="(null)", team="(null)">
+	<IDEDistributionContext: 0x13d53cc50; archive = "<IDEArchive: 0x600001565500>", distributionMethod="(null)", team="(null)">
+	<IDEDistributionContext: 0x13e904750; archive = "<IDEArchive: 0x600001565500>", distributionMethod="(null)", team="(null)">
+</IDEDistributionProcessingPipelineContext: 0x32cfdc1e0>
+2025-12-25 22:49:58 +0000  Processing step: IDEDistributionCreateDestRootStep
+2025-12-25 22:49:58 +0000  Processing step: IDEDistributionCopyItemStep
+2025-12-25 22:49:58 +0000  Running /usr/bin/ditto '-V' '/Users/swkim/Library/Developer/Xcode/Archives/2025-12-26/RVRemocon 12-26-25, 7.46 AM.xcarchive/Products/Applications/RVRemocon.app' '/var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/Root/Payload/RVRemocon.app'
+2025-12-25 22:49:58 +0000  >>> Copying /Users/swkim/Library/Developer/Xcode/Archives/2025-12-26/RVRemocon 12-26-25, 7.46 AM.xcarchive/Products/Applications/RVRemocon.app 
+2025-12-25 22:49:58 +0000  copying file ./rbutton_up_on_x2.png ... 
+2025-12-25 22:49:58 +0000  21699 bytes for ./rbutton_up_on_x2.png
+2025-12-25 22:49:58 +0000  copying file ./caravan_mini.png ... 
+2025-12-25 22:49:58 +0000  28195 bytes for ./caravan_mini.png
+2025-12-25 22:49:58 +0000  copying file ./_CodeSignature/CodeResources ... 
+2025-12-25 22:49:58 +0000  26267 bytes for ./_CodeSignature/CodeResources
+2025-12-25 22:49:58 +0000  copying file ./down_arrow.png ... 
+2025-12-25 22:49:58 +0000  490 bytes for ./down_arrow.png
+2025-12-25 22:49:58 +0000  copying file ./ic_auto_actu_on.png ... 
+2025-12-25 22:49:58 +0000  1514 bytes for ./ic_auto_actu_on.png
+2025-12-25 22:49:58 +0000  copying file ./actu_up2.png ... 
+2025-12-25 22:49:58 +0000  10528 bytes for ./actu_up2.png
+2025-12-25 22:49:58 +0000  copying file ./jog_center.png ... 
+2025-12-25 22:49:58 +0000  7208 bytes for ./jog_center.png
+2025-12-25 22:49:58 +0000  copying file ./rbutton_down_on_x2.png ... 
+2025-12-25 22:49:58 +0000  21973 bytes for ./rbutton_down_on_x2.png
+2025-12-25 22:49:58 +0000  copying file ./actu_down.png ... 
+2025-12-25 22:49:58 +0000  10516 bytes for ./actu_down.png
+2025-12-25 22:49:58 +0000  copying file ./rbutton_up_on_x1.png ... 
+2025-12-25 22:49:58 +0000  15289 bytes for ./rbutton_up_on_x1.png
+2025-12-25 22:49:58 +0000  copying file ./speed_4.png ... 
+2025-12-25 22:49:58 +0000  1316 bytes for ./speed_4.png
+2025-12-25 22:49:58 +0000  copying file ./stop.png ... 
+2025-12-25 22:49:58 +0000  2655 bytes for ./stop.png
+2025-12-25 22:49:58 +0000  copying file ./caravan_newx1.png ... 
+2025-12-25 22:49:58 +0000  14616 bytes for ./caravan_newx1.png
+2025-12-25 22:49:58 +0000  copying file ./actu_up.png ... 
+2025-12-25 22:49:58 +0000  10582 bytes for ./actu_up.png
+2025-12-25 22:49:58 +0000  copying file ./rautobutton_act.png ... 
+2025-12-25 22:49:58 +0000  10171 bytes for ./rautobutton_act.png
+2025-12-25 22:49:58 +0000  copying file ./front_arrow.png ... 
+2025-12-25 22:49:58 +0000  1105 bytes for ./front_arrow.png
+2025-12-25 22:49:58 +0000  copying file ./rbutton_down_on_x1.png ... 
+2025-12-25 22:49:58 +0000  15424 bytes for ./rbutton_down_on_x1.png
+2025-12-25 22:49:58 +0000  copying file ./zog_back.png ... 
+2025-12-25 22:49:58 +0000  444343 bytes for ./zog_back.png
+2025-12-25 22:49:58 +0000  copying file ./speed_1.png ... 
+2025-12-25 22:49:58 +0000  825 bytes for ./speed_1.png
+2025-12-25 22:49:58 +0000  copying file ./introImageWhite.png ... 
+2025-12-25 22:49:58 +0000  3876639 bytes for ./introImageWhite.png
+2025-12-25 22:49:58 +0000  copying file ./rbutton_up.png ... 
+71523 bytes for ./rbutton_up.png
+copying file ./button_leveler_act_x1.png ... 
+5320 bytes for ./button_leveler_act_x1.png
+copying file ./speed_2.png ... 
+2025-12-25 22:49:58 +0000  1229 bytes for ./speed_2.png
+2025-12-25 22:49:58 +0000  copying file ./button_down.png ... 
+2025-12-25 22:49:58 +0000  3158 bytes for ./button_down.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_act_x2.png ... 
+2025-12-25 22:49:58 +0000  4089 bytes for ./button_leveler_act_x2.png
+2025-12-25 22:49:58 +0000  copying file ./button_up_on.png ... 
+2025-12-25 22:49:58 +0000  1778 bytes for ./button_up_on.png
+2025-12-25 22:49:58 +0000  copying file ./up_arrow_r.png ... 
+2025-12-25 22:49:58 +0000  1270 bytes for ./up_arrow_r.png
+2025-12-25 22:49:58 +0000  copying file ./speed_3.png ... 
+2025-12-25 22:49:58 +0000  1454 bytes for ./speed_3.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_m_x1.png ... 
+2025-12-25 22:49:58 +0000  3229 bytes for ./button_leveler_m_x1.png
+2025-12-25 22:49:58 +0000  copying file ./jog_black.png ... 
+2025-12-25 22:49:58 +0000  17128 bytes for ./jog_black.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_m_on.png ... 
+2025-12-25 22:49:58 +0000  7446 bytes for ./button_leveler_m_on.png
+2025-12-25 22:49:58 +0000  copying file ./AppIcon60x60@2x.png ... 
+2025-12-25 22:49:58 +0000  42169 bytes for ./AppIcon60x60@2x.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_m_on_x2.png ... 
+2025-12-25 22:49:58 +0000  5648 bytes for ./button_leveler_m_on_x2.png
+2025-12-25 22:49:58 +0000  copying file ./iconImage.jpg ... 
+2025-12-25 22:49:58 +0000  320716 bytes for ./iconImage.jpg
+2025-12-25 22:49:58 +0000  copying file ./jog_down.png ... 
+2025-12-25 22:49:58 +0000  7432 bytes for ./jog_down.png
+2025-12-25 22:49:58 +0000  copying file ./iconImage.png ... 
+2025-12-25 22:49:58 +0000  2573524 bytes for ./iconImage.png
+2025-12-25 22:49:58 +0000  copying file ./RVRemocon ... 
+278960 bytes for ./RVRemocon
+copying file ./button_leveler_m_x2.png ... 
+2025-12-25 22:49:58 +0000  4604 bytes for ./button_leveler_m_x2.png
+2025-12-25 22:49:58 +0000  copying file ./rautobutton_on.png ... 
+2025-12-25 22:49:58 +0000  12205 bytes for ./rautobutton_on.png
+2025-12-25 22:49:58 +0000  copying file ./caravan_back.png ... 
+2025-12-25 22:49:58 +0000  3242 bytes for ./caravan_back.png
+2025-12-25 22:49:58 +0000  copying file ./rear_arrow.png ... 
+2025-12-25 22:49:58 +0000  1101 bytes for ./rear_arrow.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_m_on_x1.png ... 
+2025-12-25 22:49:58 +0000  4373 bytes for ./button_leveler_m_on_x1.png
+2025-12-25 22:49:58 +0000  copying file ./DeviceSelect.storyboardc/DeviceSelectViewController.nib ... 
+2025-12-25 22:49:58 +0000  1072 bytes for ./DeviceSelect.storyboardc/DeviceSelectViewController.nib
+2025-12-25 22:49:58 +0000  copying file ./DeviceSelect.storyboardc/Y6W-OH-hqX-view-5EZ-qb-Rvc.nib ... 
+2025-12-25 22:49:58 +0000  6791 bytes for ./DeviceSelect.storyboardc/Y6W-OH-hqX-view-5EZ-qb-Rvc.nib
+2025-12-25 22:49:58 +0000  copying file ./DeviceSelect.storyboardc/Info.plist ... 
+2025-12-25 22:49:58 +0000  177 bytes for ./DeviceSelect.storyboardc/Info.plist
+2025-12-25 22:49:58 +0000  copying file ./speed_1d.png ... 
+2025-12-25 22:49:58 +0000  815 bytes for ./speed_1d.png
+2025-12-25 22:49:58 +0000  copying file ./logo_600x1024.png ... 
+2025-12-25 22:49:58 +0000  7849 bytes for ./logo_600x1024.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_m_act_x2.png ... 
+2025-12-25 22:49:58 +0000  4008 bytes for ./button_leveler_m_act_x2.png
+2025-12-25 22:49:58 +0000  copying file ./rbutton_up_on.png ... 
+2025-12-25 22:49:58 +0000  70157 bytes for ./rbutton_up_on.png
+2025-12-25 22:49:58 +0000  copying file ./rbutton_up_x1.png ... 
+2025-12-25 22:49:58 +0000  15300 bytes for ./rbutton_up_x1.png
+2025-12-25 22:49:58 +0000  copying file ./zog.png ... 
+2025-12-25 22:49:58 +0000  25665 bytes for ./zog.png
+2025-12-25 22:49:58 +0000  copying file ./Base.lproj/Main.storyboardc/SALCtrlViewController.nib ... 
+2025-12-25 22:49:58 +0000  1062 bytes for ./Base.lproj/Main.storyboardc/SALCtrlViewController.nib
+2025-12-25 22:49:58 +0000  copying file ./Base.lproj/Main.storyboardc/7NG-dN-omo-view-Feg-5l-OX0.nib ... 
+2025-12-25 22:49:58 +0000  13191 bytes for ./Base.lproj/Main.storyboardc/7NG-dN-omo-view-Feg-5l-OX0.nib
+2025-12-25 22:49:58 +0000  copying file ./Base.lproj/Main.storyboardc/MainControlViewController.nib ... 
+2025-12-25 22:49:58 +0000  1070 bytes for ./Base.lproj/Main.storyboardc/MainControlViewController.nib
+2025-12-25 22:49:58 +0000  copying file ./Base.lproj/Main.storyboardc/RVMCtrlViewController.nib ... 
+2025-12-25 22:49:58 +0000  1062 bytes for ./Base.lproj/Main.storyboardc/RVMCtrlViewController.nib
+2025-12-25 22:49:58 +0000  copying file ./Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib ... 
+2025-12-25 22:49:58 +0000  7357 bytes for ./Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib
+2025-12-25 22:49:58 +0000  copying file ./Base.lproj/Main.storyboardc/MXT-LM-Egx-view-d76-FL-GZ0.nib ... 
+2025-12-25 22:49:58 +0000  8423 bytes for ./Base.lproj/Main.storyboardc/MXT-LM-Egx-view-d76-FL-GZ0.nib
+2025-12-25 22:49:58 +0000  copying file ./Base.lproj/Main.storyboardc/Info.plist ... 
+2025-12-25 22:49:58 +0000  339 bytes for ./Base.lproj/Main.storyboardc/Info.plist
+2025-12-25 22:49:58 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib ... 
+2025-12-25 22:49:58 +0000  1606 bytes for ./Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib
+2025-12-25 22:49:58 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2025-12-25 22:49:58 +0000  924 bytes for ./Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+2025-12-25 22:49:58 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/Info.plist ... 
+2025-12-25 22:49:58 +0000  258 bytes for ./Base.lproj/LaunchScreen.storyboardc/Info.plist
+2025-12-25 22:49:58 +0000  copying file ./down_arrow_r.png ... 
+2025-12-25 22:49:58 +0000  1273 bytes for ./down_arrow_r.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_m_act_x1.png ... 
+2025-12-25 22:49:58 +0000  3702 bytes for ./button_leveler_m_act_x1.png
+2025-12-25 22:49:58 +0000  copying file ./rbutton_up_x2.png ... 
+2025-12-25 22:49:58 +0000  21851 bytes for ./rbutton_up_x2.png
+2025-12-25 22:49:58 +0000  copying file ./auto_button.png ... 
+2025-12-25 22:49:58 +0000  2489 bytes for ./auto_button.png
+2025-12-25 22:49:58 +0000  copying file ./bg_600x1024.png ... 
+2025-12-25 22:49:58 +0000  175977 bytes for ./bg_600x1024.png
+2025-12-25 22:49:58 +0000  copying file ./actu_down2.png ... 
+2025-12-25 22:49:58 +0000  11612 bytes for ./actu_down2.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_m_act.png ... 
+2025-12-25 22:49:58 +0000  4021 bytes for ./button_leveler_m_act.png
+2025-12-25 22:49:58 +0000  copying file ./speed_max.png ... 
+2025-12-25 22:49:58 +0000  4283 bytes for ./speed_max.png
+2025-12-25 22:49:58 +0000  copying file ./speed_2d.png ... 
+2025-12-25 22:49:58 +0000  1182 bytes for ./speed_2d.png
+2025-12-25 22:49:58 +0000  copying file ./jog_up.png ... 
+2025-12-25 22:49:58 +0000  6266 bytes for ./jog_up.png
+2025-12-25 22:49:58 +0000  copying file ./Assets.car ... 
+2025-12-25 22:49:58 +0000  4284680 bytes for ./Assets.car
+2025-12-25 22:49:58 +0000  copying file ./button_up.png ... 
+1689 bytes for ./button_up.png
+copying file ./iconImage 4.png ... 
+2025-12-25 22:49:58 +0000  3093227 bytes for ./iconImage 4.png
+2025-12-25 22:49:58 +0000  copying file ./AppIcon76x76@2x~ipad.png ... 
+2025-12-25 22:49:58 +0000  65600 bytes for ./AppIcon76x76@2x~ipad.png
+2025-12-25 22:49:58 +0000  copying file ./auto_button_on.png ... 
+2025-12-25 22:49:58 +0000  2705 bytes for ./auto_button_on.png
+2025-12-25 22:49:58 +0000  copying file ./iconImage.xcf ... 
+2025-12-25 22:49:58 +0000  3505575 bytes for ./iconImage.xcf
+2025-12-25 22:49:58 +0000  copying file ./button_leveler.png ... 
+9138 bytes for ./button_leveler.png
+copying file ./speed_3d.png ... 
+1358 bytes for ./speed_3d.png
+copying file ./rbutton_down.png ... 
+2025-12-25 22:49:58 +0000  71483 bytes for ./rbutton_down.png
+2025-12-25 22:49:58 +0000  copying file ./introImage.png ... 
+2025-12-25 22:49:58 +0000  4442246 bytes for ./introImage.png
+2025-12-25 22:49:58 +0000  copying file ./down_arrow_l.png ... 
+1289 bytes for ./down_arrow_l.png
+copying file ./caravan_new.png ... 
+79872 bytes for ./caravan_new.png
+copying file ./rautobutton.png ... 
+14591 bytes for ./rautobutton.png
+copying file ./button_leveler_m.png ... 
+2025-12-25 22:49:58 +0000  6092 bytes for ./button_leveler_m.png
+2025-12-25 22:49:58 +0000  copying file ./speed_4d.png ... 
+2025-12-25 22:49:58 +0000  1215 bytes for ./speed_4d.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_act.png ... 
+2025-12-25 22:49:58 +0000  2775 bytes for ./button_leveler_act.png
+2025-12-25 22:49:58 +0000  copying file ./up_arrow.png ... 
+2025-12-25 22:49:58 +0000  3846 bytes for ./up_arrow.png
+2025-12-25 22:49:58 +0000  copying file ./rbutton_down_x2.png ... 
+2025-12-25 22:49:58 +0000  21797 bytes for ./rbutton_down_x2.png
+2025-12-25 22:49:58 +0000  copying file ./Configuration.storyboardc/ConfigViewController.nib ... 
+2025-12-25 22:49:58 +0000  1060 bytes for ./Configuration.storyboardc/ConfigViewController.nib
+2025-12-25 22:49:58 +0000  copying file ./Configuration.storyboardc/Y6W-OH-hqX-view-5EZ-qb-Rvc.nib ... 
+2025-12-25 22:49:58 +0000  12360 bytes for ./Configuration.storyboardc/Y6W-OH-hqX-view-5EZ-qb-Rvc.nib
+2025-12-25 22:49:58 +0000  copying file ./Configuration.storyboardc/Info.plist ... 
+2025-12-25 22:49:58 +0000  165 bytes for ./Configuration.storyboardc/Info.plist
+2025-12-25 22:49:58 +0000  copying file ./rbutton_down_on.png ... 
+2025-12-25 22:49:58 +0000  70848 bytes for ./rbutton_down_on.png
+2025-12-25 22:49:58 +0000  copying file ./rbutton_down_x1.png ... 
+2025-12-25 22:49:58 +0000  15266 bytes for ./rbutton_down_x1.png
+2025-12-25 22:49:58 +0000  copying file ./embedded.mobileprovision ... 
+2025-12-25 22:49:58 +0000  12233 bytes for ./embedded.mobileprovision
+2025-12-25 22:49:58 +0000  copying file ./rotate_cw.png ... 
+2025-12-25 22:49:58 +0000  1909 bytes for ./rotate_cw.png
+2025-12-25 22:49:58 +0000  copying file ./caravan_side.png ... 
+2025-12-25 22:49:58 +0000  10147 bytes for ./caravan_side.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_on_x1.png ... 
+2025-12-25 22:49:58 +0000  5975 bytes for ./button_leveler_on_x1.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_x1.png ... 
+2025-12-25 22:49:58 +0000  4945 bytes for ./button_leveler_x1.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_on.png ... 
+2025-12-25 22:49:58 +0000  4458 bytes for ./button_leveler_on.png
+2025-12-25 22:49:58 +0000  copying file ./Info.plist ... 
+2025-12-25 22:49:58 +0000  1905 bytes for ./Info.plist
+2025-12-25 22:49:58 +0000  copying file ./rotate_cc.png ... 
+2025-12-25 22:49:58 +0000  1904 bytes for ./rotate_cc.png
+2025-12-25 22:49:58 +0000  copying file ./stop2.png ... 
+2025-12-25 22:49:58 +0000  2659 bytes for ./stop2.png
+2025-12-25 22:49:58 +0000  copying file ./caravan.png ... 
+2025-12-25 22:49:58 +0000  2544 bytes for ./caravan.png
+2025-12-25 22:49:58 +0000  copying file ./ic_auto_actu_off.png ... 
+2025-12-25 22:49:58 +0000  1338 bytes for ./ic_auto_actu_off.png
+2025-12-25 22:49:58 +0000  copying file ./PkgInfo ... 
+2025-12-25 22:49:58 +0000  8 bytes for ./PkgInfo
+2025-12-25 22:49:58 +0000  copying file ./button_down_on.png ... 
+2025-12-25 22:49:58 +0000  3486 bytes for ./button_down_on.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_on_x2.png ... 
+2025-12-25 22:49:58 +0000  5703 bytes for ./button_leveler_on_x2.png
+2025-12-25 22:49:58 +0000  copying file ./button_leveler_x2.png ... 
+2025-12-25 22:49:58 +0000  6746 bytes for ./button_leveler_x2.png
+2025-12-25 22:49:58 +0000  copying file ./up_arrow_l.png ... 
+2025-12-25 22:49:58 +0000  1287 bytes for ./up_arrow_l.png
+2025-12-25 22:49:58 +0000  /usr/bin/ditto exited with 0
+2025-12-25 22:49:58 +0000  Processing step: IDEDistributionEmbedProfileStep
+2025-12-25 22:49:58 +0000  Processing step: IDEDistributionInfoPlistStep
+2025-12-25 22:49:58 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2025-12-25 22:49:58 +0000  Processing step: IDEDistributionAppThinningPlistStep
+2025-12-25 22:49:58 +0000  Skipping step: IDEDistributionAppThinningPlistStep because it said so
+2025-12-25 22:49:58 +0000  Processing step: IDEDistributionSymbolsStep
+2025-12-25 22:49:58 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2025-12-25 22:49:58 +0000  Processing step: IDEDistributionAppThinningStep
+2025-12-25 22:49:58 +0000  Skipping step: IDEDistributionAppThinningStep because it said so
+2025-12-25 22:49:58 +0000  Processing step: IDEDistributionArchThinningStep
+2025-12-25 22:49:58 +0000  Archs to thin for item /Users/swkim/Library/Developer/Xcode/Archives/2025-12-26/RVRemocon 12-26-25, 7.46 AM.xcarchive/Products/Applications/RVRemocon.app are []
+2025-12-25 22:49:58 +0000  Processing step: IDEDistributionODRStep
+2025-12-25 22:49:58 +0000  Processing step: IDEDistributionStripXattrsStep
+2025-12-25 22:49:58 +0000  Skipping stripping extended attributes because the codesign step will strip them.
+2025-12-25 22:49:58 +0000  Processing step: IDEDistributionCodesignStep
+2025-12-25 22:49:58 +0000  Entitlements for <IDEDistributionItem: 0x6000056cdaa0; bundleID='mplus.sw-gmail.com', path='<DVTFilePath:0x6000056e1140:'/Users/swkim/Library/Developer/Xcode/Archives/2025-12-26/RVRemocon 12-26-25, 7.46 AM.xcarchive/Products/Applications/RVRemocon.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x600009808a20; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000009e8cc0; name='Apple Development: mplus.sw@gmail.com (XCMW37TNR3)', hash='E9D359B579A05A80613B9FA0C99B57580B5C9718', serialNumber='3ACBE5812B83331683DF0F1247C8D4BF', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-07-07 04:36:51 +0000''>', entitlements='{
+    "application-identifier" = "BPP6C2H9R2.mplus.sw-gmail.com";
+    "com.apple.developer.team-identifier" = BPP6C2H9R2;
+    "get-task-allow" = 1;
+}', teamID='BPP6C2H9R2', identifier='mplus.sw-gmail.com', executablePath='<DVTFilePath:0x6000056e67c0:'/Users/swkim/Library/Developer/Xcode/Archives/2025-12-26/RVRemocon 12-26-25, 7.46 AM.xcarchive/Products/Applications/RVRemocon.app/RVRemocon'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "BPP6C2H9R2.mplus.sw-gmail.com";
+    "com.apple.developer.team-identifier" = BPP6C2H9R2;
+    "get-task-allow" = 0;
+}
+2025-12-25 22:49:58 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-12-25 22:49:58 +0000  Entitlements for <IDEDistributionItem: 0x6000056cdaa0; bundleID='mplus.sw-gmail.com', path='<DVTFilePath:0x6000056e1140:'/Users/swkim/Library/Developer/Xcode/Archives/2025-12-26/RVRemocon 12-26-25, 7.46 AM.xcarchive/Products/Applications/RVRemocon.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x600009808a20; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000009e8cc0; name='Apple Development: mplus.sw@gmail.com (XCMW37TNR3)', hash='E9D359B579A05A80613B9FA0C99B57580B5C9718', serialNumber='3ACBE5812B83331683DF0F1247C8D4BF', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-07-07 04:36:51 +0000''>', entitlements='{
+    "application-identifier" = "BPP6C2H9R2.mplus.sw-gmail.com";
+    "com.apple.developer.team-identifier" = BPP6C2H9R2;
+    "get-task-allow" = 1;
+}', teamID='BPP6C2H9R2', identifier='mplus.sw-gmail.com', executablePath='<DVTFilePath:0x6000056e67c0:'/Users/swkim/Library/Developer/Xcode/Archives/2025-12-26/RVRemocon 12-26-25, 7.46 AM.xcarchive/Products/Applications/RVRemocon.app/RVRemocon'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "BPP6C2H9R2.mplus.sw-gmail.com";
+    "com.apple.developer.team-identifier" = BPP6C2H9R2;
+    "get-task-allow" = 0;
+}
+2025-12-25 22:49:58 +0000  Writing entitlements for <IDEDistributionItem: 0x6000056cdaa0; bundleID='mplus.sw-gmail.com', path='<DVTFilePath:0x6000056e1140:'/Users/swkim/Library/Developer/Xcode/Archives/2025-12-26/RVRemocon 12-26-25, 7.46 AM.xcarchive/Products/Applications/RVRemocon.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x600009808a20; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x6000009e8cc0; name='Apple Development: mplus.sw@gmail.com (XCMW37TNR3)', hash='E9D359B579A05A80613B9FA0C99B57580B5C9718', serialNumber='3ACBE5812B83331683DF0F1247C8D4BF', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-07-07 04:36:51 +0000''>', entitlements='{
+    "application-identifier" = "BPP6C2H9R2.mplus.sw-gmail.com";
+    "com.apple.developer.team-identifier" = BPP6C2H9R2;
+    "get-task-allow" = 1;
+}', teamID='BPP6C2H9R2', identifier='mplus.sw-gmail.com', executablePath='<DVTFilePath:0x6000056e67c0:'/Users/swkim/Library/Developer/Xcode/Archives/2025-12-26/RVRemocon 12-26-25, 7.46 AM.xcarchive/Products/Applications/RVRemocon.app/RVRemocon'>', hardenedRuntime='0'>'> to: /var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/entitlements~~~ZOdPWo
+2025-12-25 22:49:58 +0000  invoking codesign: <NSConcreteTask: 0x600009a18eb0; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    "-",
+    "--signature-size",
+    16000,
+    "--entitlements",
+    "/var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/entitlements~~~ZOdPWo",
+    "--requirements",
+    "=designated => anchor apple generic and identifier \"mplus.sw-gmail.com\" and certificate leaf[subject.CN] = \"Apple Distribution: SUNWOOK KIM (BPP6C2H9R2)\" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */",
+    "--preserve-metadata=identifier,flags,runtime,launch-constraints,library-constraints",
+    "--omit-adhoc-flag",
+    "--team-identifier",
+    BPP6C2H9R2,
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/Root/Payload/RVRemocon.app"
+)'>
+2025-12-25 22:49:58 +0000  codesign output: /var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/Root/Payload/RVRemocon.app: replacing existing signature
+/var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/Root/Payload/RVRemocon.app: signed app bundle with Mach-O thin (arm64) [mplus.sw-gmail.com]
+2025-12-25 22:49:58 +0000  Remote code signing '/var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/Root/Payload/RVRemocon.app' with signature slices '[<DVTCodeSignatureSlice: 0x600006cfc930; architecture='arm64', cmsDigest='<DVTCodeSignatureHash: 0x6000037b23a0; digestAlgorithmDescription='sha256', cdHashHexEncoded='02ee7d8de92250adeddc0c2f8a62c10ca4a51ef155c1e7c08e41d5b892e16fca'>', codeSignatureHashes='{(
+    <DVTCodeSignatureHash: 0x6000037b26a0; digestAlgorithmDescription='sha256', cdHashHexEncoded='02ee7d8de92250adeddc0c2f8a62c10ca4a51ef155c1e7c08e41d5b892e16fca'>
+)}', cmsHexEncoded=''>]' and configuration 'RemoteSigningToolConfiguration(path: <DVTFilePath:0x60000982b720:'/var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/Root/Payload/RVRemocon.app'>, signingCertificate: <DVTSigningCertificate: 0x600000690000; name='Apple Distribution: SUNWOOK KIM (BPP6C2H9R2)', hash='1D84890BA72269A5F561A40D1066C26D248D5F8E', serialNumber='6256F933827512A490B4646C67D44A70', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-12-25 01:35:49 +0000''>, session: <DVTServicesAccountBasedSession: 0x6000016edb00; account='<DVTAppleIDBasedDeveloperAccount: 0x6000024272c0; username='mplus.sw@gmail.com'>'>, team: <DVTPortalTeam: 0x6000024ffc80; name='SUNWOOK KIM', teamID='BPP6C2H9R2', type='Individual', memberships='(
+    "<DVTPortalMembership: 0x600006c511a0; programs='{(\n    <DVTPortalProgram: 0x600001ba5c70; <DVTPortalProgram: 0x600001ba5c70; identifier='Xcode.Portal.Program.iOS'>>\n)}'>",
+    "<DVTPortalMembership: 0x600006c50f90; programs='{(\n    <DVTPortalProgram: 0x600001ba59f0; <DVTPortalProgram: 0x600001ba59f0; identifier='Xcode.Portal.Program.Mac'>>\n)}'>"
+)'>, codeResourcesDictionary: [AnyHashable("files2"): {
+    "AppIcon60x60@2x.png" =     {
+        hash2 = {length = 32, bytes = 0xc6144985 01b57c11 3a9d155a 8ac5ac57 ... eb1337e6 a232c6ff };
+    };
+    "AppIcon76x76@2x~ipad.png" =     {
+        hash2 = {length = 32, bytes = 0xe0698091 35805ca5 a4d68359 1c2cfe68 ... 2e486d11 4e1a626a };
+    };
+    "Assets.car" =     {
+        hash2 = {length = 32, bytes = 0x129501af 80e48e01 488c7a17 b2491ba0 ... db20fc99 9858eae3 };
+    };
+    "Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib" =     {
+        hash2 = {length = 32, bytes = 0xb2f7afac 3fde226c a8af2432 efe724f2 ... 04628633 be31584a };
+    };
+    "Base.lproj/LaunchScreen.storyboardc/Info.plist" =     {
+        hash2 = {length = 32, bytes = 0x1f255d5c c53b531e 3f29a940 6a8df49a ... bd8374f7 07f7d5c8 };
+    };
+    "Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib" =     {
+        hash2 = {length = 32, bytes = 0x54f3637f 671feba5 f19e82ec 4f4a7fb4 ... 89aa571f c8f053e2 };
+    };
+    "Base.lproj/Main.storyboardc/7NG-dN-omo-view-Feg-5l-OX0.nib" =     {
+        hash2 = {length = 32, bytes = 0x3774480d d69903fe 071f5b8a fc912dfa ... 007d5924 7dd064de };
+    };
+    "Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib" =     {
+        hash2 = {length = 32, bytes = 0x2fcce2c2 f24d2d8f 8326e307 867c0a78 ... 86f552d2 525329cd };
+    };
+    "Base.lproj/Main.storyboardc/Info.plist" =     {
+        hash2 = {length = 32, bytes = 0x0380997a 373365e3 9254faa2 384f4f42 ... 8ea3ccab d113e006 };
+    };
+    "Base.lproj/Main.storyboardc/MXT-LM-Egx-view-d76-FL-GZ0.nib" =     {
+        hash2 = {length = 32, bytes = 0x37bdb596 02270810 3fe12b50 c34cb35d ... 40f8c1c1 c1ed35e1 };
+    };
+    "Base.lproj/Main.storyboardc/MainControlViewController.nib" =     {
+        hash2 = {length = 32, bytes = 0x3665fd24 389c04b0 cca0f7fe b63b4d34 ... 824d64c9 2d5567fe };
+    };
+    "Base.lproj/Main.storyboardc/RVMCtrlViewController.nib" =     {
+        hash2 = {length = 32, bytes = 0x4a58b61e 087081d6 36018e65 af058d8e ... 372ca740 211df6c4 };
+    };
+    "Base.lproj/Main.storyboardc/SALCtrlViewController.nib" =     {
+        hash2 = {length = 32, bytes = 0xdef4a746 425eff98 1621113e 9c4e491e ... 3c1fdafd c79d080e };
+    };
+    "Configuration.storyboardc/ConfigViewController.nib" =     {
+        hash2 = {length = 32, bytes = 0xb4ac42f0 6a612bc7 4d41a77a fd3a7f48 ... ac04ff7d 63c16893 };
+    };
+    "Configuration.storyboardc/Info.plist" =     {
+        hash2 = {length = 32, bytes = 0xe60b1a29 590112f5 dbedd704 5d6ffcf8 ... 53417c14 73be1f19 };
+    };
+    "Configuration.storyboardc/Y6W-OH-hqX-view-5EZ-qb-Rvc.nib" =     {
+        hash2 = {length = 32, bytes = 0x5a8cc3d4 f65021ab efd73cc8 704c6b0a ... a38163a7 a7cae191 };
+    };
+    "DeviceSelect.storyboardc/DeviceSelectViewController.nib" =     {
+        hash2 = {length = 32, bytes = 0xd0d2c696 ccc0c95a c776d1d1 1f8b5763 ... eaec1706 cfde1a53 };
+    };
+    "DeviceSelect.storyboardc/Info.plist" =     {
+        hash2 = {length = 32, bytes = 0xac8ef0d2 ab256942 1ba97c46 4ec478fd ... 33cb37db 0b1adcee };
+    };
+    "DeviceSelect.storyboardc/Y6W-OH-hqX-view-5EZ-qb-Rvc.nib" =     {
+        hash2 = {length = 32, bytes = 0x8bc60b4b fb2ff84b c9e714d0 35def02c ... 97443211 5635afa7 };
+    };
+    "actu_down.png" =     {
+        hash2 = {length = 32, bytes = 0xd0676008 a03c7a83 7a063c3d 8815fb22 ... 9a2bc39d 3c1a4059 };
+    };
+    "actu_down2.png" =     {
+        hash2 = {length = 32, bytes = 0xf95051bb 3218e1b2 15fe3c0e e453a050 ... 79dce604 ffb67d61 };
+    };
+    "actu_up.png" =     {
+        hash2 = {length = 32, bytes = 0xee36c783 2cb8e974 77138923 047a50c8 ... 6bfe56d3 e0435d50 };
+    };
+    "actu_up2.png" =     {
+        hash2 = {length = 32, bytes = 0x457b77e6 ebd4c0c3 dfb8e513 497bcbbc ... 8b437d1f 33994d63 };
+    };
+    "auto_button.png" =     {
+        hash2 = {length = 32, bytes = 0x7de6ba75 eae45941 904c3032 615b5737 ... c165a49b f49f57bc };
+    };
+    "auto_button_on.png" =     {
+        hash2 = {length = 32, bytes = 0xb7ebadeb 4cca5091 3ae05f6c 4bac403d ... a8a84cd5 487972dd };
+    };
+    "bg_600x1024.png" =     {
+        hash2 = {length = 32, bytes = 0x8ea31009 3fff1886 a20312d8 ec2cea9d ... cf829880 3080838e };
+    };
+    "button_down.png" =     {
+        hash2 = {length = 32, bytes = 0x80ede55b ca1b8e57 8621d917 d0746886 ... 110a7b67 771f975b };
+    };
+    "button_down_on.png" =     {
+        hash2 = {length = 32, bytes = 0x245aa5fc 1ba21adf 99c7a6ab fc1fb544 ... 9521aa84 7f56628c };
+    };
+    "button_leveler.png" =     {
+        hash2 = {length = 32, bytes = 0xff90f96f 60fe8a29 4bcfc9a5 be128c2f ... c2c0a10b 571e0d83 };
+    };
+    "button_leveler_act.png" =     {
+        hash2 = {length = 32, bytes = 0xc9ef427d 1b24e71d 6e99c972 effc22f7 ... 7d843cae dac211f3 };
+    };
+    "button_leveler_act_x1.png" =     {
+        hash2 = {length = 32, bytes = 0x8f7724ef e3e5022a 7859912f 01e5dd38 ... 6ffbb8e0 df45bb2c };
+    };
+    "button_leveler_act_x2.png" =     {
+        hash2 = {length = 32, bytes = 0x07a39548 e52f8023 b2dfd063 628cf356 ... 4873e9da ee5c36db };
+    };
+    "button_leveler_m.png" =     {
+        hash2 = {length = 32, bytes = 0xe7e36190 22605490 b6a7391a bd5f6e09 ... b5ff442f 28ff8e42 };
+    };
+    "button_leveler_m_act.png" =     {
+        hash2 = {length = 32, bytes = 0x400ee70f bf2246e6 96d36141 d33a3be4 ... 0b3e4f48 432ef70d };
+    };
+    "button_leveler_m_act_x1.png" =     {
+        hash2 = {length = 32, bytes = 0x36e9a9e2 fcf119e0 63e8663d 0324d522 ... c6a53617 ce5f3d63 };
+    };
+    "button_leveler_m_act_x2.png" =     {
+        hash2 = {length = 32, bytes = 0xb4a12a66 c4471a08 cd889ef1 d5047c10 ... cd96962a ff3631d6 };
+    };
+    "button_leveler_m_on.png" =     {
+        hash2 = {length = 32, bytes = 0x7c7d42c2 2ca2d8bb 76fd0974 538c3207 ... ea81de9e cc24c1f9 };
+    };
+    "button_leveler_m_on_x1.png" =     {
+        hash2 = {length = 32, bytes = 0xed88a7d6 b600b6b2 d87da1f9 29e2b1ff ... 77438595 fdd6bfd3 };
+    };
+    "button_leveler_m_on_x2.png" =     {
+        hash2 = {length = 32, bytes = 0xfb1eedc6 fe6ce190 5d77f8e7 e7b3553e ... c5b0ca7d 984f42d9 };
+    };
+    "button_leveler_m_x1.png" =     {
+        hash2 = {length = 32, bytes = 0x021ee6cf 7809dc0f b796086e e22cd803 ... cc7edb45 b7c08d61 };
+    };
+    "button_leveler_m_x2.png" =     {
+        hash2 = {length = 32, bytes = 0xdc5396e5 9981457c ac0e3a55 3eedd327 ... bb5d159e 848f55f6 };
+    };
+    "button_leveler_on.png" =     {
+        hash2 = {length = 32, bytes = 0x5968e0f8 a619695f 2a4eeef6 12dd3ed4 ... 185fa83d e8e15988 };
+    };
+    "button_leveler_on_x1.png" =     {
+        hash2 = {length = 32, bytes = 0xccd39d82 8acd0cc2 598201f4 659e0211 ... fcff44ca 9204c587 };
+    };
+    "button_leveler_on_x2.png" =     {
+        hash2 = {length = 32, bytes = 0xdf6b1912 4e01833f 22875431 e3bdc76b ... 2e9f946e 51b4d00c };
+    };
+    "button_leveler_x1.png" =     {
+        hash2 = {length = 32, bytes = 0xf41c6ff4 e2ad2492 681bd737 878adcbf ... 3fed8eb9 d86c68e0 };
+    };
+    "button_leveler_x2.png" =     {
+        hash2 = {length = 32, bytes = 0x038c1097 f8a7fdba 2046c7d8 15eb8180 ... 7684675b 5a97ee12 };
+    };
+    "button_up.png" =     {
+        hash2 = {length = 32, bytes = 0xb03c9b07 afebca57 7e4bcb8a e09d011f ... f3ffdaf1 e3245783 };
+    };
+    "button_up_on.png" =     {
+        hash2 = {length = 32, bytes = 0xe0227258 7c19f32c 5f07ab89 1d01b07d ... bb10692b d14dcdce };
+    };
+    "caravan.png" =     {
+        hash2 = {length = 32, bytes = 0x358f233e cb23b7cb 1f8dd826 3480e773 ... ea65238c 361d19ac };
+    };
+    "caravan_back.png" =     {
+        hash2 = {length = 32, bytes = 0xca20824c 2cd3ad98 3f46873d 0c54caac ... 4d66443a 6ffa47cb };
+    };
+    "caravan_mini.png" =     {
+        hash2 = {length = 32, bytes = 0xd0fec63c d54dcae8 e0d5b579 0a4bfd04 ... 4d29fbaa f33d9429 };
+    };
+    "caravan_new.png" =     {
+        hash2 = {length = 32, bytes = 0x1147f0e0 c78716a6 12182219 eff9992e ... 3799770a db8fbef5 };
+    };
+    "caravan_newx1.png" =     {
+        hash2 = {length = 32, bytes = 0xe90ea43c 88c72690 82a76f87 0bb4843d ... 904c23f5 78882571 };
+    };
+    "caravan_side.png" =     {
+        hash2 = {length = 32, bytes = 0x99437839 68f60477 2d3c0ce7 ed8ad52e ... 3453f442 ba4d1fbd };
+    };
+    "down_arrow.png" =     {
+        hash2 = {length = 32, bytes = 0xf90d0d67 2f6c4b1f 6e5cf30f 94b5bf7a ... fba18a71 a73e9a87 };
+    };
+    "down_arrow_l.png" =     {
+        hash2 = {length = 32, bytes = 0xdf6d6cc7 2329307c 62590ea8 f14c06c4 ... 7c4d3d23 30073dfd };
+    };
+    "down_arrow_r.png" =     {
+        hash2 = {length = 32, bytes = 0x21b02f4b 6e3e7038 cb4dc9f9 574a8dc1 ... 5faf982b eef6dc03 };
+    };
+    "embedded.mobileprovision" =     {
+        hash2 = {length = 32, bytes = 0xa4484da7 28fefd6c fd826c3d 0ee152cc ... 0f4b04d2 7f79ea63 };
+    };
+    "front_arrow.png" =     {
+        hash2 = {length = 32, bytes = 0xe0250cbe 986df893 127c308c eb036b86 ... c576f8ea d80b74f5 };
+    };
+    "ic_auto_actu_off.png" =     {
+        hash2 = {length = 32, bytes = 0x9fbe9f26 dda587b5 2b087490 fff5ea15 ... a8a133c3 8333bfe2 };
+    };
+    "ic_auto_actu_on.png" =     {
+        hash2 = {length = 32, bytes = 0x850f2d05 c6502d74 fc5e9206 ebfb1284 ... 31152188 2bd0b2cf };
+    };
+    "iconImage 4.png" =     {
+        hash2 = {length = 32, bytes = 0x36b8f2b2 c95bbc19 e31d3abf e2fc318d ... cf520f75 e55d3ad5 };
+    };
+    "iconImage.jpg" =     {
+        hash2 = {length = 32, bytes = 0xfa5a8803 730d99c2 78c51418 34b1bfaf ... 2d43004a e0bd75d0 };
+    };
+    "iconImage.png" =     {
+        hash2 = {length = 32, bytes = 0xad34bd85 ee504454 c8017df3 68b6eb8c ... 9c12efe3 1da47a56 };
+    };
+    "iconImage.xcf" =     {
+        hash2 = {length = 32, bytes = 0xe61cd2eb b63875b5 e88566c5 a6d74f0e ... 886bae71 693acf67 };
+    };
+    "introImage.png" =     {
+        hash2 = {length = 32, bytes = 0xf314027a ee65d21d ed070317 e401ba2e ... 72cdd5db d3371392 };
+    };
+    "introImageWhite.png" =     {
+        hash2 = {length = 32, bytes = 0xee05dffa 8bf7ea42 698ad6ce 41a84609 ... 109251fb 8179f8ec };
+    };
+    "jog_black.png" =     {
+        hash2 = {length = 32, bytes = 0x629e1db0 db006858 ae6dc80e 0c81b851 ... bc530853 0ae5603a };
+    };
+    "jog_center.png" =     {
+        hash2 = {length = 32, bytes = 0xe980e401 95220c40 23b086be c953e6ab ... afc70a9b 4fd32f38 };
+    };
+    "jog_down.png" =     {
+        hash2 = {length = 32, bytes = 0x0f15f9df ba822e16 894afbe3 67588e5e ... 814841d7 5e30cd23 };
+    };
+    "jog_up.png" =     {
+        hash2 = {length = 32, bytes = 0x73137803 9c14d264 8dda81a9 8b969f52 ... 83f9b585 840d978b };
+    };
+    "logo_600x1024.png" =     {
+        hash2 = {length = 32, bytes = 0x36679810 65b90307 c59b6954 27e07a6c ... d74ea924 4d533295 };
+    };
+    "rautobutton.png" =     {
+        hash2 = {length = 32, bytes = 0x96e293df 6b454d7e 219b75e0 a607a9db ... c4fed798 2b8c1607 };
+    };
+    "rautobutton_act.png" =     {
+        hash2 = {length = 32, bytes = 0x1e404dd1 14a83f6e 1303da46 172fdd51 ... c9e4b929 9bb1385b };
+    };
+    "rautobutton_on.png" =     {
+        hash2 = {length = 32, bytes = 0x316e282c e538988a 2e57b86d d307afdf ... 28e26a55 a6f00662 };
+    };
+    "rbutton_down.png" =     {
+        hash2 = {length = 32, bytes = 0x93c2af70 28d6aa75 a161efaa 925d841a ... 2b2557af 0e1abc4e };
+    };
+    "rbutton_down_on.png" =     {
+        hash2 = {length = 32, bytes = 0x67023b68 65ddb129 eee7cfa2 5e951eed ... 26a01b8c 05eb35e3 };
+    };
+    "rbutton_down_on_x1.png" =     {
+        hash2 = {length = 32, bytes = 0x34559aff ba92eeaa 39953ead 1b064be9 ... 8809ea79 c3b09838 };
+    };
+    "rbutton_down_on_x2.png" =     {
+        hash2 = {length = 32, bytes = 0x0edf6beb 8a3190f4 e7e0f71a fccb7689 ... d7783b9c e7f1855b };
+    };
+    "rbutton_down_x1.png" =     {
+        hash2 = {length = 32, bytes = 0x0973beb6 0c4242b4 0673a544 8c529ac6 ... 725ba605 9953008b };
+    };
+    "rbutton_down_x2.png" =     {
+        hash2 = {length = 32, bytes = 0xf4f258e0 ef94f6c8 8faa9415 6b251481 ... 706d1b02 47e20e33 };
+    };
+    "rbutton_up.png" =     {
+        hash2 = {length = 32, bytes = 0x0fba7b00 0df0f8d6 691f97a7 7e0e0cda ... 16f00cc8 81ac69f9 };
+    };
+    "rbutton_up_on.png" =     {
+        hash2 = {length = 32, bytes = 0xa15f75b9 76e0d2e5 da550446 95320c3f ... d085ab92 4a8815be };
+    };
+    "rbutton_up_on_x1.png" =     {
+        hash2 = {length = 32, bytes = 0x50f19150 9f89d1a2 d43b4f42 f3318d6e ... 8570e333 635094e2 };
+    };
+    "rbutton_up_on_x2.png" =     {
+        hash2 = {length = 32, bytes = 0x78aa18dc f40a4c20 77626fe4 f819d9b5 ... 1a98b2cd 7f3c360c };
+    };
+    "rbutton_up_x1.png" =     {
+        hash2 = {length = 32, bytes = 0xe86fe0a5 4dfc2d28 e9a467ef b7cc2049 ... 6a89fe04 94a311bc };
+    };
+    "rbutton_up_x2.png" =     {
+        hash2 = {length = 32, bytes = 0x87c64425 4c5405ca 446e36ca c6969bf7 ... 00ad2b01 7b174f74 };
+    };
+    "rear_arrow.png" =     {
+        hash2 = {length = 32, bytes = 0xabb556e7 50815ba8 5912f18b 5ac4588c ... 848a079e fac93437 };
+    };
+    "rotate_cc.png" =     {
+        hash2 = {length = 32, bytes = 0x210b1e88 81bc8371 d813490d 3f1ed525 ... af4abfe9 54bd8306 };
+    };
+    "rotate_cw.png" =     {
+        hash2 = {length = 32, bytes = 0x428b20d6 63368e56 a73338c2 360c92e6 ... e0ce1248 371d701d };
+    };
+    "speed_1.png" =     {
+        hash2 = {length = 32, bytes = 0x57ab9559 9581ffa0 16703800 66051210 ... fdd44cf9 8277161b };
+    };
+    "speed_1d.png" =     {
+        hash2 = {length = 32, bytes = 0x3738ea83 e2c4f87e 207e1a62 2dbac9ad ... c0bf52c6 a13b01b8 };
+    };
+    "speed_2.png" =     {
+        hash2 = {length = 32, bytes = 0xb7a8ca33 657e59b1 284db08d 397370ce ... e57f38d8 873b4bab };
+    };
+    "speed_2d.png" =     {
+        hash2 = {length = 32, bytes = 0x88b58baa fe187118 eda6e063 0d98c837 ... 0b25a614 6ae76b10 };
+    };
+    "speed_3.png" =     {
+        hash2 = {length = 32, bytes = 0xa5a0a492 c527f310 d6933b29 f90a0d2a ... b300258d b2273530 };
+    };
+    "speed_3d.png" =     {
+        hash2 = {length = 32, bytes = 0x24e91474 cd93bc8f 1e04134d 599e62a7 ... 03286574 eb8271ba };
+    };
+    "speed_4.png" =     {
+        hash2 = {length = 32, bytes = 0x02a7e5fe d5c912e2 a5ff38a5 e46338f3 ... 732680b5 3c88f6be };
+    };
+    "speed_4d.png" =     {
+        hash2 = {length = 32, bytes = 0xb3f7cefc e31d8617 52d542cd de5cbc41 ... 98266a72 f22ad1b9 };
+    };
+    "speed_max.png" =     {
+        hash2 = {length = 32, bytes = 0xac463744 b7b3dc53 a3f90c85 86104670 ... 3a005d16 ff6fb2d2 };
+    };
+    "stop.png" =     {
+        hash2 = {length = 32, bytes = 0xade75708 7970a668 6d09a66a 113c5e65 ... 5188aa5a 2edfbe25 };
+    };
+    "stop2.png" =     {
+        hash2 = {length = 32, bytes = 0xc0edf277 ec9ae405 ef169709 94b39620 ... ca35b55b 0609b03e };
+    };
+    "up_arrow.png" =     {
+        hash2 = {length = 32, bytes = 0x580ff0b7 b966879f c52d5264 ce5b2a49 ... b8a553b0 1069d394 };
+    };
+    "up_arrow_l.png" =     {
+        hash2 = {length = 32, bytes = 0x85cb18d3 39980d54 209d5198 c6639d29 ... 44adde24 be96a92d };
+    };
+    "up_arrow_r.png" =     {
+        hash2 = {length = 32, bytes = 0x0e603ee0 845cf9f5 c9f8bc7b dde40e5c ... 6199ca39 540c19e0 };
+    };
+    "zog.png" =     {
+        hash2 = {length = 32, bytes = 0x2a41e3db 889cde79 7d5ac847 1dc2898e ... b6cf94bd 0feb58d0 };
+    };
+    "zog_back.png" =     {
+        hash2 = {length = 32, bytes = 0x4d2a72ff 295943a4 2b6ef8b3 ca289ed9 ... 0ce6522d 5f115d05 };
+    };
+}, AnyHashable("rules"): {
+    "^.*" = 1;
+    "^.*\\.lproj/" =     {
+        optional = 1;
+        weight = 1000;
+    };
+    "^.*\\.lproj/locversion.plist$" =     {
+        omit = 1;
+        weight = 1100;
+    };
+    "^Base\\.lproj/" =     {
+        weight = 1010;
+    };
+    "^version.plist$" = 1;
+}, AnyHashable("rules2"): {
+    ".*\\.dSYM($|/)" =     {
+        weight = 11;
+    };
+    "^(.*/)?\\.DS_Store$" =     {
+        omit = 1;
+        weight = 2000;
+    };
+    "^.*" = 1;
+    "^.*\\.lproj/" =     {
+        optional = 1;
+        weight = 1000;
+    };
+    "^.*\\.lproj/locversion.plist$" =     {
+        omit = 1;
+        weight = 1100;
+    };
+    "^Base\\.lproj/" =     {
+        weight = 1010;
+    };
+    "^Info\\.plist$" =     {
+        omit = 1;
+        weight = 20;
+    };
+    "^PkgInfo$" =     {
+        omit = 1;
+        weight = 20;
+    };
+    "^embedded\\.provisionprofile$" =     {
+        weight = 20;
+    };
+    "^version\\.plist$" =     {
+        weight = 20;
+    };
+}, AnyHashable("files"): {
+    "AppIcon60x60@2x.png" = {length = 20, bytes = 0x04e6f7991a2036c83967658961c9e64b4fe323af};
+    "AppIcon76x76@2x~ipad.png" = {length = 20, bytes = 0xfa81736c0cb002137c9f722b1bb7f394a02d9b50};
+    "Assets.car" = {length = 20, bytes = 0xace95cb170190afbce8ac8bd8134e8f8f73b0812};
+    "Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib" = {length = 20, bytes = 0x4c838e8749fecf6052f9a875f0daa7f08b1a8990};
+    "Base.lproj/LaunchScreen.storyboardc/Info.plist" = {length = 20, bytes = 0x9f6b7c82c0e97c4e979211b7d69ec84094714f15};
+    "Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib" = {length = 20, bytes = 0x65580cd7e2b065c667c2181a23417b06dd5b6b67};
+    "Base.lproj/Main.storyboardc/7NG-dN-omo-view-Feg-5l-OX0.nib" = {length = 20, bytes = 0xad90a15e9dff2e061781abbdea0a1fdac4544d36};
+    "Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib" = {length = 20, bytes = 0x565acc68dad5ab6e6eb7586482bc7704419d4a8c};
+    "Base.lproj/Main.storyboardc/Info.plist" = {length = 20, bytes = 0x278223d0677145fe3f07a1e6399245518efa02a8};
+    "Base.lproj/Main.storyboardc/MXT-LM-Egx-view-d76-FL-GZ0.nib" = {length = 20, bytes = 0x4b4a6a6be14b69eb4c1ad8b9b18b7b988d8f36c5};
+    "Base.lproj/Main.storyboardc/MainControlViewController.nib" = {length = 20, bytes = 0x14a31d98b7a183a2c3bae9d09218e0d046131c94};
+    "Base.lproj/Main.storyboardc/RVMCtrlViewController.nib" = {length = 20, bytes = 0xc1f804c0afd02d4c392186a5536e06e55918f124};
+    "Base.lproj/Main.storyboardc/SALCtrlViewController.nib" = {length = 20, bytes = 0x1bbd25635c0392dac14832a5bc6960877c52b41b};
+    "Configuration.storyboardc/ConfigViewController.nib" = {length = 20, bytes = 0x73e6b3144636c0130bf14f9833aa1678df90046c};
+    "Configuration.storyboardc/Info.plist" = {length = 20, bytes = 0x78c7b8c7a63c9dbaf691e0982c73fda2e7c3e312};
+    "Configuration.storyboardc/Y6W-OH-hqX-view-5EZ-qb-Rvc.nib" = {length = 20, bytes = 0xb522579423d31eac623c44f4f0bd6df1653365f4};
+    "DeviceSelect.storyboardc/DeviceSelectViewController.nib" = {length = 20, bytes = 0x5357b1b2d100d4bac60795739773195bb30d8924};
+    "DeviceSelect.storyboardc/Info.plist" = {length = 20, bytes = 0x84ab5534694e61efa73bceaa4c3efe17bbc65610};
+    "DeviceSelect.storyboardc/Y6W-OH-hqX-view-5EZ-qb-Rvc.nib" = {length = 20, bytes = 0xd87dfc6d75e3dbf5261210b8605d94bdb7dba97f};
+    "Info.plist" = {length = 20, bytes = 0xf16c89298de8eeaaed4c7a56d405720a2a1784d1};
+    PkgInfo = {length = 20, bytes = 0x9f9eea0cfe2d65f2c3d6b092e375b40782d08f31};
+    "actu_down.png" = {length = 20, bytes = 0x114468b770cc72b0592c40b026842f9a58d056c3};
+    "actu_down2.png" = {length = 20, bytes = 0x28ab9cfb8a04c918e91c0fa656548fac6ec4b715};
+    "actu_up.png" = {length = 20, bytes = 0x4b101fd87cbace66153b7f9be4476123016c40c1};
+    "actu_up2.png" = {length = 20, bytes = 0xa76cc29aa22e49fc9a24728f9ecbd295905a09eb};
+    "auto_button.png" = {length = 20, bytes = 0x4e2839d7ee337cc5572d1806e9ca2fb8799d3339};
+    "auto_button_on.png" = {length = 20, bytes = 0xbf86ded9bfcd801ea97176d14fe6688d483a6016};
+    "bg_600x1024.png" = {length = 20, bytes = 0xbffce580f1128d1bebc7211e3fef6c481742108f};
+    "button_down.png" = {length = 20, bytes = 0x3c448851aefb8d12bdfa76a5b474392c8c3915b9};
+    "button_down_on.png" = {length = 20, bytes = 0x78a1e51d0a133a7c47e2abd26500264119e3ef99};
+    "button_leveler.png" = {length = 20, bytes = 0x25de8981efe321fb73c322f53b0c523667e379e6};
+    "button_leveler_act.png" = {length = 20, bytes = 0x4099cada4fb643edd3599fef5ee0dc1d18620ad8};
+    "button_leveler_act_x1.png" = {length = 20, bytes = 0x9f0453a767934469309c43e8e8818a0c888677eb};
+    "button_leveler_act_x2.png" = {length = 20, bytes = 0xba486947d6933abc965d291fd06e386fee648f9c};
+    "button_leveler_m.png" = {length = 20, bytes = 0x06ad496d05aaa08e53a75c8907785fd7f29f9083};
+    "button_leveler_m_act.png" = {length = 20, bytes = 0x0694a88b3387ea00417d6eb62f4e229b4d130f64};
+    "button_leveler_m_act_x1.png" = {length = 20, bytes = 0x7508a23b136d186b44c744e00754a1cfdfe02510};
+    "button_leveler_m_act_x2.png" = {length = 20, bytes = 0x5326176aa6483bc2bb1bdabafb6a57aeac12366a};
+    "button_leveler_m_on.png" = {length = 20, bytes = 0x9afa60583ae25c19dfd1f438036015bec2e263ec};
+    "button_leveler_m_on_x1.png" = {length = 20, bytes = 0xc0c4d5f0a7335a7a00924a67d1821f7f41b41180};
+    "button_leveler_m_on_x2.png" = {length = 20, bytes = 0xad61eaebe92191e9553abf1c2d0d57c159c90070};
+    "button_leveler_m_x1.png" = {length = 20, bytes = 0xd2cb49f2ca62287b1ac7d114768fde0fae3d7e9b};
+    "button_leveler_m_x2.png" = {length = 20, bytes = 0x37f49481905d106e2db5847434ef2671c8a50b1f};
+    "button_leveler_on.png" = {length = 20, bytes = 0xfed8327b279a50bc35dc7965419e8d199172f629};
+    "button_leveler_on_x1.png" = {length = 20, bytes = 0xa218154a7f4693220e195c97c0579bb2f0530414};
+    "button_leveler_on_x2.png" = {length = 20, bytes = 0xa0ad2f1e514e30c1b9d2be5016e595405a1c955d};
+    "button_leveler_x1.png" = {length = 20, bytes = 0xd0a9bced70fa5a05c0d7989565d909937b3c9f1f};
+    "button_leveler_x2.png" = {length = 20, bytes = 0xc601a2bf225d7e576cd97724b16322108070a5d9};
+    "button_up.png" = {length = 20, bytes = 0x97d061ea3877f8b1c086d919cacb6cb1cd4900a3};
+    "button_up_on.png" = {length = 20, bytes = 0x4929165db5e8a69bc22e19f43bb61bb6af09d494};
+    "caravan.png" = {length = 20, bytes = 0x15d299e383d88203e0fe04bae7a9f2cd582e7462};
+    "caravan_back.png" = {length = 20, bytes = 0xbdd8595ff8caf1cb3724fc8bc4ddaef26d12238f};
+    "caravan_mini.png" = {length = 20, bytes = 0x9b15d74cf403cf5a67d3df79bec053279e89f769};
+    "caravan_new.png" = {length = 20, bytes = 0x0be86659e3ca4240a775daa98a1f3054e2c8f3f7};
+    "caravan_newx1.png" = {length = 20, bytes = 0x7f6bf2e465cb9b9f5faf73e87b575b90bee94863};
+    "caravan_side.png" = {length = 20, bytes = 0xbae985e2ca202aa2f14de72834071da78640280a};
+    "down_arrow.png" = {length = 20, bytes = 0x105258a89fa3b5ef88a5930a3c997cc01e43730b};
+    "down_arrow_l.png" = {length = 20, bytes = 0x102b7eefec527ee7d7eb08973cd32e88cdae57bf};
+    "down_arrow_r.png" = {length = 20, bytes = 0x472de8d1c7d69c6e82ec2f373dc53649da66edeb};
+    "embedded.mobileprovision" = {length = 20, bytes = 0xee693bde00e171706d545378508f50431e367989};
+    "front_arrow.png" = {length = 20, bytes = 0x9ae24a24f22e83fdb09ced77402fa8575ed868ba};
+    "ic_auto_actu_off.png" = {length = 20, bytes = 0x25f02b0c34f28b9d3ab411dc4c5ec08191a93594};
+    "ic_auto_actu_on.png" = {length = 20, bytes = 0xf6a77bbdf345e72f68ee3f00320ed9d23f4265d6};
+    "iconImage 4.png" = {length = 20, bytes = 0x9d59627bba17b4d37bd636261248f9cdb6b6e4ae};
+    "iconImage.jpg" = {length = 20, bytes = 0xb88d1fa7e6170fba8c10b4f2fc3b1202d323d2e0};
+    "iconImage.png" = {length = 20, bytes = 0x365dd844f416ada9c37703b97de8d2eacb380df1};
+    "iconImage.xcf" = {length = 20, bytes = 0x5796af2dfbe7eef7f1861c09ae479fbebb8e8dd1};
+    "introImage.png" = {length = 20, bytes = 0xd071773deeef16ebdb34985266e7cb7a19164373};
+    "introImageWhite.png" = {length = 20, bytes = 0x6b3bf37e9cccccf0cd8e9709865a9567e6aaa73b};
+    "jog_black.png" = {length = 20, bytes = 0x54322447c4ba4ebf4d3f469b628a9eab74ed01bf};
+    "jog_center.png" = {length = 20, bytes = 0x6822a05d37139c353f4ab335084344f42a2424ff};
+    "jog_down.png" = {length = 20, bytes = 0xe3e762507244294e9d0b6042798f29e4d15d3e17};
+    "jog_up.png" = {length = 20, bytes = 0xe6ee1bd3503268aa9efe0c69e31403cb0c3d2ef4};
+    "logo_600x1024.png" = {length = 20, bytes = 0x6ea0b7c237a7ce94ba0b4a5f45c33a8046536013};
+    "rautobutton.png" = {length = 20, bytes = 0x4cababbdd5f9d0f358d09e2b69a2279822d8cd73};
+    "rautobutton_act.png" = {length = 20, bytes = 0xa0b11abbec6e16d9cf0e386707b71f57fa16b766};
+    "rautobutton_on.png" = {length = 20, bytes = 0x4ee8d289e5a0c51cbb44d086e001dbc326c468c6};
+    "rbutton_down.png" = {length = 20, bytes = 0x565e77600165aac73baa1416b2376a1ba7058e6a};
+    "rbutton_down_on.png" = {length = 20, bytes = 0x6210b44e22a9cd4472303722155e31fff2c57e4c};
+    "rbutton_down_on_x1.png" = {length = 20, bytes = 0xe43699cd3c44860fd939b4bbc91ab9dad75e8316};
+    "rbutton_down_on_x2.png" = {length = 20, bytes = 0xdd539baf37bf6c895ab08db60261b438254c957e};
+    "rbutton_down_x1.png" = {length = 20, bytes = 0x32c6d07f7089fca1769eb05695bd463de13e3503};
+    "rbutton_down_x2.png" = {length = 20, bytes = 0x0a0a9b129b8eafa42f242aecbf9afda9aaeaad8e};
+    "rbutton_up.png" = {length = 20, bytes = 0x61b525f1f22e85792f424583d39928f2c8d7e5a6};
+    "rbutton_up_on.png" = {length = 20, bytes = 0xc281f26d1fb91a3a1f0e6560865314932fe3ac26};
+    "rbutton_up_on_x1.png" = {length = 20, bytes = 0xc62496567da01d1a9c190581ffa413a4bdcb9373};
+    "rbutton_up_on_x2.png" = {length = 20, bytes = 0x5c79b7cd95ee66953477b0e1ee6848cb59674bc3};
+    "rbutton_up_x1.png" = {length = 20, bytes = 0x52368a2bec88d5aef6e731bb630abb09c0875040};
+    "rbutton_up_x2.png" = {length = 20, bytes = 0x6e7f3e45366ae00492db889e8d6e8eceb23b64de};
+    "rear_arrow.png" = {length = 20, bytes = 0xb922ca58d442695451c13aa3ae1576cbe18a8351};
+    "rotate_cc.png" = {length = 20, bytes = 0x0655e02631ef22aa7d204d552a451131e5941749};
+    "rotate_cw.png" = {length = 20, bytes = 0xa951332b7b5c40333c93a311247bda081dc80d51};
+    "speed_1.png" = {length = 20, bytes = 0x0573aafd5768791d8c87cf966841d7670755e503};
+    "speed_1d.png" = {length = 20, bytes = 0x7d4b59529bf2f841bcb9426250726c8f2432c093};
+    "speed_2.png" = {length = 20, bytes = 0xbc546ece60b56cb1fd7de6c4415678402f4c78a0};
+    "speed_2d.png" = {length = 20, bytes = 0x1be4dd6cab76c2e9f8089600b3d14bfc13602aeb};
+    "speed_3.png" = {length = 20, bytes = 0xacd82c5ab7d0374fad43f14b60f09001354f64db};
+    "speed_3d.png" = {length = 20, bytes = 0xb3973434692ee35cb8ea47aff38b6dbc869e4763};
+    "speed_4.png" = {length = 20, bytes = 0x2691512a9eca6f3f0bd2b9801c85970951276246};
+    "speed_4d.png" = {length = 20, bytes = 0xb7cde50d37f11b5c2b3966108deb21f4d033c98f};
+    "speed_max.png" = {length = 20, bytes = 0x468c7b5a89dfd2ce4e4c9c3bac8cf58927905a9a};
+    "stop.png" = {length = 20, bytes = 0x5483eac76187e5dec99ef2ae2ec1058f9bfac130};
+    "stop2.png" = {length = 20, bytes = 0x130c2883768679ac928d33600d9c81a699d248b2};
+    "up_arrow.png" = {length = 20, bytes = 0xc1fc75bd923fbd80457b2a0e6e43b14e6bce0a1b};
+    "up_arrow_l.png" = {length = 20, bytes = 0x6e2af2b1092cd7036dbf5264d4284549e45b3135};
+    "up_arrow_r.png" = {length = 20, bytes = 0x07a3d88dce67dc88acb12be39a018d2e694a8217};
+    "zog.png" = {length = 20, bytes = 0x102cde91ecfaa8dcecf68b415140ebe32837fbf3};
+    "zog_back.png" = {length = 20, bytes = 0xfc6ee7cad69e891bf062d38185d37c9c11232d00};
+}], enableSignatureValidation: true, logAspect: <DVTLogAspect:0x6000056cca80:IDEDistributionPipeline:level=verbose(3):effective-level=verbose(3)>)'
+2025-12-25 22:49:58 +0000  Sending request FA190AE4-DAD5-473E-B091-9CACF59026F9 to <https://developerservices2.apple.com/services/v1/certificates> for session <DVTServicesAccountBasedSession: 0x6000016edb00; account='<DVTAppleIDBasedDeveloperAccount: 0x6000024272c0; username='mplus.sw@gmail.com'>'>.
+Method: POST
+
+Headers:
+{
+    Accept = "application/vnd.api+json";
+    "Accept-Encoding" = "gzip, deflate";
+    "Content-Length" = 113;
+    "Content-Type" = "application/vnd.api+json";
+    DSESSIONID = u7rvk30gaf275hi6m0f6m6tl62t9ripek6vk0c96id9l7447295;
+    "User-Agent" = Xcode;
+    "X-Apple-App-Info" = "com.apple.gs.xcode.auth";
+    "X-Apple-GS-Token" = "AAAABLwIAAAAAGlMlYgRDWdzLnhjb2RlLmF1dGi9AKqeJ1V6rge2CtFPQgh3QIh/zwHHP0bJDOLBov9NcyAmxogn4L25z2FN3nLUebOH8cdeWgLTZX18Z/F6lDwKIJuvEnikQDUQxLXIu2kZVbs6YVXu9XyrH3yeWY7J4ofo+rcVli33xpe7jB17xE3g/kr/WCvH";
+    "X-Apple-I-Identity-Id" = "000470-08-eb32fe8a-ce22-4f99-9dd9-c74676452461";
+    "X-HTTP-Method-Override" = GET;
+    "X-MMe-Client-Info" = "<Mac16,10> <macOS;15.6;24G84> <com.apple.AuthKit/1 (com.apple.dt.Xcode/24553)>";
+    "X-Mme-Device-Id" = "22FD577B-8CC2-56B6-94B3-76229429350E";
+    "X-Xcode-Version" = "26.2 (17C52)";
+}
+
+Payload:
+{"urlEncodedQueryParams":"teamId=BPP6C2H9R2&filter%5BserialNumber%5D=6256F933827512A490B4646C67D44A70&limit=200"}
+2025-12-25 22:49:58 +0000  Received response for FA190AE4-DAD5-473E-B091-9CACF59026F9 @ <https://developerservices2.apple.com/services/v1/certificates>. Code = 0
+2025-12-25 22:49:58 +0000  Response payload: {
+  "data" : [ {
+    "type" : "certificates",
+    "id" : "KG44V9JT34",
+    "attributes" : {
+      "requesterEmail" : "mplus.sw@gmail.com",
+      "serialNumber" : "6256F933827512A490B4646C67D44A70",
+      "certificateContent" : "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",
+      "displayName" : "SUNWOOK KIM",
+      "requesterLastName" : "KIM",
+      "csrContent" : null,
+      "machineName" : null,
+      "platform" : null,
+      "requesterFirstName" : "SUNWOOK",
+      "machineId" : null,
+      "name" : "Apple Distribution: SUNWOOK KIM",
+      "responseId" : "78110dd0-f283-4a01-bf4a-5f1d8c032f62",
+      "expirationDate" : "2026-12-25T01:35:48.000+00:00",
+      "certificateType" : "DISTRIBUTION_MANAGED"
+    },
+    "links" : {
+      "self" : "https://developerservices2.apple.com:443/services/v1/certificates/KG44V9JT34"
+    }
+  } ],
+  "links" : {
+    "self" : "https://developerservices2.apple.com:443/services/v1/certificates?filter%5BserialNumber%5D=6256F933827512A490B4646C67D44A70&limit=200"
+  },
+  "meta" : {
+    "paging" : {
+      "total" : 1,
+      "limit" : 200
+    }
+  }
+}
+
+2025-12-25 22:49:58 +0000  Sending request 311060EA-AE0B-46A6-A1E6-30B4F7500D24 to <https://developerservices3.apple.com/services/v1/batch> for session <DVTServicesAccountBasedSession: 0x6000016edb00; account='<DVTAppleIDBasedDeveloperAccount: 0x6000024272c0; username='mplus.sw@gmail.com'>'>.
+Method: POST
+
+Headers:
+{
+    Accept = "application/vnd.api+json";
+    "Accept-Encoding" = "gzip, deflate";
+    "Content-Length" = 488;
+    "Content-Type" = "application/vnd.api+json";
+    DSESSIONID = u7rvk30gaf275hi6m0f6m6tl62t9ripek6vk0c96id9l7447295;
+    "User-Agent" = Xcode;
+    "X-Apple-App-Info" = "com.apple.gs.xcode.auth";
+    "X-Apple-GS-Token" = "AAAABLwIAAAAAGlMlYgRDWdzLnhjb2RlLmF1dGi9AKqeJ1V6rge2CtFPQgh3QIh/zwHHP0bJDOLBov9NcyAmxogn4L25z2FN3nLUebOH8cdeWgLTZX18Z/F6lDwKIJuvEnikQDUQxLXIu2kZVbs6YVXu9XyrH3yeWY7J4ofo+rcVli33xpe7jB17xE3g/kr/WCvH";
+    "X-Apple-I-Identity-Id" = "000470-08-eb32fe8a-ce22-4f99-9dd9-c74676452461";
+    "X-MMe-Client-Info" = "<Mac16,10> <macOS;15.6;24G84> <com.apple.AuthKit/1 (com.apple.dt.Xcode/24553)>";
+    "X-Mme-Device-Id" = "22FD577B-8CC2-56B6-94B3-76229429350E";
+    "X-Xcode-Version" = "26.2 (17C52)";
+}
+
+Payload:
+{"data":{"type":"batch","attributes":{"resourceList":[{"data":{"type":"codeSignatures","attributes":{"name":"0","digestHash":"02EE7D8DE92250ADEDDC0C2F8A62C10CA4A51EF155C1E7C08E41D5B892E16FCA","teamId":"BPP6C2H9R2","cdHashSha256":"02EE7D8DE92250ADEDDC0C2F8A62C10CA4A51EF155C1E7C08E41D5B892E16FCA"},"relationships":{"certificate":{"data":{"type":"certificates","id":"KG44V9JT34"}},"bundleId":{"data":{"type":"bundleIds","id":"787F9X26BD"}}}}}],"teamId":"BPP6C2H9R2","resourceVersion":"1"}}}
+2025-12-25 22:50:00 +0000  Received response for 311060EA-AE0B-46A6-A1E6-30B4F7500D24 @ <https://developerservices3.apple.com/services/v1/batch>. Code = 0
+2025-12-25 22:50:00 +0000  Response payload: {
+  "data" : {
+    "type" : "batch",
+    "id" : "e7d224c2-71c3-4814-ac69-172965364ce1",
+    "attributes" : {
+      "responseId" : "e7d224c2-71c3-4814-ac69-172965364ce1",
+      "resourceList" : [ {
+        "type" : "codeSignatures",
+        "id" : "39962e17-746d-46b4-8ec4-035e296a9934",
+        "attributes" : {
+          "digestHash" : "02EE7D8DE92250ADEDDC0C2F8A62C10CA4A51EF155C1E7C08E41D5B892E16FCA",
+          "cdHashSha256" : "02EE7D8DE92250ADEDDC0C2F8A62C10CA4A51EF155C1E7C08E41D5B892E16FCA",
+          "signature" : "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",
+          "name" : "0",
+          "responseId" : "e7d224c2-71c3-4814-ac69-172965364ce1",
+          "cmsSignature" : "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",
+          "timestamp" : false
+        },
+        "relationships" : {
+          "bundleId" : {
+            "data" : {
+              "type" : "bundleIds",
+              "id" : "787F9X26BD"
+            },
+            "links" : {
+              "self" : {
+                "href" : "https://developerservices3.apple.com:443/services/v1/codeSignatures/39962e17-746d-46b4-8ec4-035e296a9934/relationships/bundleId"
+              },
+              "related" : {
+                "href" : "https://developerservices3.apple.com:443/services/v1/codeSignatures/39962e17-746d-46b4-8ec4-035e296a9934/bundleId"
+              }
+            }
+          },
+          "certificate" : {
+            "data" : {
+              "type" : "certificates",
+              "id" : "KG44V9JT34"
+            },
+            "links" : {
+              "self" : {
+                "href" : "https://developerservices3.apple.com:443/services/v1/codeSignatures/39962e17-746d-46b4-8ec4-035e296a9934/relationships/certificate"
+              },
+              "related" : {
+                "href" : "https://developerservices3.apple.com:443/services/v1/codeSignatures/39962e17-746d-46b4-8ec4-035e296a9934/certificate"
+              }
+            }
+          }
+        },
+        "links" : {
+          "self" : {
+            "href" : "https://developerservices3.apple.com:443/services/v1/codeSignatures/39962e17-746d-46b4-8ec4-035e296a9934"
+          }
+        }
+      } ],
+      "resourceVersion" : "1"
+    },
+    "links" : {
+      "self" : "https://developerservices3.apple.com:443/services/v1/batch/e7d224c2-71c3-4814-ac69-172965364ce1"
+    }
+  },
+  "links" : {
+    "self" : "https://developerservices3.apple.com:443/services/v1/batch"
+  }
+}
+
+2025-12-25 22:50:00 +0000  Remote signature for /var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/Root/Payload/RVRemocon.app (arch: arm64) is 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
+2025-12-25 22:50:00 +0000  invoking codesign: <NSConcreteTask: 0x600009a12850; launchPath='/usr/bin/codesign', arguments='(
+    "-e",
+    "--edit-cms",
+    "/var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/cms~~~zkTNnK",
+    "/var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/Root/Payload/RVRemocon.app"
+)'>
+2025-12-25 22:50:00 +0000  codesign output: 
+2025-12-25 22:50:00 +0000  Processing step: IDEDistributionZipODRItemStep
+2025-12-25 22:50:00 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-12-25 22:50:00 +0000  Processing step: IDEDistributionCreateIPAStep
+2025-12-25 22:50:00 +0000  Running /usr/bin/ditto '-V' '-c' '-k' '--norsrc' '/var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/Root' '/var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/Packages/RVRemocon.ipa'
+2025-12-25 22:50:00 +0000  >>> Copying /var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/Root 
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/rbutton_up_on_x2.png ... 
+2025-12-25 22:50:00 +0000  21699 bytes for ./Payload/RVRemocon.app/rbutton_up_on_x2.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/caravan_mini.png ... 
+2025-12-25 22:50:00 +0000  28195 bytes for ./Payload/RVRemocon.app/caravan_mini.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/_CodeSignature/CodeResources ... 
+2025-12-25 22:50:00 +0000  26267 bytes for ./Payload/RVRemocon.app/_CodeSignature/CodeResources
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/down_arrow.png ... 
+2025-12-25 22:50:00 +0000  490 bytes for ./Payload/RVRemocon.app/down_arrow.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/ic_auto_actu_on.png ... 
+2025-12-25 22:50:00 +0000  1514 bytes for ./Payload/RVRemocon.app/ic_auto_actu_on.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/actu_up2.png ... 
+2025-12-25 22:50:00 +0000  10528 bytes for ./Payload/RVRemocon.app/actu_up2.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/jog_center.png ... 
+2025-12-25 22:50:00 +0000  7208 bytes for ./Payload/RVRemocon.app/jog_center.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/rbutton_down_on_x2.png ... 
+2025-12-25 22:50:00 +0000  21973 bytes for ./Payload/RVRemocon.app/rbutton_down_on_x2.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/actu_down.png ... 
+2025-12-25 22:50:00 +0000  10516 bytes for ./Payload/RVRemocon.app/actu_down.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/rbutton_up_on_x1.png ... 
+2025-12-25 22:50:00 +0000  15289 bytes for ./Payload/RVRemocon.app/rbutton_up_on_x1.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/speed_4.png ... 
+2025-12-25 22:50:00 +0000  1316 bytes for ./Payload/RVRemocon.app/speed_4.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/stop.png ... 
+2025-12-25 22:50:00 +0000  2655 bytes for ./Payload/RVRemocon.app/stop.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/caravan_newx1.png ... 
+2025-12-25 22:50:00 +0000  14616 bytes for ./Payload/RVRemocon.app/caravan_newx1.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/actu_up.png ... 
+2025-12-25 22:50:00 +0000  10582 bytes for ./Payload/RVRemocon.app/actu_up.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/rautobutton_act.png ... 
+2025-12-25 22:50:00 +0000  10171 bytes for ./Payload/RVRemocon.app/rautobutton_act.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/front_arrow.png ... 
+2025-12-25 22:50:00 +0000  1105 bytes for ./Payload/RVRemocon.app/front_arrow.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/rbutton_down_on_x1.png ... 
+2025-12-25 22:50:00 +0000  15424 bytes for ./Payload/RVRemocon.app/rbutton_down_on_x1.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/zog_back.png ... 
+2025-12-25 22:50:00 +0000  444343 bytes for ./Payload/RVRemocon.app/zog_back.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/speed_1.png ... 
+2025-12-25 22:50:00 +0000  825 bytes for ./Payload/RVRemocon.app/speed_1.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/introImageWhite.png ... 
+2025-12-25 22:50:00 +0000  3876639 bytes for ./Payload/RVRemocon.app/introImageWhite.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/rbutton_up.png ... 
+2025-12-25 22:50:00 +0000  71523 bytes for ./Payload/RVRemocon.app/rbutton_up.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_leveler_act_x1.png ... 
+2025-12-25 22:50:00 +0000  5320 bytes for ./Payload/RVRemocon.app/button_leveler_act_x1.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/speed_2.png ... 
+2025-12-25 22:50:00 +0000  1229 bytes for ./Payload/RVRemocon.app/speed_2.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_down.png ... 
+2025-12-25 22:50:00 +0000  3158 bytes for ./Payload/RVRemocon.app/button_down.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_leveler_act_x2.png ... 
+2025-12-25 22:50:00 +0000  4089 bytes for ./Payload/RVRemocon.app/button_leveler_act_x2.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_up_on.png ... 
+2025-12-25 22:50:00 +0000  1778 bytes for ./Payload/RVRemocon.app/button_up_on.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/up_arrow_r.png ... 
+2025-12-25 22:50:00 +0000  1270 bytes for ./Payload/RVRemocon.app/up_arrow_r.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/speed_3.png ... 
+2025-12-25 22:50:00 +0000  1454 bytes for ./Payload/RVRemocon.app/speed_3.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_leveler_m_x1.png ... 
+2025-12-25 22:50:00 +0000  3229 bytes for ./Payload/RVRemocon.app/button_leveler_m_x1.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/jog_black.png ... 
+2025-12-25 22:50:00 +0000  17128 bytes for ./Payload/RVRemocon.app/jog_black.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_leveler_m_on.png ... 
+2025-12-25 22:50:00 +0000  7446 bytes for ./Payload/RVRemocon.app/button_leveler_m_on.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/AppIcon60x60@2x.png ... 
+2025-12-25 22:50:00 +0000  42169 bytes for ./Payload/RVRemocon.app/AppIcon60x60@2x.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_leveler_m_on_x2.png ... 
+2025-12-25 22:50:00 +0000  5648 bytes for ./Payload/RVRemocon.app/button_leveler_m_on_x2.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/iconImage.jpg ... 
+2025-12-25 22:50:00 +0000  320716 bytes for ./Payload/RVRemocon.app/iconImage.jpg
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/jog_down.png ... 
+2025-12-25 22:50:00 +0000  7432 bytes for ./Payload/RVRemocon.app/jog_down.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/iconImage.png ... 
+2025-12-25 22:50:00 +0000  2573524 bytes for ./Payload/RVRemocon.app/iconImage.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/RVRemocon ... 
+2025-12-25 22:50:00 +0000  276960 bytes for ./Payload/RVRemocon.app/RVRemocon
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_leveler_m_x2.png ... 
+2025-12-25 22:50:00 +0000  4604 bytes for ./Payload/RVRemocon.app/button_leveler_m_x2.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/rautobutton_on.png ... 
+2025-12-25 22:50:00 +0000  12205 bytes for ./Payload/RVRemocon.app/rautobutton_on.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/caravan_back.png ... 
+2025-12-25 22:50:00 +0000  3242 bytes for ./Payload/RVRemocon.app/caravan_back.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/rear_arrow.png ... 
+2025-12-25 22:50:00 +0000  1101 bytes for ./Payload/RVRemocon.app/rear_arrow.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_leveler_m_on_x1.png ... 
+2025-12-25 22:50:00 +0000  4373 bytes for ./Payload/RVRemocon.app/button_leveler_m_on_x1.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/DeviceSelect.storyboardc/DeviceSelectViewController.nib ... 
+2025-12-25 22:50:00 +0000  1072 bytes for ./Payload/RVRemocon.app/DeviceSelect.storyboardc/DeviceSelectViewController.nib
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/DeviceSelect.storyboardc/Y6W-OH-hqX-view-5EZ-qb-Rvc.nib ... 
+2025-12-25 22:50:00 +0000  6791 bytes for ./Payload/RVRemocon.app/DeviceSelect.storyboardc/Y6W-OH-hqX-view-5EZ-qb-Rvc.nib
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/DeviceSelect.storyboardc/Info.plist ... 
+2025-12-25 22:50:00 +0000  177 bytes for ./Payload/RVRemocon.app/DeviceSelect.storyboardc/Info.plist
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/speed_1d.png ... 
+2025-12-25 22:50:00 +0000  815 bytes for ./Payload/RVRemocon.app/speed_1d.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/logo_600x1024.png ... 
+2025-12-25 22:50:00 +0000  7849 bytes for ./Payload/RVRemocon.app/logo_600x1024.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_leveler_m_act_x2.png ... 
+2025-12-25 22:50:00 +0000  4008 bytes for ./Payload/RVRemocon.app/button_leveler_m_act_x2.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/rbutton_up_on.png ... 
+2025-12-25 22:50:00 +0000  70157 bytes for ./Payload/RVRemocon.app/rbutton_up_on.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/rbutton_up_x1.png ... 
+2025-12-25 22:50:00 +0000  15300 bytes for ./Payload/RVRemocon.app/rbutton_up_x1.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/zog.png ... 
+2025-12-25 22:50:00 +0000  25665 bytes for ./Payload/RVRemocon.app/zog.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/SALCtrlViewController.nib ... 
+2025-12-25 22:50:00 +0000  1062 bytes for ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/SALCtrlViewController.nib
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/7NG-dN-omo-view-Feg-5l-OX0.nib ... 
+2025-12-25 22:50:00 +0000  13191 bytes for ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/7NG-dN-omo-view-Feg-5l-OX0.nib
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/MainControlViewController.nib ... 
+2025-12-25 22:50:00 +0000  1070 bytes for ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/MainControlViewController.nib
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/RVMCtrlViewController.nib ... 
+2025-12-25 22:50:00 +0000  1062 bytes for ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/RVMCtrlViewController.nib
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib ... 
+2025-12-25 22:50:00 +0000  7357 bytes for ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/MXT-LM-Egx-view-d76-FL-GZ0.nib ... 
+2025-12-25 22:50:00 +0000  8423 bytes for ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/MXT-LM-Egx-view-d76-FL-GZ0.nib
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/Info.plist ... 
+2025-12-25 22:50:00 +0000  339 bytes for ./Payload/RVRemocon.app/Base.lproj/Main.storyboardc/Info.plist
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib ... 
+2025-12-25 22:50:00 +0000  1606 bytes for ./Payload/RVRemocon.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2025-12-25 22:50:00 +0000  924 bytes for ./Payload/RVRemocon.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/Base.lproj/LaunchScreen.storyboardc/Info.plist ... 
+2025-12-25 22:50:00 +0000  258 bytes for ./Payload/RVRemocon.app/Base.lproj/LaunchScreen.storyboardc/Info.plist
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/down_arrow_r.png ... 
+2025-12-25 22:50:00 +0000  1273 bytes for ./Payload/RVRemocon.app/down_arrow_r.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_leveler_m_act_x1.png ... 
+2025-12-25 22:50:00 +0000  3702 bytes for ./Payload/RVRemocon.app/button_leveler_m_act_x1.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/rbutton_up_x2.png ... 
+2025-12-25 22:50:00 +0000  21851 bytes for ./Payload/RVRemocon.app/rbutton_up_x2.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/auto_button.png ... 
+2025-12-25 22:50:00 +0000  2489 bytes for ./Payload/RVRemocon.app/auto_button.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/bg_600x1024.png ... 
+2025-12-25 22:50:00 +0000  175977 bytes for ./Payload/RVRemocon.app/bg_600x1024.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/actu_down2.png ... 
+2025-12-25 22:50:00 +0000  11612 bytes for ./Payload/RVRemocon.app/actu_down2.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_leveler_m_act.png ... 
+2025-12-25 22:50:00 +0000  4021 bytes for ./Payload/RVRemocon.app/button_leveler_m_act.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/speed_max.png ... 
+2025-12-25 22:50:00 +0000  4283 bytes for ./Payload/RVRemocon.app/speed_max.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/speed_2d.png ... 
+2025-12-25 22:50:00 +0000  1182 bytes for ./Payload/RVRemocon.app/speed_2d.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/jog_up.png ... 
+2025-12-25 22:50:00 +0000  6266 bytes for ./Payload/RVRemocon.app/jog_up.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/Assets.car ... 
+2025-12-25 22:50:00 +0000  4284680 bytes for ./Payload/RVRemocon.app/Assets.car
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/button_up.png ... 
+2025-12-25 22:50:00 +0000  1689 bytes for ./Payload/RVRemocon.app/button_up.png
+2025-12-25 22:50:00 +0000  copying file ./Payload/RVRemocon.app/iconImage 4.png ... 
+2025-12-25 22:50:01 +0000  3093227 bytes for ./Payload/RVRemocon.app/iconImage 4.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/AppIcon76x76@2x~ipad.png ... 
+2025-12-25 22:50:01 +0000  65600 bytes for ./Payload/RVRemocon.app/AppIcon76x76@2x~ipad.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/auto_button_on.png ... 
+2025-12-25 22:50:01 +0000  2705 bytes for ./Payload/RVRemocon.app/auto_button_on.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/iconImage.xcf ... 
+2025-12-25 22:50:01 +0000  3505575 bytes for ./Payload/RVRemocon.app/iconImage.xcf
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/button_leveler.png ... 
+2025-12-25 22:50:01 +0000  9138 bytes for ./Payload/RVRemocon.app/button_leveler.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/speed_3d.png ... 
+2025-12-25 22:50:01 +0000  1358 bytes for ./Payload/RVRemocon.app/speed_3d.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/rbutton_down.png ... 
+2025-12-25 22:50:01 +0000  71483 bytes for ./Payload/RVRemocon.app/rbutton_down.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/introImage.png ... 
+2025-12-25 22:50:01 +0000  4442246 bytes for ./Payload/RVRemocon.app/introImage.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/down_arrow_l.png ... 
+1289 bytes for ./Payload/RVRemocon.app/down_arrow_l.png
+copying file ./Payload/RVRemocon.app/caravan_new.png ... 
+2025-12-25 22:50:01 +0000  79872 bytes for ./Payload/RVRemocon.app/caravan_new.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/rautobutton.png ... 
+2025-12-25 22:50:01 +0000  14591 bytes for ./Payload/RVRemocon.app/rautobutton.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/button_leveler_m.png ... 
+2025-12-25 22:50:01 +0000  6092 bytes for ./Payload/RVRemocon.app/button_leveler_m.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/speed_4d.png ... 
+2025-12-25 22:50:01 +0000  1215 bytes for ./Payload/RVRemocon.app/speed_4d.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/button_leveler_act.png ... 
+2025-12-25 22:50:01 +0000  2775 bytes for ./Payload/RVRemocon.app/button_leveler_act.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/up_arrow.png ... 
+2025-12-25 22:50:01 +0000  3846 bytes for ./Payload/RVRemocon.app/up_arrow.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/rbutton_down_x2.png ... 
+2025-12-25 22:50:01 +0000  21797 bytes for ./Payload/RVRemocon.app/rbutton_down_x2.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/Configuration.storyboardc/ConfigViewController.nib ... 
+2025-12-25 22:50:01 +0000  1060 bytes for ./Payload/RVRemocon.app/Configuration.storyboardc/ConfigViewController.nib
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/Configuration.storyboardc/Y6W-OH-hqX-view-5EZ-qb-Rvc.nib ... 
+2025-12-25 22:50:01 +0000  12360 bytes for ./Payload/RVRemocon.app/Configuration.storyboardc/Y6W-OH-hqX-view-5EZ-qb-Rvc.nib
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/Configuration.storyboardc/Info.plist ... 
+2025-12-25 22:50:01 +0000  165 bytes for ./Payload/RVRemocon.app/Configuration.storyboardc/Info.plist
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/rbutton_down_on.png ... 
+2025-12-25 22:50:01 +0000  70848 bytes for ./Payload/RVRemocon.app/rbutton_down_on.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/rbutton_down_x1.png ... 
+2025-12-25 22:50:01 +0000  15266 bytes for ./Payload/RVRemocon.app/rbutton_down_x1.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/embedded.mobileprovision ... 
+2025-12-25 22:50:01 +0000  12365 bytes for ./Payload/RVRemocon.app/embedded.mobileprovision
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/rotate_cw.png ... 
+2025-12-25 22:50:01 +0000  1909 bytes for ./Payload/RVRemocon.app/rotate_cw.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/caravan_side.png ... 
+2025-12-25 22:50:01 +0000  10147 bytes for ./Payload/RVRemocon.app/caravan_side.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/button_leveler_on_x1.png ... 
+2025-12-25 22:50:01 +0000  5975 bytes for ./Payload/RVRemocon.app/button_leveler_on_x1.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/button_leveler_x1.png ... 
+2025-12-25 22:50:01 +0000  4945 bytes for ./Payload/RVRemocon.app/button_leveler_x1.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/button_leveler_on.png ... 
+2025-12-25 22:50:01 +0000  4458 bytes for ./Payload/RVRemocon.app/button_leveler_on.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/Info.plist ... 
+2025-12-25 22:50:01 +0000  1905 bytes for ./Payload/RVRemocon.app/Info.plist
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/rotate_cc.png ... 
+2025-12-25 22:50:01 +0000  1904 bytes for ./Payload/RVRemocon.app/rotate_cc.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/stop2.png ... 
+2025-12-25 22:50:01 +0000  2659 bytes for ./Payload/RVRemocon.app/stop2.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/caravan.png ... 
+2025-12-25 22:50:01 +0000  2544 bytes for ./Payload/RVRemocon.app/caravan.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/ic_auto_actu_off.png ... 
+2025-12-25 22:50:01 +0000  1338 bytes for ./Payload/RVRemocon.app/ic_auto_actu_off.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/PkgInfo ... 
+2025-12-25 22:50:01 +0000  8 bytes for ./Payload/RVRemocon.app/PkgInfo
+copying file ./Payload/RVRemocon.app/button_down_on.png ... 
+2025-12-25 22:50:01 +0000  3486 bytes for ./Payload/RVRemocon.app/button_down_on.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/button_leveler_on_x2.png ... 
+2025-12-25 22:50:01 +0000  5703 bytes for ./Payload/RVRemocon.app/button_leveler_on_x2.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/button_leveler_x2.png ... 
+2025-12-25 22:50:01 +0000  6746 bytes for ./Payload/RVRemocon.app/button_leveler_x2.png
+2025-12-25 22:50:01 +0000  copying file ./Payload/RVRemocon.app/up_arrow_l.png ... 
+2025-12-25 22:50:01 +0000  1287 bytes for ./Payload/RVRemocon.app/up_arrow_l.png
+2025-12-25 22:50:01 +0000  /usr/bin/ditto exited with 0
+2025-12-25 22:50:01 +0000  Processing step: IDEDistributionAppStoreInformationStep
+2025-12-25 22:50:01 +0000  Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2025-12-25 22:50:01 +0000  Processing step: IDEDistributionGenerateProcessedDistributionItems
+2025-12-25 22:50:01 +0000  IDEDistributionItem init <DVTFilePath:0x60000982b720:'/var/folders/b_/2dmm9lgj3111_3qxhzmg3wcr0000gn/T/XcodeDistPipeline.~~~a0fjp8/Root/Payload/RVRemocon.app'>
+2025-12-25 22:50:01 +0000  Processing step: IDEDistributionCreateManifestStep

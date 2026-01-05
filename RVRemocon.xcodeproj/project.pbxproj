@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
@@ -63,24 +63,18 @@
 /* Begin PBXFrameworksBuildPhase section */
 		3C7F6F922E3D85D1004F8EB7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3C7F6FA82E3D85D2004F8EB7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3C7F6FB22E3D85D2004F8EB7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -118,14 +112,10 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				3C7F6F972E3D85D1004F8EB7 /* RVRemocon */,
 			);
 			name = RVRemocon;
-			packageProductDependencies = (
-			);
 			productName = RVRemocon;
 			productReference = 3C7F6F952E3D85D1004F8EB7 /* RVRemocon.app */;
 			productType = "com.apple.product-type.application";
@@ -147,8 +137,6 @@
 				3C7F6FAE2E3D85D2004F8EB7 /* RVRemoconTests */,
 			);
 			name = RVRemoconTests;
-			packageProductDependencies = (
-			);
 			productName = RVRemoconTests;
 			productReference = 3C7F6FAB2E3D85D2004F8EB7 /* RVRemoconTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -170,8 +158,6 @@
 				3C7F6FB82E3D85D2004F8EB7 /* RVRemoconUITests */,
 			);
 			name = RVRemoconUITests;
-			packageProductDependencies = (
-			);
 			productName = RVRemoconUITests;
 			productReference = 3C7F6FB52E3D85D2004F8EB7 /* RVRemoconUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -208,7 +194,7 @@
 			);
 			mainGroup = 3C7F6F8C2E3D85D1004F8EB7;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 3C7F6F962E3D85D1004F8EB7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -223,48 +209,36 @@
 /* Begin PBXResourcesBuildPhase section */
 		3C7F6F932E3D85D1004F8EB7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3C7F6FA92E3D85D2004F8EB7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3C7F6FB32E3D85D2004F8EB7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3C7F6F912E3D85D1004F8EB7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3C7F6FA72E3D85D2004F8EB7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3C7F6FB12E3D85D2004F8EB7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -282,14 +256,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		3C7F6FBF2E3D85D2004F8EB7 /* Debug */ = {
+		3C7F6FBF2E3D85D2004F8EB7 /* Debug configuration for PBXNativeTarget "RVRemocon" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = BPP6C2H9R2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RVRemocon/Info.plist;
@@ -306,23 +280,27 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "mplus.sw-gmail.com";
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "mplus.sw-gmail.com.rvremocon";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		3C7F6FC02E3D85D2004F8EB7 /* Release */ = {
+		3C7F6FC02E3D85D2004F8EB7 /* Release configuration for PBXNativeTarget "RVRemocon" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = BPP6C2H9R2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RVRemocon/Info.plist;
@@ -339,16 +317,20 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "mplus.sw-gmail.com";
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "mplus.sw-gmail.com.rvremocon";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		3C7F6FC12E3D85D2004F8EB7 /* Debug */ = {
+		3C7F6FC12E3D85D2004F8EB7 /* Debug configuration for PBXProject "RVRemocon" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -413,7 +395,7 @@
 			};
 			name = Debug;
 		};
-		3C7F6FC22E3D85D2004F8EB7 /* Release */ = {
+		3C7F6FC22E3D85D2004F8EB7 /* Release configuration for PBXProject "RVRemocon" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -471,7 +453,7 @@
 			};
 			name = Release;
 		};
-		3C7F6FC42E3D85D2004F8EB7 /* Debug */ = {
+		3C7F6FC42E3D85D2004F8EB7 /* Debug configuration for PBXNativeTarget "RVRemoconTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -490,7 +472,7 @@
 			};
 			name = Debug;
 		};
-		3C7F6FC52E3D85D2004F8EB7 /* Release */ = {
+		3C7F6FC52E3D85D2004F8EB7 /* Release configuration for PBXNativeTarget "RVRemoconTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -509,7 +491,7 @@
 			};
 			name = Release;
 		};
-		3C7F6FC72E3D85D2004F8EB7 /* Debug */ = {
+		3C7F6FC72E3D85D2004F8EB7 /* Debug configuration for PBXNativeTarget "RVRemoconUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -526,7 +508,7 @@
 			};
 			name = Debug;
 		};
-		3C7F6FC82E3D85D2004F8EB7 /* Release */ = {
+		3C7F6FC82E3D85D2004F8EB7 /* Release configuration for PBXNativeTarget "RVRemoconUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -549,37 +531,33 @@
 		3C7F6F902E3D85D1004F8EB7 /* Build configuration list for PBXProject "RVRemocon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3C7F6FC12E3D85D2004F8EB7 /* Debug */,
-				3C7F6FC22E3D85D2004F8EB7 /* Release */,
+				3C7F6FC12E3D85D2004F8EB7 /* Debug configuration for PBXProject "RVRemocon" */,
+				3C7F6FC22E3D85D2004F8EB7 /* Release configuration for PBXProject "RVRemocon" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		3C7F6FBE2E3D85D2004F8EB7 /* Build configuration list for PBXNativeTarget "RVRemocon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3C7F6FBF2E3D85D2004F8EB7 /* Debug */,
-				3C7F6FC02E3D85D2004F8EB7 /* Release */,
+				3C7F6FBF2E3D85D2004F8EB7 /* Debug configuration for PBXNativeTarget "RVRemocon" */,
+				3C7F6FC02E3D85D2004F8EB7 /* Release configuration for PBXNativeTarget "RVRemocon" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		3C7F6FC32E3D85D2004F8EB7 /* Build configuration list for PBXNativeTarget "RVRemoconTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3C7F6FC42E3D85D2004F8EB7 /* Debug */,
-				3C7F6FC52E3D85D2004F8EB7 /* Release */,
+				3C7F6FC42E3D85D2004F8EB7 /* Debug configuration for PBXNativeTarget "RVRemoconTests" */,
+				3C7F6FC52E3D85D2004F8EB7 /* Release configuration for PBXNativeTarget "RVRemoconTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		3C7F6FC62E3D85D2004F8EB7 /* Build configuration list for PBXNativeTarget "RVRemoconUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3C7F6FC72E3D85D2004F8EB7 /* Debug */,
-				3C7F6FC82E3D85D2004F8EB7 /* Release */,
+				3C7F6FC72E3D85D2004F8EB7 /* Debug configuration for PBXNativeTarget "RVRemoconUITests" */,
+				3C7F6FC82E3D85D2004F8EB7 /* Release configuration for PBXNativeTarget "RVRemoconUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

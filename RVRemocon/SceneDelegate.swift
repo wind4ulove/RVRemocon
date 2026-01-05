@@ -38,26 +38,59 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        print("🟢 Scene 활성")
+        NotificationCenter.default.post(name: .sceneDidBecomeActive, object: nil)
     }
+//    func sceneDidBecomeActive(_ scene: UIScene) {
+//        // Called when the scene has moved from an inactive state to an active state.
+//        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.        
+//        print("🟢 Scene 활성")
+//
+//            guard
+//                let windowScene = scene as? UIWindowScene,
+//                let window = windowScene.windows.first,
+//                let rootVC = window.rootViewController
+//            else { return }
+//
+//            if let nav = rootVC as? UINavigationController,
+//               let mainVC = nav.topViewController as? MainControlViewController {
+//
+//                print("✅ 메인 화면 활성 — BLE 재연결")
+//                mainVC.bleReconnect()
+//            }
+//    }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
+        print("🔴 Scene 비활성 — BLE 끊기")
+        BluetoothManager.shared.disconnect()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        
+//        showLoadingOverlay()
+//        if BluetoothManager.shared.isConnected == false {
+//            print("⚠️ 블루투스 연결 안됨 — 재검색 시작")
+//            checkBluetoothConnection()
+//        } else {
+//            print("✅ 블루투스 연결됨 — 기존 연결 유지")
+//        }
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        print("📴 Scene 백그라운드 — BLE 끊기")
+        BluetoothManager.shared.disconnect()
     }
-
 
 }
 
+import Foundation
+
+extension Notification.Name {
+    static let sceneDidBecomeActive =
+        Notification.Name("sceneDidBecomeActive")
+}
