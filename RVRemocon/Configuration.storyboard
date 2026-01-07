@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="QzX-we-JMd">
-                                <rect key="frame" x="5" y="50" width="393" height="500"/>
+                                <rect key="frame" x="5" y="40" width="393" height="450"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="연결설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d6E-TE-tOz">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="25"/>
@@ -59,10 +59,10 @@
                                         <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XG7-Vl-QXo">
-                                        <rect key="frame" x="0.0" y="87.333333333333343" width="393" height="333.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="87.333333333333343" width="393" height="283.33333333333326"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="lhU-uX-Qjj">
-                                                <rect key="frame" x="2" y="8" width="192" height="76"/>
+                                                <rect key="frame" x="2" y="8.0000000000000142" width="192" height="76"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RV MOVER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MtW-aS-AIS">
                                                         <rect key="frame" x="0.0" y="0.0" width="192" height="24"/>
@@ -80,7 +80,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NUV-GC-C2g">
-                                                <rect key="frame" x="199" y="8" width="192" height="76"/>
+                                                <rect key="frame" x="199" y="8.0000000000000142" width="192" height="76"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEa-5M-pbY">
                                                         <rect key="frame" x="0.0" y="0.0" width="192" height="24"/>
@@ -104,7 +104,7 @@
                                         <edgeInsets key="layoutMargins" top="8" left="2" bottom="8" right="2"/>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인터페이스 설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puN-ri-ozB">
-                                        <rect key="frame" x="0.0" y="421.66666666666669" width="393" height="25"/>
+                                        <rect key="frame" x="0.0" y="371.66666666666669" width="393" height="25"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -113,13 +113,13 @@
                                         <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RV MOVER Control" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8P-cN-hm2">
-                                        <rect key="frame" x="0.0" y="447.66666666666669" width="393" height="20.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="397.66666666666669" width="393" height="20.333333333333314"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="viY-7j-jFl">
-                                        <rect key="frame" x="0.0" y="469" width="393" height="32"/>
+                                        <rect key="frame" x="0.0" y="419" width="393" height="32"/>
                                         <segments>
                                             <segment title="방향버튼"/>
                                             <segment title="한손조이스틱"/>
@@ -127,7 +127,7 @@
                                     </segmentedControl>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="78s-GL-jsY"/>
+                                    <constraint firstAttribute="height" constant="450" id="78s-GL-jsY"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="100" id="Ilx-jp-nME">
@@ -156,7 +156,7 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="QzX-we-JMd" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="50" id="IjU-7B-KVS"/>
+                            <constraint firstItem="QzX-we-JMd" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="40" id="IjU-7B-KVS"/>
                             <constraint firstAttribute="trailing" secondItem="QzX-we-JMd" secondAttribute="trailing" constant="5" id="byS-Dn-hMP"/>
                             <constraint firstItem="QzX-we-JMd" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="5" id="vXA-ca-UgY"/>
                         </constraints>
@@ -180,13 +180,13 @@
         <image name="antenna.radiowaves.left.and.right" catalog="system" width="128" height="111"/>
         <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="104"/>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.38039215686274508" green="0.33333333333333331" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
