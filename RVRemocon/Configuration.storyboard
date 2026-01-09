@@ -59,7 +59,7 @@
                                         <size key="shadowOffset" width="1" height="1"/>
                                     </label>
                                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XG7-Vl-QXo">
-                                        <rect key="frame" x="0.0" y="87.333333333333343" width="393" height="283.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="87.333333333333329" width="393" height="254.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="lhU-uX-Qjj">
                                                 <rect key="frame" x="2" y="8.0000000000000142" width="192" height="76"/>
@@ -102,6 +102,20 @@
                                             <constraint firstAttribute="width" constant="393" id="fgK-Og-LT3"/>
                                         </constraints>
                                         <edgeInsets key="layoutMargins" top="8" left="2" bottom="8" right="2"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="1Mf-ju-6Ys">
+                                        <rect key="frame" x="0.0" y="342.66666666666669" width="393" height="28"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="초기화버튼표시" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvO-xz-EVX">
+                                                <rect key="frame" x="0.0" y="0.0" width="323" height="28"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PBL-UQ-0uP">
+                                                <rect key="frame" x="332" y="0.0" width="63" height="28"/>
+                                            </switch>
+                                        </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="인터페이스 설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puN-ri-ozB">
                                         <rect key="frame" x="0.0" y="371.66666666666669" width="393" height="25"/>
@@ -166,6 +180,7 @@
                     <connections>
                         <outlet property="controlModeSegment" destination="viY-7j-jFl" id="0MC-jO-k4F"/>
                         <outlet property="deviceNameLabel" destination="Q4g-vP-2fV" id="n79-EJ-WxK"/>
+                        <outlet property="managerSwitch" destination="PBL-UQ-0uP" id="PK9-xU-uRO"/>
                         <outlet property="rvmTableView" destination="3ks-gE-jZs" id="T4f-gV-YsD"/>
                         <outlet property="salTableView" destination="aaY-B6-FTd" id="a74-Sl-zPj"/>
                         <outlet property="stackView" destination="QzX-we-JMd" id="3Cw-YB-YaH"/>
@@ -180,13 +195,13 @@
         <image name="antenna.radiowaves.left.and.right" catalog="system" width="128" height="111"/>
         <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="104"/>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
-            <color red="0.38039215686274508" green="0.33333333333333331" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

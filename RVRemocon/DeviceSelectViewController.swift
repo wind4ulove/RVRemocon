@@ -9,7 +9,6 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var reloadButton: UIButton!
-    @IBOutlet weak var autoConnectSwitch: UISwitch!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     // MARK: - Loading Overlay
     private var loadingView: UIView?

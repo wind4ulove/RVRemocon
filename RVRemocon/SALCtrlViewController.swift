@@ -32,8 +32,8 @@ class SALCtrlViewController: UIViewController {
 //    @IBOutlet weak var btInit: UIButton!
 //    @IBOutlet weak var btSetView: UIButton!
     // TODO : btParking 기능 추가 필요!!!!!
-//    @IBOutlet weak var btParking: UIButton!
-//    @IBOutlet weak var btGReset: UIButton!
+    @IBOutlet weak var btParking: UIButton!
+    @IBOutlet weak var btGReset: UIButton!
     
     private var curLabels: [UILabel] = []
     private var maxLabels: [UILabel] = []
@@ -45,12 +45,14 @@ class SALCtrlViewController: UIViewController {
     
     private var iSALModel = 0
     private var isAutoFinish = false
-    private var isMode4 = false
     private var mCmdSelect: UInt8 = 0x30  // '0'
     private var mCmdMotion: UInt8 = 0x50 // 'P'
     
     private var motionCmdStopCount = 0
     private let STOP_MESSAGE_SENDNUM = 10
+    
+    private let CMD_PARKING = 0
+    private let CMD_GYRO_RESET = 1
     
     private var buttonStates: [ButtonType: Bool] = [:]
     
@@ -132,7 +134,7 @@ class SALCtrlViewController: UIViewController {
             default: break
             }
         }
-        
+
         buttonAutoMapping = ("rautobutton_on", "rautobutton_act", "rautobutton")
         
         for btn in (frontButtons + middleButtons + rearButtons + [btUp, btDown, btAuto]).compactMap({ $0 }) {
@@ -146,15 +148,64 @@ class SALCtrlViewController: UIViewController {
         }
 //        
 //        btAuto.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchUpInside)
+        btGReset.addTarget(self, action: #selector(gyroResetSend), for: .touchUpInside)
+        btParking.addTarget(self, action: #selector(parkingMode), for: .touchUpInside)
         
-        
-        
+        guard let parentVC = self.parent as? MainControlViewController else { return }
+        if !parentVC.isManagerMode {
+            btGReset.isHidden = true;
+        }
         //        btInit.addTarget(self, action: #selector(expertCommand(_:)), for: .touchUpInside)
         //        btGReset.addTarget(self, action: #selector(expertCommand(_:)), for: .touchUpInside)
         //        btSetView.addTarget(self, action: #selector(expertCommand(_:)), for: .touchUpInside)
         //        btParking.addTarget(self, action: #selector(expertCommand(_:)), for: .touchUpInside)
     }
     
+    @objc private func parkingMode() {
+        // 알림 → 장치 선택 화면
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: "Parking Mode",
+                message: "Parking 모드로 진입합니다.\n" +
+                        "(전개가 완료된 경우만 동작합니다.)",
+                preferredStyle: .alert
+            )
+
+            alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
+                self.sendOneSendCommand(self.CMD_PARKING)
+            })
+
+            self.present(alert, animated: true)
+        }
+    }
+    @objc private func gyroResetSend() {
+        // 알림 → 장치 선택 화면
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: "Gyro Sensor Reset",
+                message: "현재 상태를 0도로 설정하는 센서 영점 초기화를 진행하시겠습니까?\n" +
+                        "(수평이 맞지 않으면 동작에 문제가 생길수 있습니다.)",
+                preferredStyle: .alert
+            )
+
+            alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
+                self.sendOneSendCommand(self.CMD_GYRO_RESET)
+            })
+
+            self.present(alert, animated: true)
+        }
+    }
+    func sendOneSendCommand(_ Type : Int) {
+        checkCommand()
+        if Type == CMD_PARKING {
+            mCmdMotion = 0x4B   // 'K'
+        }
+        else if Type == CMD_GYRO_RESET {
+            mCmdSelect = 0xA7
+            mCmdMotion = 0x47   // 'G'
+        }
+        sendActionCommand(true)
+    }
     // MARK: - Auto End / Start
     private func autoEnd(_ message: String) {
         btAuto.tag = 1
@@ -418,9 +469,7 @@ class SALCtrlViewController: UIViewController {
     }
     
     // MARK: - Command Handling
-    private func sendActionCommand() {
-        let isOneSend = false
-   
+    private func sendActionCommand(_ isOneSend : Bool = false) {
         // 예: 명령어 데이터 생성
         let data = Data([
             UInt8(ascii: "S"),
@@ -441,8 +490,8 @@ class SALCtrlViewController: UIViewController {
             
             if isOneSend {
                 motionCmdStopCount = 0
-                mCmdSelect = 0x30
-                mCmdMotion = 0x50
+                mCmdSelect = 0x30   // '0'
+                mCmdMotion = 0x50   // 'P'
             }
         }
         
@@ -453,12 +502,7 @@ class SALCtrlViewController: UIViewController {
         updateCaravanMotion()
     }
     
-    private func mode4Change(_ setMode4: Bool) -> Data {
-        isMode4 = setMode4
-//        voltageLabel.text = setMode4 ? "전문가모드 ON" : ""
-        return Data([UInt8(ascii: "$"), setMode4 ? 0x34 : 0x30])
-    }
-    
+
     private func updateCaravanMotion() {
         // 이미지 회전
         guard let parentVC = self.parent as? MainControlViewController else { return }      

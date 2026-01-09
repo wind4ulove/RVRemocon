@@ -59,7 +59,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="ZHa-uF-t2x" firstAttribute="top" secondItem="tqg-ME-wH8" secondAttribute="top" constant="50" id="H89-GL-w0y"/>
+                                    <constraint firstItem="ZHa-uF-t2x" firstAttribute="top" secondItem="tqg-ME-wH8" secondAttribute="top" constant="40" id="H89-GL-w0y"/>
                                     <constraint firstAttribute="left" secondItem="ZHa-uF-t2x" secondAttribute="left" id="TcK-Xp-kWz"/>
                                     <constraint firstAttribute="right" secondItem="ZHa-uF-t2x" secondAttribute="right" id="sm6-Tc-sHO"/>
                                 </constraints>
@@ -90,10 +90,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="383" height="868"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="top" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="3Mf-L2-Vbu" userLabel="Stack View CTRL">
-                                <rect key="frame" x="0.0" y="154" width="383" height="498"/>
+                                <rect key="frame" x="0.0" y="154" width="383" height="601"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" id="1bA-CD-wxn">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="498"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="601"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWX-vn-WA1" userLabel="btTurnCW">
@@ -102,18 +102,18 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="rotate_cw"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Nbf-eA-0MH" userLabel="btLFront">
-                                                <rect key="frame" x="0.0" y="107" width="128" height="144"/>
+                                                <rect key="frame" x="0.0" y="137" width="128" height="154"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="up_arrow_l"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AF-uI-fOK" userLabel="btLBack">
-                                                <rect key="frame" x="0.0" y="254.66666666666669" width="127.66666666666667" height="144"/>
+                                                <rect key="frame" x="0.0" y="318.66666666666669" width="127.66666666666667" height="154"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="down_arrow_l"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoz-eD-cPy">
-                                                <rect key="frame" x="0.0" y="450" width="127.66666666666667" height="48"/>
+                                                <rect key="frame" x="0.0" y="553" width="127.66666666666667" height="48"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -121,18 +121,18 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalCentering" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="BZ7-8G-BWE">
-                                        <rect key="frame" x="127.66666666666666" y="0.0" width="127.66666666666666" height="498"/>
+                                        <rect key="frame" x="127.66666666666666" y="0.0" width="127.66666666666666" height="601"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMx-wO-MLQ" userLabel="btFront">
-                                                <rect key="frame" x="0.0" y="0.0" width="127.66666666666667" height="100.66666666666667"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="127.66666666666667" height="94"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="front_arrow"/>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="caravan_new" translatesAutoresizingMaskIntoConstraints="NO" id="qH1-x6-sDX">
-                                                <rect key="frame" x="0.0" y="165" width="127" height="169"/>
+                                                <rect key="frame" x="0.0" y="215.33333333333331" width="127.66666666666667" height="169"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="S2E-mt-b6r" userLabel="btBack">
-                                                <rect key="frame" x="0.0" y="397" width="127" height="101"/>
+                                                <rect key="frame" x="0.0" y="504" width="127" height="97"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="rear_arrow"/>
@@ -140,7 +140,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" id="iqT-9B-p6N">
-                                        <rect key="frame" x="255" y="0.0" width="128" height="498"/>
+                                        <rect key="frame" x="255" y="0.0" width="128" height="601"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bwh-jf-kFh" userLabel="btTurnCCW">
@@ -149,17 +149,17 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="rotate_cc"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iec-PW-Rwp" userLabel="btRFront">
-                                                <rect key="frame" x="0.0" y="107.33333333333331" width="127.66666666666667" height="144"/>
+                                                <rect key="frame" x="0.0" y="136.66666666666669" width="127.66666666666667" height="154"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="up_arrow_r"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPL-70-dB4" userLabel="btRBack">
-                                                <rect key="frame" x="0.0" y="254.66666666666669" width="127.66666666666667" height="144"/>
+                                                <rect key="frame" x="0.0" y="318.33333333333331" width="127.66666666666667" height="154"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="down_arrow_r"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="     " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSl-pm-pQ2">
-                                                <rect key="frame" x="0.0" y="450" width="127.66666666666667" height="48"/>
+                                                <rect key="frame" x="0.0" y="553" width="127.66666666666667" height="48"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -199,27 +199,27 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="frt-xq-iqG">
-                                <rect key="frame" x="0.0" y="670" width="383" height="193"/>
+                                <rect key="frame" x="0.0" y="773" width="383" height="90"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOj-2U-BBH" userLabel="btLActu">
-                                        <rect key="frame" x="0.0" y="59.666666666666636" width="114" height="73.666666666666686"/>
+                                        <rect key="frame" x="0.0" y="8.3333333333333712" width="114" height="73.666666666666671"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="actu_down"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zo4-Cv-9is" userLabel="btStop">
-                                        <rect key="frame" x="121.66666666666669" y="51.666666666666629" width="140" height="90"/>
+                                        <rect key="frame" x="121.66666666666669" y="0.0" width="140" height="90"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="stop" buttonSize="mini"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33h-82-Pwh" userLabel="btRActu">
-                                        <rect key="frame" x="269" y="59.666666666666636" width="114" height="73.666666666666686"/>
+                                        <rect key="frame" x="269" y="8.3333333333333712" width="114" height="73.666666666666671"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="actu_up"/>
                                     </button>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Irr-B2-RYB">
-                                <rect key="frame" x="8.0000000000000071" y="632" width="116.66666666666669" height="28"/>
+                                <rect key="frame" x="8" y="735" width="116.66666666666667" height="28"/>
                                 <subviews>
                                     <switch toolTip="AUTO ACTUATOR" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="leading" contentVerticalAlignment="center" on="YES" title="AUTO ACTUATOR" translatesAutoresizingMaskIntoConstraints="NO" id="8Bw-Mm-pQy" userLabel="autoActuCheck">
                                         <rect key="frame" x="0.0" y="0.0" width="63" height="28"/>
@@ -365,17 +365,38 @@
                                 <color key="textColor" systemColor="systemBlueColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="doP-tE-fTP">
+                                <rect key="frame" x="20.000000000000014" y="767.66666666666663" width="217.33333333333337" height="34.333333333333371"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOS-CI-i5A">
+                                        <rect key="frame" x="0.0" y="0.0" width="103.66666666666667" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="PARKING" titleAlignment="center"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRK-18-FF8">
+                                        <rect key="frame" x="113.66666666666666" y="0.0" width="103.66666666666666" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="GyroReset"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="znb-pH-VEk"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="doP-tE-fTP" firstAttribute="leading" secondItem="d76-FL-GZ0" secondAttribute="leading" constant="20" id="4Ng-ME-0wO"/>
+                            <constraint firstAttribute="bottom" secondItem="doP-tE-fTP" secondAttribute="bottom" constant="10" id="Nd4-po-azb"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="backImageView" destination="zXh-6z-Y36" id="Zur-zA-gg2"/>
                         <outlet property="btAuto" destination="ZZ5-7J-ebD" id="eAA-rj-Sv1"/>
                         <outlet property="btDown" destination="2s0-cJ-b3r" id="YtF-pZ-OSI"/>
+                        <outlet property="btGReset" destination="qRK-18-FF8" id="tJj-hE-zLS"/>
                         <outlet property="btLFront" destination="ejF-x2-TS8" id="BWZ-Ns-lG5"/>
                         <outlet property="btLMiddle" destination="muc-rI-VeR" id="Wuy-hb-6bW"/>
                         <outlet property="btLRear" destination="AGy-Pw-IID" id="YFI-Mh-9EF"/>
+                        <outlet property="btParking" destination="dOS-CI-i5A" id="aCx-N1-pcl"/>
                         <outlet property="btRFront" destination="i8d-90-pQY" id="eqa-zQ-tSm"/>
                         <outlet property="btRMiddle" destination="xVA-Iw-hbG" id="V9J-xI-25T"/>
                         <outlet property="btRRear" destination="cuV-I4-EBq" id="Mzv-ZK-qPw"/>
@@ -387,7 +408,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h7N-kY-BlV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1609.9236641221373" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="1608.8" y="-28.078817733990149"/>
         </scene>
     </scenes>
     <resources>
@@ -399,14 +420,14 @@
         <image name="caravan_mini" width="100" height="174"/>
         <image name="caravan_new" width="100" height="169"/>
         <image name="caravan_side" width="210" height="120"/>
-        <image name="down_arrow_l" width="86.666664123535156" height="130"/>
-        <image name="down_arrow_r" width="86.666664123535156" height="130"/>
-        <image name="front_arrow" width="86.666664123535156" height="86.666664123535156"/>
+        <image name="down_arrow_l" width="93.333335876464844" height="140"/>
+        <image name="down_arrow_r" width="93.333335876464844" height="140"/>
+        <image name="front_arrow" width="80" height="80"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="rautobutton" width="100" height="63"/>
         <image name="rbutton_down" width="80" height="76"/>
         <image name="rbutton_up" width="80" height="76"/>
-        <image name="rear_arrow" width="86.666664123535156" height="86.666664123535156"/>
+        <image name="rear_arrow" width="83.333335876464844" height="83.333335876464844"/>
         <image name="rotate_cc" width="50" height="50"/>
         <image name="rotate_cw" width="50" height="50"/>
         <image name="speed_1" width="35" height="35"/>
@@ -415,19 +436,19 @@
         <image name="speed_4" width="35" height="35"/>
         <image name="speed_max" width="35" height="38"/>
         <image name="stop" width="120" height="80"/>
-        <image name="up_arrow_l" width="86.666664123535156" height="130"/>
-        <image name="up_arrow_r" width="86.666664123535156" height="130"/>
+        <image name="up_arrow_l" width="93.333335876464844" height="139.66667175292969"/>
+        <image name="up_arrow_r" width="93.333335876464844" height="140"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tableBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

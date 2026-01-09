@@ -15,6 +15,9 @@ class MainControlViewController: UIViewController {
     private var salCtrlVC: SALCtrlViewController!
     private var currentChildVC: UIViewController?
     
+    private var textBuffer = ""
+    
+    public var isManagerMode: Bool = false
     public var FBAngle: CGFloat = 0
     public var LRAngle: CGFloat = 0
     public var ActFlag: UInt8 = 0
@@ -85,24 +88,41 @@ class MainControlViewController: UIViewController {
     }
     
     
-    /// 문자열 메시지와 바이너리 메시지를 구분
     func handleMixedMessage(_ data: Data) {
+
         if actMaskClearCount > 0 {
             actMaskClearCount -= 1
             if actMaskClearCount == 0 {
                 ActFlag = 0
             }
         }
-        
-        // 먼저 문자열로 변환 시도
-        if let str = String(data: data, encoding: .ascii),
-           str.hasPrefix("VOL:") {
-            parseVoltageAndAngle(str)
-        } else {
-            handleBinaryPacket(data)
+
+        // ASCII 문자열 변환 시도
+        if let chunk = String(data: data, encoding: .ascii) {
+
+            // 문자열 누적
+            textBuffer += chunk
+
+            // VOL: 로 시작하고 ; 로 끝나는 경우만 처리
+            if textBuffer.hasPrefix("VOL:"),
+               textBuffer.hasSuffix(";") {
+
+                parseVoltageAndAngle(textBuffer)
+                textBuffer.removeAll()   // 처리 후 버퍼 초기화
+                return
+            }
+
+            // VOL: 시작했지만 아직 끝이 안 난 경우 → 대기
+            if textBuffer.hasPrefix("VOL:") {
+                return
+            }
         }
-                
+
+        // 문자열이 아니거나 VOL 패킷이 아니면 바이너리 처리
+        textBuffer.removeAll()
+        handleBinaryPacket(data)
     }
+
 
     /// RmtFlag + ActMask 형태의 6바이트 패킷 처리
     func handleBinaryPacket(_ data: Data) {
@@ -193,14 +213,6 @@ class MainControlViewController: UIViewController {
         default:
             self.VoltageView.text  = "⚠️ 알 수 없는 플래그: \(flag)"
         }
-
-//        // 비트마스크 처리
-//        for bit in 0..<8 {
-//            let isOn = (ActFlag & (1 << bit)) != 0
-//            if isOn {
-//                print("   🔸 Bit \(bit) ON")
-//            }
-//        }
     }
 
     
@@ -236,7 +248,7 @@ class MainControlViewController: UIViewController {
         var scanAttempts = 0
         let maxAttempts = 5
         let scanInterval: TimeInterval = 2.0
-
+        
         func attemptScan() {
             let maxConnectTry = 2
             scanAttempts += 1
@@ -262,15 +274,21 @@ class MainControlViewController: UIViewController {
                         self.showDeviceNotFoundAlert()
                     }
                     else{
-                        self.btManager.connect(peripheral)                        
+                        scanAttempts = 0
+                        self.btManager.connect(peripheral)
                         self.btManager.onReceiveData = { data in
                             self.handleMixedMessage(data)
                         }
                     }
+
                 } else if scanAttempts < maxAttempts {
                     // 스캔 재시도
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + scanInterval) {
                     print("스캔 재시도")
-                    attemptScan()
+//                        self.btManager.stopScan()
+//                        attemptScan()
+//                    }
+                    self.btManager.startScan()
                 } else {
                     // 장치 못 찾음
                     self.btManager.stopScan()
@@ -295,6 +313,7 @@ class MainControlViewController: UIViewController {
 
     @objc private func onSceneActive() {
         print("✅ 메인 VC에서만 BLE 재연결")
+        connectTry = 0
         bleReconnect()
     }
     

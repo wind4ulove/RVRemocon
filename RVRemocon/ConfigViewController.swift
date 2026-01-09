@@ -11,7 +11,7 @@ import UIKit
 class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var deviceNameLabel: UILabel!
-    @IBOutlet weak var autoConnectSwitch: UISwitch!
+    @IBOutlet weak var managerSwitch: UISwitch!
 
     @IBOutlet weak var controlModeSegment: UISegmentedControl! // Joy / Jog / Dir
     
@@ -51,7 +51,21 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = .clear
     }
-    
+    @objc private func managerSwitchTouch() {
+        if managerSwitch.isOn {
+            // 알림 → 장치 선택 화면
+            DispatchQueue.main.async {
+                let alert = UIAlertController(
+                    title: "관리 모드 설정",
+                    message: "장비 초기화 버튼이 노출됩니다.\n" +
+                    "의도하지 않은 초기화 설정을 방지하기 위해 활성화 상태는 저장되지 않습니다.\n",
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "확인", style: .default))
+                self.present(alert, animated: true)
+            }
+        }
+    }
     private func initUI() {
         // 전달된 값 받기
         if let name = UserDefaults.standard.string(forKey: "tempDeviceName") {
@@ -60,7 +74,8 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
         if let addr = UserDefaults.standard.string(forKey: "tempDeviceAddr") {
             deviceAddress = addr
         }
-
+        managerSwitch.isOn = false
+        managerSwitch.addTarget(self, action: #selector(managerSwitchTouch), for: .touchUpInside)
         loadUserSettings()
     }
 
@@ -189,6 +204,7 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let mainVC = storyboard.instantiateViewController(withIdentifier: "MainControlViewController") as? MainControlViewController {
                 mainVC.modalPresentationStyle = .fullScreen
+                mainVC.isManagerMode = self.managerSwitch.isOn
                 self.present(mainVC, animated: true)
             }
         }
