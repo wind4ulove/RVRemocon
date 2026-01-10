@@ -29,9 +29,9 @@ class SALCtrlViewController: UIViewController {
     @IBOutlet weak var btUp: UIButton!
     @IBOutlet weak var btDown: UIButton!
     @IBOutlet weak var btAuto: UIButton!
-//    @IBOutlet weak var btInit: UIButton!
-//    @IBOutlet weak var btSetView: UIButton!
-    // TODO : btParking 기능 추가 필요!!!!!
+    
+    //    @IBOutlet weak var btSetView: UIButton!
+    @IBOutlet weak var btInit: UIButton!
     @IBOutlet weak var btParking: UIButton!
     @IBOutlet weak var btGReset: UIButton!
     
@@ -44,6 +44,7 @@ class SALCtrlViewController: UIViewController {
     private var buttonMap: [UIButton: String] = [:]
     
     private var iSALModel = 0
+    private var isSuperManagerMode:Bool = false
     private var isAutoFinish = false
     private var mCmdSelect: UInt8 = 0x30  // '0'
     private var mCmdMotion: UInt8 = 0x50 // 'P'
@@ -53,6 +54,7 @@ class SALCtrlViewController: UIViewController {
     
     private let CMD_PARKING = 0
     private let CMD_GYRO_RESET = 1
+    private let CMD_INIT_FRESET = 2
     
     private var buttonStates: [ButtonType: Bool] = [:]
     
@@ -150,17 +152,38 @@ class SALCtrlViewController: UIViewController {
 //        btAuto.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchUpInside)
         btGReset.addTarget(self, action: #selector(gyroResetSend), for: .touchUpInside)
         btParking.addTarget(self, action: #selector(parkingMode), for: .touchUpInside)
+        btInit.addTarget(self, action: #selector(SALInitMode), for: .touchUpInside)
         
-        guard let parentVC = self.parent as? MainControlViewController else { return }
-        if !parentVC.isManagerMode {
-            btGReset.isHidden = true;
+        if !isSuperManagerMode {
+            guard let parentVC = self.parent as? MainControlViewController else { return }
+            if !parentVC.isManagerMode {
+                btGReset.isHidden = true;
+            }
+            btInit.isHidden = true;
         }
-        //        btInit.addTarget(self, action: #selector(expertCommand(_:)), for: .touchUpInside)
+        //
         //        btGReset.addTarget(self, action: #selector(expertCommand(_:)), for: .touchUpInside)
         //        btSetView.addTarget(self, action: #selector(expertCommand(_:)), for: .touchUpInside)
         //        btParking.addTarget(self, action: #selector(expertCommand(_:)), for: .touchUpInside)
     }
-    
+    @objc private func SALInitMode() {
+        // 알림 → 장치 선택 화면
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: "SAL Initialization",
+                message: "SAL 초기화 모드로 진입합니다.\n" +
+                        "(경고!! 초기값이 재설정 됩니다.)",
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(UIAlertAction(title: "실행", style: .default) { _ in
+                self.sendOneSendCommand(self.CMD_INIT_FRESET)
+            })
+            alert.addAction(UIAlertAction(title: "취소", style: .default))
+
+            self.present(alert, animated: true)
+        }
+    }
     @objc private func parkingMode() {
         // 알림 → 장치 선택 화면
         DispatchQueue.main.async {
@@ -174,6 +197,7 @@ class SALCtrlViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
                 self.sendOneSendCommand(self.CMD_PARKING)
             })
+            alert.addAction(UIAlertAction(title: "취소", style: .default))
 
             self.present(alert, animated: true)
         }
@@ -191,6 +215,7 @@ class SALCtrlViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "확인", style: .default) { _ in
                 self.sendOneSendCommand(self.CMD_GYRO_RESET)
             })
+            alert.addAction(UIAlertAction(title: "취소", style: .default))
 
             self.present(alert, animated: true)
         }
@@ -203,6 +228,10 @@ class SALCtrlViewController: UIViewController {
         else if Type == CMD_GYRO_RESET {
             mCmdSelect = 0xA7
             mCmdMotion = 0x47   // 'G'
+        }
+        else if Type == CMD_INIT_FRESET {
+            mCmdSelect = 0xA7
+            mCmdMotion = 0x49   // 'G'
         }
         sendActionCommand(true)
     }
@@ -368,7 +397,8 @@ class SALCtrlViewController: UIViewController {
     private func loadConfig() {
         // 저장된 SAL 모델 인덱스 불러오기
         let defaults = UserDefaults.standard
-        iSALModel = defaults.integer(forKey: "ConfSALModel")
+        iSALModel = defaults.integer(forKey: "ConfSALModel")        
+        isSuperManagerMode = defaults.bool(forKey: "ConfManagerMode")
     }
     
     private func buttonAutoClear(_ isClear: Bool){

@@ -22,7 +22,8 @@ final class BluetoothManager: NSObject{
     private(set) var discoveredPeripherals: [CBPeripheral] = []
     /// PASSKEY / Bonding UI가 떠있는 중인지 여부
     private(set) var awaitingPairing = false
-    
+    // BluetoothManager 내부 프로퍼티에 추가
+    private var isShowingBluetoothOffAlert = false
     
     var onDiscover: ((_ peripheral: CBPeripheral, _ rssi: NSNumber) -> Void)?
     var onStateChange: ((_ state: CBManagerState) -> Void)?
@@ -30,6 +31,7 @@ final class BluetoothManager: NSObject{
     var onDisconnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
     var onFailToConnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
     var onReceiveData: ((Data) -> Void)?
+    var onBluetoothPoweredOff: (() -> Void)?
     // MARK: - 자동 재연결
     private var targetPeripheralIdentifier: UUID?
     var isConnected: Bool {
@@ -37,7 +39,7 @@ final class BluetoothManager: NSObject{
     }
     private override init() {
         super.init()
-        central = CBCentralManager(delegate: self, queue: nil)
+        central = CBCentralManager(delegate: self, queue: nil, options: [CBCentralManagerOptionShowPowerAlertKey: true])
     }
     
     // 외부에서 접근할 수 있는 읽기 전용 프로퍼티
@@ -47,7 +49,11 @@ final class BluetoothManager: NSObject{
 
     // 스캔 시작
     func startScan() {
-        guard central.state == .poweredOn else { return }
+        guard central.state == .poweredOn else {
+//            onBluetoothPoweredOff?()
+            print("PowerOFF 상태입니다. 블루투스 기능을 켜주세요.")
+            return
+        }
         discoveredPeripherals.removeAll()
         // nil 서비스 -> 모든 광고 디바이스 스캔
         central.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
@@ -117,12 +123,104 @@ final class BluetoothManager: NSObject{
         peripheral.setNotifyValue(true, for: characteristic)
         print("📡 Notify 구독 시작: \(characteristic.uuid)")
     }
+    
+    // MARK: - Helpers
+    public func presentBluetoothOffAlertIfNeeded(from presenter: UIViewController? = nil, completion: ((Bool) -> Void)? = nil) {
+        DispatchQueue.main.async {
+            // 전역 플래그로 1차 차단
+            if self.isShowingBluetoothOffAlert { return }
+
+            // Determine presenter VC
+            let presentingVC: UIViewController? = {
+                if let presenter = presenter {
+                    return BluetoothManager.topMostViewController(from: presenter)
+                }
+                guard let scene = UIApplication.shared.connectedScenes
+                        .compactMap({ $0 as? UIWindowScene })
+                        .first(where: { $0.activationState == .foregroundActive }),
+                      let window = scene.windows.first(where: { $0.isKeyWindow }),
+                      let root = window.rootViewController else {
+                    return nil
+                }
+                return BluetoothManager.topMostViewController(from: root)
+            }()
+
+            guard let vc = presentingVC else { return }
+
+            // 동일 목적 Alert가 이미 떠 있는지 검사 (제목/메시지로 판별)
+            if let existing = vc.presentedViewController as? UIAlertController,
+               existing.title == "Bluetooth 꺼짐",
+               existing.message == "1.접근권한설정을 확인하시고\n 2.설정 > Bluetooth > 켬 으로 블루투스를 켜주세요.\n" {
+                return
+            }
+
+            // 여기까지 왔으면 실제로 Alert 표시
+            let alert = UIAlertController(title: "Bluetooth 꺼짐",
+                                          message: "1.접근권한설정을 확인하시고\n 2.설정 > Bluetooth > 켬 으로 블루투스를 켜주세요.\n",
+                                          preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { _ in
+                self.isShowingBluetoothOffAlert = false
+                completion?(false)
+            }))
+            alert.addAction(UIAlertAction(title: "설정 열기", style: .default, handler: { [weak alert] _ in
+                // 해제 플래그를 먼저 내리고, Alert를 닫은 뒤 설정으로 이동
+                self.isShowingBluetoothOffAlert = false
+                // 성공(true) 콜백 전달
+                completion?(true)
+                if let presenting = alert?.presentingViewController {
+                    presenting.dismiss(animated: true) {
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
+                    }
+                } else {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+                }
+            }))
+
+            // 표시 직전에 플래그 ON
+            self.isShowingBluetoothOffAlert = true
+
+            vc.present(alert, animated: true, completion: nil)
+        }
+    }
+//    // Convenience method for backward compatibility
+//    public func presentBluetoothOffAlertIfNeeded() {
+//        presentBluetoothOffAlertIfNeeded(from: nil)
+//    }
+
+    // Resolve top-most view controller from a given root
+    private static func topMostViewController(from root: UIViewController?) -> UIViewController? {
+        guard let root = root else { return nil }
+        if let presented = root.presentedViewController {
+            return topMostViewController(from: presented)
+        }
+        if let nav = root as? UINavigationController {
+            return topMostViewController(from: nav.visibleViewController)
+        }
+        if let tab = root as? UITabBarController {
+            return topMostViewController(from: tab.selectedViewController)
+        }
+        return root
+    }
 }
 
 extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         onStateChange?(central.state)
+        switch central.state {
+        case .poweredOff:
+            // Notify UI layer if it wants to handle UX itself
+            onBluetoothPoweredOff?()
+            // Show a friendly alert guiding user to Settings
+//            presentBluetoothOffAlertIfNeeded()
+        default:
+            break
+        }
     }
 
     func centralManager(_ central: CBCentralManager,

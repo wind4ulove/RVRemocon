@@ -33,6 +33,17 @@ class MainControlViewController: UIViewController {
         super.viewDidLoad()
        
         initializeControllers()
+        btManager.onBluetoothPoweredOff = {
+            print("Power off callback Main")
+            self.btManager.presentBluetoothOffAlertIfNeeded(from: self) { didOpenSettings in
+                if didOpenSettings {
+                    // 사용자가 설정으로 이동함
+                } else {
+                    self.checkBluetoothConnection()
+                }
+            }
+//            self.btManager.presentBluetoothOffAlertIfNeeded(from: self)
+        }
         btManager.onDisconnect = { [weak self] peripheral, error in
             guard let self = self else { return }
 
@@ -236,32 +247,44 @@ class MainControlViewController: UIViewController {
     private func checkBluetoothConnection() {
         let defaults = UserDefaults.standard
         guard let uuidString = defaults.string(forKey: "strConfDeviceAddr"),
-//              defaults.bool(forKey: "bConfAutoConnect"),
-              let targetUUID = UUID(uuidString: uuidString)
+            let targetUUID = UUID(uuidString: uuidString)
         else {
             // 자동 연결 조건 불만족 → 장치 선택 화면
             showDeviceSelectScreen()
             return
         }
         showLoadingOverlay()
-        
+
         var scanAttempts = 0
-        let maxAttempts = 5
+        let maxAttempts = 3
         let scanInterval: TimeInterval = 2.0
-        
+
         func attemptScan() {
-            let maxConnectTry = 2
+            let maxConnectTry = 5
             scanAttempts += 1
 
             self.btManager.startScan()
             print("스캔 시작")
             DispatchQueue.main.asyncAfter(deadline: .now() + scanInterval) {
+                if self.btManager.state != .poweredOn {
+                    
+                    self.btManager.presentBluetoothOffAlertIfNeeded(from: self) { didOpenSettings in
+                        if didOpenSettings {
+                            // 사용자가 설정으로 이동함
+                        } else {
+                            attemptScan()
+                        }
+                    }
+                    return
+                }     
+                
                 if self.btManager.isConnected {
                     self.btManager.stopScan()
                     self.hideLoadingOverlay()
                     return
                 }
-                
+
+
                 // UUID 문자열 비교 안전하게
                 if let peripheral = self.btManager.discoveredPeripherals.first(where: { $0.identifier == targetUUID }) {
                     // 장치 발견 → 연결 시도
@@ -270,10 +293,12 @@ class MainControlViewController: UIViewController {
                     self.connectTry += 1
                     //연결 시도를 여러번 했다는 건 페이링이 안된것으로 판단.
                     if self.connectTry > maxConnectTry {
-                        self.connectTry = 0     
+                        print("retry 실패")
+                        self.connectTry = 0
                         self.showDeviceNotFoundAlert()
                     }
                     else{
+                        print("연결!!")
                         scanAttempts = 0
                         self.btManager.connect(peripheral)
                         self.btManager.onReceiveData = { data in
@@ -283,18 +308,21 @@ class MainControlViewController: UIViewController {
 
                 } else if scanAttempts < maxAttempts {
                     // 스캔 재시도
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + scanInterval) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + scanInterval) {
                     print("스캔 재시도")
 //                        self.btManager.stopScan()
-//                        attemptScan()
-//                    }
-                    self.btManager.startScan()
+                        attemptScan()
+//                        self.btManager.startScan()
+                    }
+                    
                 } else {
+                    print("장치 검색 실패")
                     // 장치 못 찾음
                     self.btManager.stopScan()
                     self.hideLoadingOverlay()
                     self.showDeviceNotFoundAlert()
                 }
+
             }
         }
 

@@ -102,7 +102,7 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="rotate_cw"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Nbf-eA-0MH" userLabel="btLFront">
-                                                <rect key="frame" x="0.0" y="137" width="128" height="154"/>
+                                                <rect key="frame" x="-1" y="137" width="127" height="154"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="up_arrow_l"/>
@@ -219,7 +219,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Irr-B2-RYB">
-                                <rect key="frame" x="8" y="735" width="116.66666666666667" height="28"/>
+                                <rect key="frame" x="8.0000000000000071" y="735" width="116.66666666666669" height="28"/>
                                 <subviews>
                                     <switch toolTip="AUTO ACTUATOR" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="leading" contentVerticalAlignment="center" on="YES" title="AUTO ACTUATOR" translatesAutoresizingMaskIntoConstraints="NO" id="8Bw-Mm-pQy" userLabel="autoActuCheck">
                                         <rect key="frame" x="0.0" y="0.0" width="63" height="28"/>
@@ -366,17 +366,30 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="doP-tE-fTP">
-                                <rect key="frame" x="20.000000000000014" y="767.66666666666663" width="217.33333333333337" height="34.333333333333371"/>
+                                <rect key="frame" x="20" y="767.66666666666663" width="356" height="34.333333333333371"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOS-CI-i5A">
-                                        <rect key="frame" x="0.0" y="0.0" width="103.66666666666667" height="34.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="112" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="PARKING" titleAlignment="center"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="PARKING" titleAlignment="center">
+                                            <fontDescription key="titleFontDescription" style="UICTFontTextStyleHeadline"/>
+                                        </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRK-18-FF8">
-                                        <rect key="frame" x="113.66666666666666" y="0.0" width="103.66666666666666" height="34.333333333333336"/>
+                                        <rect key="frame" x="122" y="0.0" width="112" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="GyroReset"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="GyroReset">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="baseBackgroundColor" systemColor="systemGrayColor"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdP-9k-P5J">
+                                        <rect key="frame" x="244" y="0.0" width="112" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="FactoryINIT">
+                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="baseBackgroundColor" systemColor="systemBrownColor"/>
+                                        </buttonConfiguration>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -393,6 +406,7 @@
                         <outlet property="btAuto" destination="ZZ5-7J-ebD" id="eAA-rj-Sv1"/>
                         <outlet property="btDown" destination="2s0-cJ-b3r" id="YtF-pZ-OSI"/>
                         <outlet property="btGReset" destination="qRK-18-FF8" id="tJj-hE-zLS"/>
+                        <outlet property="btInit" destination="rdP-9k-P5J" id="dJF-Hp-FeQ"/>
                         <outlet property="btLFront" destination="ejF-x2-TS8" id="BWZ-Ns-lG5"/>
                         <outlet property="btLMiddle" destination="muc-rI-VeR" id="Wuy-hb-6bW"/>
                         <outlet property="btLRear" destination="AGy-Pw-IID" id="YFI-Mh-9EF"/>
@@ -442,13 +456,16 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.67450980392156867" green="0.49803921568627452" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.2196078431372549" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tableBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

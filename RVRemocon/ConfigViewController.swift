@@ -22,7 +22,9 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
     // MARK: - 선택 상태
     var selectedRvmIndex: Int?
     var selectedSalIndex: Int?
-
+    var setManagerMode: Bool = false
+    var countManagermode: Int = 0
+    
     // MARK: - 데이터
     let rvmOptions = ["None", "RV-9000AT", "RV-9000MT"]
     let salOptions = ["None", "SAL-SIMPLE", "SAL-CAR", "SAL-BASIC", "SAL-PREMIUM"]
@@ -52,17 +54,61 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
         tableView.backgroundColor = .clear
     }
     @objc private func managerSwitchTouch() {
+        setManagerMode = false // 관리자 모드 기본 Off
         if managerSwitch.isOn {
             // 알림 → 장치 선택 화면
-            DispatchQueue.main.async {
+            countManagermode += 1
+            // 카운트가 3번까지는 안내 멘트가 노출되고 이후 안내 멘트가 없어짐.
+            
+            if countManagermode < 5 {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(
+                        title: "관리 모드 설정",
+                        message: "장비 초기화 버튼이 노출됩니다.\n" +
+                        "의도하지 않은 초기화 설정을 방지하기 위해 활성화 상태는 저장되지 않습니다.\n",
+                        preferredStyle: .alert
+                    )
+                    alert.addAction(UIAlertAction(title: "확인", style: .default))
+                    self.present(alert, animated: true)
+                }
+            }
+            if countManagermode > 10 {
                 let alert = UIAlertController(
-                    title: "관리 모드 설정",
-                    message: "장비 초기화 버튼이 노출됩니다.\n" +
-                    "의도하지 않은 초기화 설정을 방지하기 위해 활성화 상태는 저장되지 않습니다.\n",
+                    title: "공장 관리 모드 설정",
+                    message: "장비 공장 초기화 버튼이 노출됩니다.\n" +
+                    "의도하지 않은 초기화 설정을 방지하기 위해 사용하지 않을 때는 설정을 꺼주세요.\n",
                     preferredStyle: .alert
                 )
-                alert.addAction(UIAlertAction(title: "확인", style: .default))
-                self.present(alert, animated: true)
+                alert.addTextField { textField in
+                    textField.placeholder = "코드를 입력하세요"
+                    textField.keyboardType = .numberPad
+                    textField.isSecureTextEntry = true
+                }
+
+                alert.addAction(UIAlertAction(title: "취소", style: .cancel))
+                alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                    let input = alert.textFields?.first?.text ?? ""
+                    let requiredCode = "96120345" // 특수코드
+                    if input == requiredCode {
+                        self.setManagerMode = true // 관리자 모드 On
+                        let ok = UIAlertController(title: "관리 모드 활성화",
+                                                   message: "인증이 완료되었습니다.",
+                                                   preferredStyle: .alert)
+                        ok.addAction(UIAlertAction(title: "확인", style: .default))
+                        self.present(ok, animated: true)
+                    } else {
+                        self.setManagerMode = false // 관리자 모드 Off
+                        let fail = UIAlertController(title: "코드 오류",
+                                                      message: "인증되지 않았습니다.",
+                                                      preferredStyle: .alert)
+                        fail.addAction(UIAlertAction(title: "확인", style: .default))
+                        self.present(fail, animated: true)
+                    }
+                }))
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true)
+                }
+                countManagermode = 0 //초기화
             }
         }
     }
@@ -177,7 +223,11 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
         defaults.set(selectedSalIndex, forKey: "ConfSALModel")
         // Control Mode (0=Joy, 1=Jog, 2=Dir)
         defaults.set(controlModeSegment.selectedSegmentIndex, forKey: "ConfControlMode")
-
+        // Manager Mode (0=Normal, 1=Expert)
+        if !managerSwitch.isOn {
+            setManagerMode = false
+        }
+        defaults.set(setManagerMode, forKey: "ConfManagerMode")
 
     }
 
@@ -190,6 +240,7 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
         controlModeSegment.selectedSegmentIndex = defaults.integer(forKey: "ConfControlMode")
         selectedRvmIndex = defaults.integer(forKey: "ConfRVMModel")
         selectedSalIndex = defaults.integer(forKey: "ConfSALModel")
+        setManagerMode = defaults.bool(forKey: "ConfManagerMode")
         
         rvmTableView.reloadData()
         salTableView.reloadData()
@@ -210,3 +261,4 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
         }
     }
 }
+

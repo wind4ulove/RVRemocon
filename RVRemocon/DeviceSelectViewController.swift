@@ -21,6 +21,8 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        btManager.disconnect()  // 연결을 해제하고 리스트를 표시.
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DeviceCell")
@@ -29,19 +31,13 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
         loadUserSettings()
         
         reloadButton.addTarget(self, action: #selector(reloadScan), for: .touchUpInside)
-        
-        
+                
         // ✅ TableView 배경 투명하게 설정
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-
-//        // ✅ 배경 이미지 설정 (선택사항)
-//        let backgroundImageView = UIImageView(frame: view.bounds)
-//        backgroundImageView.image = UIImage(named: "bg_600x1024") // 프로젝트에 추가한 이미지 이름
-//        backgroundImageView.contentMode = .scaleAspectFill
-//        tableView.backgroundView = backgroundImageView
-        
-        btManager.disconnect()  // 연결을 해제하고 리스트를 표시.
+        btManager.onBluetoothPoweredOff = {
+            self.btManager.presentBluetoothOffAlertIfNeeded(from: self)
+        }
         // 스캔 콜백
         btManager.onDiscover = { [weak self] peripheral, _ in
             guard let self = self else { return }
@@ -68,9 +64,11 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
                         message: "\(name)가 선택되었습니다.화면을 이동하시겠습니까?",
                         preferredStyle: .alert
                     )
+                    alert.addAction(UIAlertAction(title: "취소", style: .cancel))
                     alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
                         self.navigateToBack()
                     }))
+                    
                     self.present(alert, animated: true)
                 }
                 
@@ -111,15 +109,13 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
                 self.present(alert, animated: true)
             }
         }
-
         startScan()
     }
-
     
     // MARK: - Scan
     @objc private func reloadScan() {
-        discoveredPeripherals.removeAll()
-        tableView.reloadData()
+//        discoveredPeripherals.removeAll()
+//        tableView.reloadData()
         startScan()
     }
     
@@ -127,6 +123,11 @@ class DeviceSelectViewController: UIViewController, UITableViewDelegate, UITable
         activityIndicator.startAnimating()
         discoveredPeripherals.removeAll()
         tableView.reloadData()
+      
+        if btManager.state != .poweredOn {
+            self.btManager.presentBluetoothOffAlertIfNeeded(from: self)
+            return
+        }
         
         btManager.startScan()
         
