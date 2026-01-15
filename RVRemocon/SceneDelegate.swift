@@ -61,8 +61,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //    }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        print("🔴 Scene 비활성 — BLE 끊기")
-        BluetoothManager.shared.disconnect()
+//        print("🔴 Scene 비활성 — BLE 끊기")
+//        BluetoothManager.shared.disconnect()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {

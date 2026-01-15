@@ -25,10 +25,11 @@ final class BluetoothManager: NSObject{
     // BluetoothManager 내부 프로퍼티에 추가
     private var isShowingBluetoothOffAlert = false
     
-    var onDiscover: ((_ peripheral: CBPeripheral, _ rssi: NSNumber) -> Void)?
+//    var onDiscover: ((_ peripheral: CBPeripheral, _ rssi: NSNumber) -> Void)?
+    var onDiscover: ((CBPeripheral, [String: Any]) -> Void)?
     var onStateChange: ((_ state: CBManagerState) -> Void)?
     var onConnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
-    var onDisconnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
+    var onDisconnect: ((_ peripheral: CBPeripheral?, _ error: Error?) -> Void)?
     var onFailToConnect: ((_ peripheral: CBPeripheral, _ error: Error?) -> Void)?
     var onReceiveData: ((Data) -> Void)?
     var onBluetoothPoweredOff: (() -> Void)?
@@ -81,6 +82,9 @@ final class BluetoothManager: NSObject{
             print("🔌 Disconnected")
         } else {
             print("⚠️ 연결된 peripheral 없음")
+            // 연결된 peripheral이 없지만 호출자에게 알림을 전달합니다.
+            let error = NSError(domain: "BluetoothManager", code: 0, userInfo: [NSLocalizedDescriptionKey: "No connected peripheral to disconnect."])
+            onDisconnect?(self.connectedPeripheral, error)
         }
 
 //        central.cancelPeripheralConnection(peripheral)
@@ -232,7 +236,9 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
         if !discoveredPeripherals.contains(where: { $0.identifier == peripheral.identifier }) {
             discoveredPeripherals.append(peripheral)
         }
-        onDiscover?(peripheral, RSSI)
+//        onDiscover?(peripheral, RSSI)
+        // ⭐ advertisementData도 함께 전달
+        onDiscover?(peripheral, advertisementData)
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
@@ -242,7 +248,7 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
         self.connectedPeripheral = peripheral
         peripheral.delegate = self
         peripheral.discoverServices(nil) // ✅ 서비스 검색 시작
-        onConnect?(peripheral, nil)
+        onConnect?(peripheral,nil)
     }
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("❌ 연결 실패: \(peripheral.name ?? "알 수 없음") | \(String(describing: error))")
@@ -329,7 +335,7 @@ extension BluetoothManager: CBCentralManagerDelegate,CBPeripheralDelegate {
             print("🔑 페어링 필요")
         } else {
             awaitingPairing = false
-            print("✅ 이미 bonded 또는 인증 불필요")
+//            print("✅ 이미 bonded 또는 인증 불필요")
         }
         
         

@@ -88,7 +88,8 @@ class ConfigViewController: UIViewController,UITableViewDelegate, UITableViewDat
                 alert.addAction(UIAlertAction(title: "취소", style: .cancel))
                 alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
                     let input = alert.textFields?.first?.text ?? ""
-                    let requiredCode = "96120345" // 특수코드
+//                    let requiredCode = "96120345" // 특수코드
+                    let requiredCode = "96120" // 특수코드
                     if input == requiredCode {
                         self.setManagerMode = true // 관리자 모드 On
                         let ok = UIAlertController(title: "관리 모드 활성화",

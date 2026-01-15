@@ -17,13 +17,18 @@ class MainControlViewController: UIViewController {
     
     private var textBuffer = ""
     
+    // 클래스 프로퍼티에 추가
+    private var isAppInactive = false
+    
     public var isManagerMode: Bool = false
     public var FBAngle: CGFloat = 0
     public var LRAngle: CGFloat = 0
     public var ActFlag: UInt8 = 0
+
     
     private var actMaskClearCount: Int = 0
     private var connectTry : Int = 0
+    private var BleConnectTry : Int = 0
     
     // MARK: - Loading Overlay
     private var loadingView: UIView?
@@ -39,6 +44,7 @@ class MainControlViewController: UIViewController {
                 if didOpenSettings {
                     // 사용자가 설정으로 이동함
                 } else {
+                    self.showLoadingOverlay()
                     self.checkBluetoothConnection()
                 }
             }
@@ -58,6 +64,10 @@ class MainControlViewController: UIViewController {
 
             // ✅ 저장되어 있어야만 재연결 체크
             if self.btManager.awaitingPairing { return }
+            if isAppInactive {
+                self.showDeviceSelectScreen()
+                return
+            }
             self.checkBluetoothConnection()
         }
         btManager.onFailToConnect = { [weak self] peripheral, error in
@@ -88,14 +98,30 @@ class MainControlViewController: UIViewController {
                 self.present(alert, animated: true)
             }
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(onSceneActive),
             name: .sceneDidBecomeActive,
             object: nil
         )
-        checkBluetoothConnection()
         showLoadingOverlay()
+        checkBluetoothConnection()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    @objc private func appWillResignActive() {
+        print("🔴 App 비활성")
+        isAppInactive = true
+    }
+
+    @objc private func appDidBecomeActive() {
+        // 팝업이 사라졌거나 앱이 다시 전면으로 올라온 상태
+        isAppInactive = false
     }
     
     
@@ -253,7 +279,7 @@ class MainControlViewController: UIViewController {
             showDeviceSelectScreen()
             return
         }
-        showLoadingOverlay()
+//        showLoadingOverlay()
 
         var scanAttempts = 0
         let maxAttempts = 3
@@ -331,9 +357,28 @@ class MainControlViewController: UIViewController {
     
     public func bleReconnect() {
         // BluetoothManager 싱글톤 사용 중이라 가정
+        if BleConnectTry > 2 {
+            self.BleConnectTry = -1
+            self.showDeviceSelectScreen()
+            return
+        }
         if btManager.isConnected == false {
+            self.showLoadingOverlay()
             print("⚠️ 블루투스 연결 안됨 — 재검색 시작")
-            checkBluetoothConnection()
+            // 자동 이동을 조금 지연해서 페어링 팝업이 뜨는지(비활성 전환) 관찰
+            let delay: TimeInterval = 1.0
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                // 대기 후에도 앱이 active라면 이전 화면으로 이동
+                if !self.isAppInactive {
+                    self.BleConnectTry+=1
+                    self.checkBluetoothConnection()
+                } else {
+                    // 앱이 inactive 상태면(페어링 팝업 가능성) 이동 취소
+                    // 필요 시, 다시 active가 되었을 때 후속 동작을 하려면 appDidBecomeActive에서 처리
+                    print("앱이 비활성 상태로 전환됨: 페어링 팝업 가능성 → 이동 취소")
+                }
+            }
+            
         } else {
             print("✅ 블루투스 연결됨 — 기존 연결 유지")
         }
@@ -341,6 +386,11 @@ class MainControlViewController: UIViewController {
 
     @objc private func onSceneActive() {
         print("✅ 메인 VC에서만 BLE 재연결")
+        if self.BleConnectTry < 0 {return}
+        guard isViewLoaded, view.window != nil else {
+            print("메인 VC가 표시되지 않음 → onSceneActive 처리 스킵")
+            return
+        }
         connectTry = 0
         bleReconnect()
     }
@@ -405,8 +455,8 @@ class MainControlViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "선택 화면으로 이동", style: .default) { _ in
             self.showDeviceSelectScreen()
         })
-        alert.addAction(UIAlertAction(title: "재탐색", style: .cancel){
-            _ in
+        alert.addAction(UIAlertAction(title: "재탐색", style: .cancel){_ in
+            self.showLoadingOverlay()
             self.checkBluetoothConnection()
         })
         
